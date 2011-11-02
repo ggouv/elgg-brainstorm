@@ -19,7 +19,8 @@ $content .= elgg_list_entities(array(
 	'limit' => 10,
 	'offset' => $offset,
 	'full_view' => false,
-	'view_toggle_type' => false
+	'view_toggle_type' => false,
+	'item_class' => 'elgg-item-idea'
 ));
 
 if (!$content) {

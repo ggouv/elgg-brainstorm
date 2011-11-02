@@ -59,7 +59,7 @@ $params = array(
 $params = $params + $vars;
 $list_body = elgg_view('object/elements/summary', $params);
 
-$vote = "<div class='points'>35</div>" .
+$vote = "<div class='idea-points mbs pam'>35</div>" .
 	elgg_view('input/button', array('name' => 'vote-button', 'value' => 'vote'));
 
 // do not show the metadata and controls in widget view
@@ -73,11 +73,11 @@ if ($full && !elgg_in_context('gallery')) {
 	$idea_info = elgg_view_image_block($owner_icon, $list_body);
 
 	echo <<<HTML
-<div class="idea-left-column">$vote</div>
-<div class="idea-content mts">
+<div class="idea-left-column mts">$vote</div>
+<div class="idea-content">
 	$header
-	$description
 	$idea_info
+	$description
 </div>
 HTML;
 
@@ -111,7 +111,7 @@ HTML;
 	$body = elgg_view('object/elements/summary', $params);*/
 	
 	echo <<<HTML
-<div class="idea-left-column">$vote</div>
+<div class="idea-left-column mts mbs">$vote</div>
 <div class="idea-content mts">
 	<h3>$title_link</h3>
 	$content
