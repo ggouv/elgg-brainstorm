@@ -1,12 +1,25 @@
 
-elgg.provide('elgg.bookmarks');
+// JS for Brainstorm plugin
+elgg.provide('elgg.brainstorm');
 
-elgg.bookmarks.init = function() {
-	// append the title to the url
-	var title = document.title;
-	var e = $('a.elgg-bookmark-page');
-	var link = e.attr('href') + '&title=' + encodeURIComponent(title);
-	e.attr('href', link);
-}
+elgg.brainstorm.init = function() {
+	$('.idea-left-column .idea-rate-button').click(function() {
+		var position = $(this).position();
+		console.log(position);
+	});
+};
+elgg.register_hook_handler('init', 'system', elgg.brainstorm.init);
 
-elgg.register_hook_handler('init', 'system', elgg.bookmarks.init);
+/**
+ * Reposition the vote-popup
+ */
+elgg.ui.votePopup = function(hook, type, params, options) {
+	if (params.target.attr('id') == 'vote-popup') {
+		options.my = 'left center';
+		options.at = 'right center';
+		options.offset = '13 0';
+		return options;
+	}
+	return null;
+};
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.ui.votePopup);
