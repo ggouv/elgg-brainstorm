@@ -37,31 +37,51 @@
 }
 
 
-#vote-popup {
+.brainstorm-vote-popup {
 	display: none;
 	position: absolute;
 	z-index: 0;
-	min-width: 372px;
-	min-height: 20px;
 }
-#vote-popup .triangle {
+.brainstorm-vote-popup .triangle {
 	border-style: solid;
 	border-width: 10px 10px 10px 0;
 	height: 0;
-	position: relative;
+	position: absolute;
 	width: 0;
+    top: 6px;
 }
-#vote-popup .blanc {
+.brainstorm-vote-popup .blanc {
 	border-color: transparent white;
-	left: -15px;
-    top: -10px;
+	left: -10px;
 }
-#vote-popup .gris {
+.brainstorm-vote-popup .gris {
 	border-color: transparent #CCCCCC;
-	left: -16px;
-    top: 10px;
+	left: -11px;
 }
-
+.brainstorm-vote-popup li {
+	width: 40px;
+	float: left;
+	border-radius: 5px 5px 5px 5px;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 2px 4px;
+	color: #666;
+	background-color: #EBEBEB;
+	text-align: center;
+	margin-left: 5px;
+}
+.brainstorm-vote-popup li:first-child {
+	margin-left: 0px;
+}
+.brainstorm-vote-popup li:hover {
+	background-color: #4690D6;
+}
+.brainstorm-vote-popup input[type="radio"] {
+	display: none;
+}
+.brainstorm-vote-popup label {
+	cursor: pointer;
+}
 
 #votesLeft {
 	background-color: orange;

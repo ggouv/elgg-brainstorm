@@ -61,7 +61,16 @@ $list_body = elgg_view('object/elements/summary', $params);
 
 $vote = "<div class='idea-points mbs'>35</div>" .
 	//"<div class='idea-rate-button'>vote</div>";// . elgg_echo('brainstorm:voteButton') . "</div>";
-	"<a class='idea-rate-button' rel='popup' href='#vote-popup'>vote</a>";
+	"<a class='idea-rate-button value-2' rel='popup' href='#vote-popup-{$idea->guid}' data-popup=\"{'value'='12'}\">vote</a>";
+//{"label":"Vote","position":"right","type":"ajax","action":"vote","src":"#vote_for_right_7841","email_name_optional":true,
+//"enter_does_nothing":true,"submitDataType":"script","onLogin":"inline_refresh","onLoginKeepPopup":true,"onLoginSubmitClosePopup":true}
+// Get callbacks
+
+$vote .= "<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
+			"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
+			elgg_view_form('brainstorm/vote_popup', array('class' => 'nrst'), $vars) .
+	 	"</div>";
+
 // do not show the metadata and controls in widget view
 if (elgg_in_context('widgets')) {
 	$metadata = '';

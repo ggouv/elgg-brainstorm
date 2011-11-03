@@ -17,6 +17,8 @@ function brainstorm_init() {
 
 	// actions
 	$action_base = "$root/actions/brainstorm";
+	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
+	
 	elgg_register_action("brainstorm/addcomment", "$action_base/addcomment.php");
 	elgg_register_action("brainstorm/addidea", "$action_base/addquestion.php");
 	elgg_register_action("brainstorm/closequestion", "$action_base/closequestion.php");
@@ -26,7 +28,6 @@ function brainstorm_init() {
 	elgg_register_action("brainstorm/editquestion", "$action_base/editquestion.php");
 	elgg_register_action("brainstorm/openquestion", "$action_base/openquestion.php");
 	elgg_register_action("brainstorm/rateanswer", "$action_base/rateanswer.php");
-	elgg_register_action("brainstorm/ratequestion", "$action_base/ratequestion.php");
 
 	elgg_register_action("brainstorm/add", "$action_base/addquestion.php");
 	elgg_register_action('brainstorm/save', "$action_base/save.php");
