@@ -73,8 +73,6 @@ $userVote = elgg_get_annotations(array(
 	'annotation_owner_guids' => elgg_get_logged_in_user_guid()
 ));
 if ( $userVote == '' || $userVote == '0') $userVote = 'vote';
-global $fb; $fb->info($userVote);
-
 
 $vars['idea'] = array('sum'  => $sum);
 
@@ -96,11 +94,13 @@ if ($full && !elgg_in_context('gallery')) {
 	$idea_info = elgg_view_image_block($owner_icon, $list_body);
 
 	echo <<<HTML
-<div class="idea-left-column mts">$vote</div>
-<div class="idea-content">
-	$header
-	$idea_info
-	$description
+<div id="elgg-object-{$idea->guid}">
+	<div class="idea-left-column mts">$vote</div>
+	<div class="idea-content">
+		$header
+		$idea_info
+		$description
+	</div>
 </div>
 HTML;
 
@@ -124,6 +124,7 @@ HTML;
 	$title_link = elgg_view('output/url', $params);
 	
 	echo <<<HTML
+
 <div class="idea-left-column mts mbs">$vote</div>
 <div class="idea-content mts">
 	<h3>$title_link</h3>
