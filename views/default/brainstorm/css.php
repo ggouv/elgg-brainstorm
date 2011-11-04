@@ -1,3 +1,6 @@
+/*
+ * Object idea
+ */
 .elgg-item-idea {
 	float: left;
 	width: 100%;
@@ -5,6 +8,9 @@
 .idea-left-column {
 	float: left;
 	position: relative;
+}
+.idea-content {
+	margin-left: 60px;
 }
 .idea-points {
 	font-size: 1.6em;
@@ -15,7 +21,12 @@
 	width: 50px;
 	padding: 10px 0;
 }
-.idea-left-column .idea-rate-button {
+.idea-points .elgg-ajax-loader {
+	background-size: 24px 24px;
+	margin: -3px 0;
+	min-height: 24px !important;
+}
+.idea-rate-button {
 	width: 50px;
 	border: 1px solid #CCCCCC;
 	color: #666666;
@@ -28,15 +39,24 @@
     background-color: #DEDEDE;
     display: block;
 }
-.idea-left-column .idea-rate-button:hover {
+.idea-rate-button:hover {
 	background-color: #CCC;
 	text-decoration: none;
 }
-.idea-content {
-	margin-left: 60px;
+.idea-rate-button.value-1 {
+	background-color: #FFC773;
+}
+.idea-rate-button.value-2 {
+	background-color: #FFB240;
+}
+.idea-rate-button.value-3 {
+	background-color: #FF9900;
 }
 
 
+/*
+ * Object vote-popup
+ */
 .brainstorm-vote-popup {
 	display: none;
 	position: absolute;
@@ -58,7 +78,7 @@
 	border-color: transparent #CCCCCC;
 	left: -11px;
 }
-.brainstorm-vote-popup li {
+.brainstorm-vote-popup .elgg-button {
 	width: 40px;
 	float: left;
 	border-radius: 5px 5px 5px 5px;
@@ -66,25 +86,29 @@
 	font-weight: bold;
 	padding: 2px 4px;
 	color: #666;
-	background-color: #EBEBEB;
 	text-align: center;
-	margin-left: 5px;
+	margin-right: 5px;
+	box-shadow: none;
 }
-.brainstorm-vote-popup li:first-child {
-	margin-left: 0px;
+.brainstorm-vote-popup .elgg-button:last-child {
+	margin-right: 0px;
 }
-.brainstorm-vote-popup li:hover {
+.brainstorm-vote-popup .elgg-button:hover {
 	background-color: #4690D6;
+	border-color: #4690D6;
 }
-.brainstorm-vote-popup input[type="radio"] {
-	display: none;
-}
-.brainstorm-vote-popup label {
-	cursor: pointer;
+.brainstorm-vote-popup .elgg-button.checked {
+	background-color: #0054A7;
+	border-color: #0054A7;
+	color: white;
+	cursor: default;
 }
 
+/*
+ * Sidebar
+ */
 #votesLeft {
-	background-color: orange;
+	background-color: #FF9900;
 	color: white;
 	font-size: 1.4em;
 	font-weight: bold;

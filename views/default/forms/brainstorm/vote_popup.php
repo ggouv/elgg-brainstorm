@@ -1,23 +1,16 @@
 <?php
-global $fb;
 
 $owner = elgg_get_logged_in_user_guid();
 
-//$fb->info($vars['brainstorm'], 'vars');
-//$fb->info($owner, 'owner');
+$opt[$vars['idea']['sum']] = 'checked';
 
-echo elgg_view('input/radio', array(
-					'name' => 'rate', 
-					'value' => '',
-					'options' => array('0' => '0', '1' => '1', '2' => '2', '3' => '3'),
-					'align' => 'horizontal'
-				));
+if ( $vars['idea']['sum'] == '0' || $vars['idea']['sum'] == '' ) $opt[0] = 'hidden';
+echo elgg_view('input/button', array('name' => 'rate-0', 'value' => '0', 'class' => 'rate-0 ' . $opt[0]));
+echo elgg_view('input/button', array('name' => 'rate-1', 'value' => '1', 'class' => 'rate-1 ' . $opt[1]));
+echo elgg_view('input/button', array('name' => 'rate-2', 'value' => '2', 'class' => 'rate-2 ' . $opt[2]));
+echo elgg_view('input/button', array('name' => 'rate-3', 'value' => '3', 'class' => 'rate-3 ' . $opt[3]));
 
-/*echo elgg_view('input/button', array('name' => 'tab', 'value' => '1'));
-echo elgg_view('input/button', array('name' => 'tab', 'value' => '2'));
-echo elgg_view('input/button', array('name' => 'tab', 'value' => '3'));
-
-
+/*
  * @uses $vars['value']    The current value, if any
  * @uses $vars['name']     The name of the input field
  * @uses $vars['options']  An array of strings representing the options for the
