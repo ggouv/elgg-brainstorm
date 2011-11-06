@@ -21,7 +21,7 @@ $title = $idea->title;
 
 elgg_push_breadcrumb($title);
 
-$content = elgg_view_entity($idea, array('full_view' => true));
+$content = elgg_view_entity($idea, array('full_view' => 'full'));
 $content .= elgg_view_comments($idea);
 
 $body = elgg_view_layout('content', array(
@@ -29,7 +29,7 @@ $body = elgg_view_layout('content', array(
 	'title' => $title,
 	'filter' => '',
 	'header' => '',
-	'sidebar' => elgg_view('brainstorm/sidebar-idea')
+	//'sidebar' => elgg_view('brainstorm/sidebar-idea')
 ));
 
 echo elgg_view_page($title, $body);

@@ -32,7 +32,7 @@ elgg.brainstorm.init = function() {
 							$('#elgg-object-' + idea + ' .idea-rate-button').html(value);
 							$('#vote-popup-' + idea + ' .elgg-button').removeClass('hidden');
 						}
-						$('#elgg-object-' + idea + ' .idea-rate-button').removeClass().addClass('idea-rate-button value-'+value);
+						$('#elgg-object-' + idea + ' .idea-rate-button').removeClass().addClass('idea-rate-button idea-value-'+value);
 						
 						$('#vote-popup-' + idea + ' .elgg-button').removeClass('checked');
 						$('#vote-popup-' + idea + ' .rate-' + value).addClass('checked');

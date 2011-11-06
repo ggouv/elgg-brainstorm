@@ -19,6 +19,12 @@ $categories = elgg_view('output/categories', $vars);
 
 $description = elgg_view('output/longtext', array('value' => $idea->description, 'class' => 'pbl'));
 
+$params = array(
+	'text' => $idea->title,
+	'href' => $idea->getURL(),
+);
+$title_link = elgg_view('output/url', $params);
+	
 $owner_link = elgg_view('output/url', array(
 	'href' => "brainstorm/owner/$owner->username",
 	'text' => $owner->name,
@@ -77,7 +83,7 @@ if ( $userVote == '' || $userVote == '0') $userVote = 'vote';
 $vars['idea'] = array('userVote'  => $userVote);
 
 $vote = "<div class='idea-points mbs'>$sum</div>" .
-	"<a class='idea-rate-button value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$userVote</a>" .
+	"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$userVote</a>" .
 	"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
 		"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
 		elgg_view_form('brainstorm/vote_popup','', $vars) .
@@ -87,8 +93,8 @@ $vote = "<div class='idea-points mbs'>$sum</div>" .
 if (elgg_in_context('widgets')) {
 	$metadata = '';
 }
-
-if ($full && !elgg_in_context('gallery')) {
+global $fb; $fb->info($full, 'full');
+if ($full == 'full' && !elgg_in_context('gallery')) {
 	$header = elgg_view_title($idea->title);
 
 	$idea_info = elgg_view_image_block($owner_icon, $list_body);
@@ -104,6 +110,11 @@ if ($full && !elgg_in_context('gallery')) {
 </div>
 HTML;
 
+} elseif ($full == 'sidebar') {
+	echo <<<HTML
+<div class="mrs idea-value-$userVote">$userVote</div>
+<h3>$title_link</h3>
+HTML;
 } elseif (elgg_in_context('gallery')) {
 	echo <<<HTML
 <div class="idea-gallery-item">
@@ -113,18 +124,9 @@ HTML;
 HTML;
 } else {
 	// brief view
-	$header = elgg_view_title($idea->title);
-
 	$content = elgg_get_excerpt($idea->description, '300');
-
-	$params = array(
-		'text' => $idea->title,
-		'href' => $idea->getURL(),
-	);
-	$title_link = elgg_view('output/url', $params);
 	
 	echo <<<HTML
-
 <div class="idea-left-column mts mbs">$vote</div>
 <div class="idea-content mts">
 	<h3>$title_link</h3>

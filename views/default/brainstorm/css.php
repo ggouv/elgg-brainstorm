@@ -43,16 +43,24 @@
 	background-color: #CCC;
 	text-decoration: none;
 }
-.idea-rate-button.value-1 {
+.idea-value-1 {
 	background-color: #FFC773;
 }
-.idea-rate-button.value-2 {
+.idea-value-2 {
 	background-color: #FFB240;
 }
-.idea-rate-button.value-3 {
+.idea-value-3 {
 	background-color: #FF9900;
 }
-
+.sidebar-idea-list .elgg-item-idea > div {
+	color: #666666;
+	float: left;
+	font-weight: bold;
+	padding: 2px 6px;
+}
+.sidebar-idea-list .elgg-item-idea > h3 {
+	padding-top: 2px;
+}
 
 /*
  * Object vote-popup
@@ -112,11 +120,14 @@
 	color: white;
 	font-size: 1.4em;
 	font-weight: bold;
-	padding: 10px;
+	margin: 0 -10px 10px;
 }
 
 #votesLeft strong {
 	font-size: 2em;
+}
+.sidebar-idea-list {
+	margin-top: 10px;
 }
 
 /*
