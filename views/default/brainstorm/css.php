@@ -118,3 +118,15 @@
 #votesLeft strong {
 	font-size: 2em;
 }
+
+/*
+ * Add form saveidea
+ */
+ 
+.elgg-form-brainstorm-saveidea .elgg-horizontal {
+	display: block;
+}
+.elgg-form-brainstorm-saveidea .elgg-horizontal li {
+	display: inline;
+	padding-right: 10px;
+}

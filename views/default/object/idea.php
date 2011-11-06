@@ -74,10 +74,10 @@ $userVote = elgg_get_annotations(array(
 ));
 if ( $userVote == '' || $userVote == '0') $userVote = 'vote';
 
-$vars['idea'] = array('sum'  => $sum);
+$vars['idea'] = array('userVote'  => $userVote);
 
 $vote = "<div class='idea-points mbs'>$sum</div>" .
-	"<a class='idea-rate-button value-$sum' rel='popup' href='#vote-popup-{$idea->guid}'>$userVote</a>" .
+	"<a class='idea-rate-button value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$userVote</a>" .
 	"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
 		"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
 		elgg_view_form('brainstorm/vote_popup','', $vars) .

@@ -9,16 +9,15 @@ gatekeeper();
 
 $title = strip_tags(get_input('title'));
 $description = get_input('description');
-$address = get_input('address');
 $access_id = get_input('access_id');
 $tags = get_input('tags');
+$rate = get_input('rate');
 $guid = get_input('guid');
-$share = get_input('share');
 $container_guid = get_input('container_guid', elgg_get_logged_in_user_guid());
 
 elgg_make_sticky_form('idea');
 
-if (!$title || !$address ) {
+if (!$title || !$description ) {
 	register_error(elgg_echo('idea:save:empty'));
 	forward(REFERER);
 }
@@ -39,7 +38,6 @@ if ($guid == 0) {
 $tagarray = string_to_tag_array($tags);
 
 $idea->title = $title;
-$idea->address = $address;
 $idea->description = $description;
 $idea->access_id = $access_id;
 $idea->tags = $tagarray;
@@ -51,8 +49,16 @@ if ($idea->save()) {
 
 	system_message(elgg_echo('idea:save:success'));
 
-	//add to river only if new
+	//add to river and set annotation with minimum of 1 point only if new
 	if ($new) {
+		$annotation = new ElggObject($idea->getGUID());
+
+		if ( $rate < 1 || $rate > 3 ) $rate = 1;
+		if ( create_annotation($annotation->getGUID(),'point',$rate,'integer',$user_id,$annotation->getAccessID()) ) {
+		} else {
+			register_error(elgg_echo('brainstorm:idea:rate:error'));
+		}
+	
 		add_to_river('river/object/brainstorm/create','create', elgg_get_logged_in_user_guid(), $idea->getGUID());
 	}
 

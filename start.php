@@ -17,6 +17,8 @@ function brainstorm_init() {
 
 	// actions
 	$action_base = "$root/actions/brainstorm";
+	elgg_register_action('brainstorm/saveidea', "$action_base/saveidea.php");
+	elgg_register_action('brainstorm/deleteidea', "$action_base/deleteidea.php");
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
 	
 	elgg_register_action("brainstorm/addcomment", "$action_base/addcomment.php");
@@ -140,7 +142,7 @@ function brainstorm_page_handler($page) {
 
 		case "add":
 			gatekeeper();
-			include "$pages/add.php";
+			include "$pages/saveidea.php";
 			break;
 
 		case "edit":
@@ -154,6 +156,11 @@ function brainstorm_page_handler($page) {
 			include "$pages/owner.php";
 			break;
 
+		case 'hot':
+			group_gatekeeper();
+			include "$pages/hot.php";
+			break;
+			
 		default:
 			return false;
 	}
@@ -295,7 +302,7 @@ function brainstorm_page_menu($hook, $type, $return, $params) {
 				$title = elgg_echo('brainstorm:bookmarklet');
 			}
 
-			$return[] = new ElggMenuItem('brainstorm', $title, 'brainstorm/bookmarklet/' . $page_owner->getGUID());
+			//$return[] = new ElggMenuItem('brainstorm', $title, 'brainstorm/bookmarklet/' . $page_owner->getGUID());
 		}
 	}
 

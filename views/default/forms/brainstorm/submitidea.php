@@ -1,6 +1,6 @@
 <?php
 /**
- * Wire add form body
+ * Brainstorm add form body
  *
  * @uses $vars['post']
  */

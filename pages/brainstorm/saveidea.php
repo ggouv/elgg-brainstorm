@@ -12,7 +12,7 @@ elgg_push_breadcrumb($title);
 
 $vars = brainstorm_prepare_form_vars();
 
-$content = elgg_view_form('brainstorm/save', array(), $vars);
+$content = elgg_view_form('brainstorm/saveidea', array(), $vars);
 
 $body = elgg_view_layout('content', array(
 	'filter' => '',
