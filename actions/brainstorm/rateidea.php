@@ -11,6 +11,7 @@ $idea_guid = (int)get_input('idea');
 $value = (int)get_input('value');
 
 $user_id = elgg_get_logged_in_user_guid();
+$page_owner = get_input('page_owner');
 
 $sum = elgg_get_annotations(array(
 	'guids' => $idea_guid,
@@ -38,8 +39,15 @@ if ( $point == 0 || $value < 0 || $value > 3 ) {
 $sum = elgg_get_annotations(array(
 	'guids' => $idea_guid,
 	'annotation_names' => 'point',
-//	'annotation_owner_guids' => $user_id,
 	'annotation_calculation' => 'sum'
 ));
 
-echo json_encode(array('sum' => $sum));
+$userVote = elgg_get_annotations(array(
+	'container_guid' => $page_owner,
+	'annotation_names' => 'point',
+	'annotation_calculation' => 'sum',
+	'annotation_owner_guids' => $user_id
+));
+$userVote = 10 - $userVote;
+
+echo json_encode(array('sum' => $sum, 'userVoteLeft' => $userVote));

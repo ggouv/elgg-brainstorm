@@ -17,9 +17,11 @@ elgg.brainstorm.init = function() {
 			$.data(this, 'clicked', true);
 			thisVote = this;
 			idea = $(this).parents('.brainstorm-vote-popup').attr('id').split('-')[2];
+			ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href');
+			ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
 			value = $(this).val();
-			dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value;
+			dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid();
 			elgg.action('brainstorm/rateidea', {
 				data: dataString,
 				success: function(json) {
@@ -28,11 +30,20 @@ elgg.brainstorm.init = function() {
 						if (value == 0) {
 							$('#elgg-object-' + idea + ' .idea-rate-button').html('vote');
 							$('#vote-popup-' + idea + ' .rate-0').addClass('hidden');
+							$('.sidebar-idea-list #elgg-object-' + idea).fadeOut().remove()
 						} else {
 							$('#elgg-object-' + idea + ' .idea-rate-button').html(value);
 							$('#vote-popup-' + idea + ' .elgg-button').removeClass('hidden');
+							if ( !$('.sidebar-idea-list #elgg-object-' + idea).length ) {
+								liStart = '<li class="elgg-item elgg-item-idea" id="elgg-object-'+idea+'">';
+								h3 = '<h3><a href="'+ideaURL+'">'+ideaTitle+'</a></h3>';
+								$('.sidebar-idea-list').prepend(liStart + '<div></div>' + h3 + '</li>');
+							}
+							$('.sidebar-idea-list #elgg-object-' + idea + ' > div').html(value).removeClass().addClass('mrs idea-value-'+value);							
 						}
 						$('#elgg-object-' + idea + ' .idea-rate-button').removeClass().addClass('idea-rate-button idea-value-'+value);
+						
+						$('#votesLeft strong').html(json.output.userVoteLeft);
 						
 						$('#vote-popup-' + idea + ' .elgg-button').removeClass('checked');
 						$('#vote-popup-' + idea + ' .rate-' + value).addClass('checked');

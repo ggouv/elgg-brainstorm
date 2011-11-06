@@ -12,9 +12,9 @@ $userVote = elgg_get_annotations(array(
 	'annotation_calculation' => 'sum',
 	'annotation_owner_guids' => $user
 ));
-$voteLeft = 10 - $userVote; // @TODO Allow group admin to set the initial number of point per user
-if ( $userVote == '0' ) $userVote = "<strong>$voteLeft</strong> " . elgg_echo('brainstorm:novoteleft');
-if ( $userVote == '1' ) $userVote = "<strong>$voteLeft</strong> " . elgg_echo('brainstorm:onevoteleft');
-if ( $userVote >> '1' ) $userVote = "<strong>$voteLeft</strong> " . elgg_echo('brainstorm:votesleft');
+$userVote = 10 - $userVote; // @TODO Allow group admin to set the initial number of point per user
+if ( $userVote == '0' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:novoteleft');
+if ( $userVote == '1' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:onevoteleft');
+if ( $userVote >> '1' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:votesleft');
 
-echo "<div id='votesLeft' class='pam'>" . $userVote . "</div>";
+echo "<div id='votesLeft' class='pam'>" . $VoteString . "</div>";
