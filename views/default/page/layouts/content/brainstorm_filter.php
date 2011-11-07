@@ -15,6 +15,8 @@ if (isset($vars['filter_override'])) {
 }
 
 $context = elgg_extract('context', $vars, elgg_get_context());
+global $fb; $fb->info($context, 'context filter');
+$fb->info(get_input('order', 'desc'), 'order filter');
 
 if (elgg_is_logged_in() && $context) {
 	$username = elgg_get_logged_in_user_entity()->username;

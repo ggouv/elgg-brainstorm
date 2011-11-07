@@ -103,7 +103,7 @@ $vote = "<div class='idea-points mbs'>$sum</div>" .
 if (elgg_in_context('widgets')) {
 	$metadata = '';
 }
-
+global $fb; $fb->info($full);
 if ($full == 'full' && !elgg_in_context('gallery')) {
 	$header = elgg_view_title($idea->title);
 

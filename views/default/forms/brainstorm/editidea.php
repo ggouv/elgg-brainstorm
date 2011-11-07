@@ -10,7 +10,6 @@ $title = elgg_extract('title', $vars, '');
 $desc = elgg_extract('description', $vars, '');
 $tags = elgg_extract('tags', $vars, '');
 $access_id = elgg_extract('access_id', $vars, ACCESS_DEFAULT);
-$rate = elgg_extract('rate', $vars, '1');
 $container_guid = elgg_extract('container_guid', $vars);
 $guid = elgg_extract('guid', $vars, null);
 $user = elgg_get_logged_in_user_guid();
@@ -56,7 +55,7 @@ if ($categories) {
 
 <div>
 	<label><?php echo elgg_echo('brainstorm:vote'); ?></label><br />
-	<?php echo elgg_view('input/radio', array('name' => 'rate', 'value' => $rate, 'options' => $options, 'class' => 'mbl mts', 'align' => 'horizontal')); ?>
+	<?php echo elgg_view('input/radio', array('name' => 'rate', 'value' => '1', 'options' => $options, 'class' => 'mbl mts', 'align' => 'horizontal')); ?>
 </div>
 
 <div class="elgg-foot">

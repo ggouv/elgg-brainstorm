@@ -5,7 +5,7 @@
  * @package Brainstorm
  */
 
-$title = elgg_echo('idea:add');
+$title = elgg_echo('brainstorm:idea:add');
 elgg_push_breadcrumb($title);
 
 $vars = brainstorm_prepare_form_vars();

@@ -35,7 +35,7 @@ $english = array(
 	'brainstorm:visit' => "Visit resource",
 	'brainstorm:recent' => "Recent ideas",
 
-	'river:create:object:idea' => '%s bookmarked %s',
+	'river:create:object:idea' => '%s submited idea %s',
 	'river:comment:object:idea' => '%s commented on a idea %s',
 	'brainstorm:river:annotate' => 'a comment on this idea',
 	'brainstorm:river:item' => 'an item',

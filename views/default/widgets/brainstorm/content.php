@@ -12,7 +12,7 @@ $options = array(
 	'subtype' => 'idea',
 	'container_guid' => $vars['entity']->owner_guid,
 	'limit' => $max,
-	'full_view' => FALSE,
+	'full_view' => 'sidebar',
 	'pagination' => FALSE,
 );
 $content = elgg_list_entities($options);
