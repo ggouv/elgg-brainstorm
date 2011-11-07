@@ -5,7 +5,7 @@
 $user = elgg_get_logged_in_user_guid();
 $page_owner = elgg_get_page_owner_guid();
 
-echo elgg_echo('brainstorm:youridea');
+echo elgg_echo('brainstorm:yourvotes');
 
 $ideas = elgg_get_entities_from_annotations(array(
 	'type' => 'object',
@@ -34,7 +34,7 @@ global $fb; $fb->info($ideas);
 echo elgg_list_entities(array(
 	'items' => $ideas,
 	'full_view' => 'sidebar',
-	'item_class' => 'elgg-item-idea',
+	'item_class' => 'elgg-item-idea pts pbs',
 	'list_class' => 'sidebar-idea-list',
 	'pagination' => false,
 	'offset' => 10

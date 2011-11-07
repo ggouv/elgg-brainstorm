@@ -15,6 +15,7 @@ if (!$idea) {
 $owner = $idea->getOwnerEntity();
 $owner_icon = elgg_view_entity_icon($owner, 'small');
 $container = $idea->getContainerEntity();
+$user_guid = elgg_get_logged_in_user_guid();
 $categories = elgg_view('output/categories', $vars);
 
 $description = elgg_view('output/longtext', array('value' => $idea->description, 'class' => 'pbl'));
@@ -76,24 +77,33 @@ $userVote = elgg_get_annotations(array(
 	'guids' => $idea->guid,
 	'annotation_names' => 'point',
 	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => elgg_get_logged_in_user_guid()
+	'annotation_owner_guids' => $user_guid
 ));
-if ( $userVote == '' || $userVote == '0') $userVote = 'vote';
 
-$vars['idea'] = array('userVote'  => $userVote);
+$userVoteLeft = elgg_get_annotations(array(
+	'container_guid' => $container->guid,
+	'annotation_names' => 'point',
+	'annotation_calculation' => 'sum',
+	'annotation_owner_guids' => $user_guid
+));
+$userVoteLeft = 10 - $userVoteLeft;
+
+$voteString = $userVote;
+if ( $userVote == '' || $userVote == '0' ) $voteString = $userVote = 'vote';
+if ( $userVoteLeft <= 0 && $userVote == 'vote' ) $userVote = '0';
 
 $vote = "<div class='idea-points mbs'>$sum</div>" .
-	"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$userVote</a>" .
+	"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$voteString</a>" .
 	"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
 		"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
-		elgg_view_form('brainstorm/vote_popup','', $vars) .
+		elgg_view_form('brainstorm/vote_popup') .
 	"</div>";
 
 // do not show the metadata and controls in widget view
 if (elgg_in_context('widgets')) {
 	$metadata = '';
 }
-global $fb; $fb->info($full, 'full');
+
 if ($full == 'full' && !elgg_in_context('gallery')) {
 	$header = elgg_view_title($idea->title);
 

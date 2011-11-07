@@ -13,8 +13,12 @@ $userVote = elgg_get_annotations(array(
 	'annotation_owner_guids' => $user
 ));
 $userVote = 10 - $userVote; // @TODO Allow group admin to set the initial number of point per user
-if ( $userVote == '0' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:novoteleft');
-if ( $userVote == '1' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:onevoteleft');
+
+if ( $userVote <= '0' ) {
+	$VoteString = "<strong>0</strong> " . elgg_echo('brainstorm:novoteleft');
+	$zero = 'zero';
+}
+if ( $userVote == '1' ) $VoteString = "<strong>1</strong> " . elgg_echo('brainstorm:onevoteleft');
 if ( $userVote >> '1' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:votesleft');
 
-echo "<div id='votesLeft' class='pam'>" . $VoteString . "</div>";
+echo "<div id='votesLeft' class='pam $zero'>" . $VoteString . "</div>";

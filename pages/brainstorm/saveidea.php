@@ -5,8 +5,6 @@
  * @package Brainstorm
  */
 
-$page_owner = elgg_get_page_owner_entity();
-
 $title = elgg_echo('idea:add');
 elgg_push_breadcrumb($title);
 

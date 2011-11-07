@@ -4,6 +4,7 @@
 .elgg-item-idea {
 	float: left;
 	width: 100%;
+	min-height: 80px;
 }
 .idea-left-column {
 	float: left;
@@ -43,6 +44,9 @@
 	background-color: #CCC;
 	text-decoration: none;
 }
+.idea-value-0 {
+	display: none;
+}
 .idea-value-1 {
 	background-color: #FFC773;
 }
@@ -52,15 +56,6 @@
 .idea-value-3 {
 	background-color: #FF9900;
 }
-.sidebar-idea-list .elgg-item-idea > div {
-	color: #666666;
-	float: left;
-	font-weight: bold;
-	padding: 2px 6px;
-}
-.sidebar-idea-list .elgg-item-idea > h3 {
-	padding-top: 2px;
-}
 
 /*
  * Object vote-popup
@@ -69,6 +64,7 @@
 	display: none;
 	position: absolute;
 	z-index: 0;
+	padding: 0px;
 }
 .brainstorm-vote-popup .triangle {
 	border-style: solid;
@@ -95,11 +91,8 @@
 	padding: 2px 4px;
 	color: #666;
 	text-align: center;
-	margin-right: 5px;
+	margin: 5px;
 	box-shadow: none;
-}
-.brainstorm-vote-popup .elgg-button:last-child {
-	margin-right: 0px;
 }
 .brainstorm-vote-popup .elgg-button:hover {
 	background-color: #4690D6;
@@ -122,14 +115,27 @@
 	font-weight: bold;
 	margin: 0 -10px 10px;
 }
-
+#votesLeft.zero {
+	background-color: #999;
+}
 #votesLeft strong {
 	font-size: 2em;
 }
 .sidebar-idea-list {
 	margin-top: 10px;
 }
-
+.sidebar-idea-list .elgg-item-idea {
+	min-height: 0px;
+}
+.sidebar-idea-list .elgg-item-idea > div {
+	color: #666666;
+	float: left;
+	font-weight: bold;
+	padding: 2px 6px;
+}
+.sidebar-idea-list .elgg-item-idea > h3 {
+	padding-top: 2px;
+}
 /*
  * Add form saveidea
  */
