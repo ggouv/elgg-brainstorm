@@ -56,6 +56,10 @@ $metadata = elgg_view_menu('entity', array(
 
 $subtitle = "$author_text $date $categories $comments_link";
 
+// do not show the metadata and controls in widget view
+if (elgg_in_context('widgets')) {
+	$metadata = '';
+}
 $params = array(
 	'entity' => $idea,
 	'title' => false,
@@ -99,11 +103,6 @@ $vote = "<div class='idea-points mbs'>$sum</div>" .
 		elgg_view_form('brainstorm/vote_popup') .
 	"</div>";
 
-// do not show the metadata and controls in widget view
-if (elgg_in_context('widgets')) {
-	$metadata = '';
-}
-global $fb; $fb->info($full);
 if ($full == 'full' && !elgg_in_context('gallery')) {
 	$header = elgg_view_title($idea->title);
 
@@ -124,6 +123,17 @@ HTML;
 	echo <<<HTML
 <div class="mrs idea-value-$userVote">$userVote</div>
 <h3>$title_link</h3>
+HTML;
+} elseif ($full == 'group_module') {
+	$content = elgg_get_excerpt($idea->description, '300');
+	
+	echo <<<HTML
+<div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
+<div class="idea-content mts">
+	<h3>$title_link</h3>
+	<div class="elgg-subtext">$subtitle</div>
+	<div class="elgg-content">$content</div>
+</div>
 HTML;
 } elseif (elgg_in_context('gallery')) {
 	echo <<<HTML
