@@ -1,4 +1,18 @@
 /*
+ * Tab filter
+ */
+ .UpDownArrow {
+ 	background: transparent url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/UpDownArrow.png');
+	float: right;
+	height: 8px;
+	margin: 6px 0 0 6px;
+	width: 12px;
+ }
+ .up {
+ 	background-position: 0 -8px;
+ }
+
+/*
  * Object idea
  */
 .elgg-item-idea {

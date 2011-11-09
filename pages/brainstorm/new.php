@@ -13,14 +13,13 @@ $page_owner = elgg_get_page_owner_entity();
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');
 
-$content = elgg_list_entities_from_annotation_calculation(array(
+$content = elgg_list_entities(array(
 	'type' => 'object',
 	'subtype' => 'idea',
 	'container_guid' => $page_owner->guid,
-	'limit' => 0,
-	'pagination' => false,
-	'annotation_names' => 'point',
-	'order_by' => 'annotation_calculation ' . $order_by,
+	'limit' => 10,
+	'pagination' => true,
+	'order_by' => 'time_created ' . $order_by,
 	'full_view' => false,
 	'view_toggle_type' => false,
 	'item_class' => 'elgg-item-idea'
@@ -31,11 +30,8 @@ if (!$content) {
 }
 
 $title = elgg_echo('brainstorm:owner', array($page_owner->name));
-global $fb; $fb->info($vars['filter_context'],'nrst');
-$filter_context = 'top';
-/*if ($page_owner->getGUID() == elgg_get_logged_in_user_guid()) {
-	$filter_context = 'top';
-}*/
+
+$filter_context = 'new';
 
 $vars = array(
 	'filter_context' => $filter_context,

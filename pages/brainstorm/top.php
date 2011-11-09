@@ -31,11 +31,8 @@ if (!$content) {
 }
 
 $title = elgg_echo('brainstorm:owner', array($page_owner->name));
-global $fb; $fb->info($vars['filter_context'],'nrst');
+
 $filter_context = 'top';
-/*if ($page_owner->getGUID() == elgg_get_logged_in_user_guid()) {
-	$filter_context = 'top';
-}*/
 
 $vars = array(
 	'filter_context' => $filter_context,

@@ -18,8 +18,8 @@ function brainstorm_init() {
 	// actions
 	$action_base = "$root/actions/brainstorm";
 	elgg_register_action('brainstorm/saveidea', "$action_base/saveidea.php");
-	elgg_register_action('brainstorm/deleteidea', "$action_base/deleteidea.php");
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
+	elgg_register_action('brainstorm/deleteidea', "$action_base/deleteidea.php");
 	
 	elgg_register_action("brainstorm/addcomment", "$action_base/addcomment.php");
 	elgg_register_action("brainstorm/addidea", "$action_base/addquestion.php");
@@ -104,36 +104,10 @@ function brainstorm_page_handler($page) {
 
 	elgg_push_breadcrumb(elgg_echo('brainstorm'), 'brainstorm/all');
 
-	// old group usernames
-	if (substr_count($page[0], 'group:')) {
-		preg_match('/group\:([0-9]+)/i', $page[0], $matches);
-		$guid = $matches[1];
-		if ($entity = get_entity($guid)) {
-			idea_url_forwarder($page);
-		}
-	}
-
-	// user usernames
-	$user = get_user_by_username($page[0]);
-	if ($user) {
-		idea_url_forwarder($page);
-	}
-
 	$pages = dirname(__FILE__) . '/pages/brainstorm';
-
+global $fb; $fb->info($page);
 	switch ($page[0]) {
-		case "all":
-			include "$pages/all.php";
-			break;
-
-		case "owner":
-			include "$pages/owner.php";
-			break;
-
-		case "friends":
-			include "$pages/friends.php";
-			break;
-
+	
 		case "read":
 		case "view":
 			set_input('guid', $page[1]);
@@ -144,22 +118,44 @@ function brainstorm_page_handler($page) {
 			gatekeeper();
 			include "$pages/saveidea.php";
 			break;
-
+		
 		case "edit":
 			gatekeeper();
 			set_input('guid', $page[1]);
 			include "$pages/editidea.php";
 			break;
-
+		
 		case 'group':
 			group_gatekeeper();
+			switch ($page[2]) {
+				default:
+				case "all":
+				case "top":
+				include "$pages/top.php";
+				break;
+				
+				case "new":
+				include "$pages/new.php";
+				break;
+				
+				case "hot":
+				include "$pages/hot.php";
+				break;
+			}
+			
+	/*		include "$pages/owner.php";
+			break;	
+		
+
+
+		case "owner":
 			include "$pages/owner.php";
 			break;
 
-		case 'hot':
-			group_gatekeeper();
-			include "$pages/hot.php";
+		case "friends":
+			include "$pages/friends.php";
 			break;
+*/
 			
 		default:
 			return false;
@@ -170,42 +166,6 @@ function brainstorm_page_handler($page) {
 	return true;
 }
 
-/**
- * Forward to the new style of URLs
- *
- * @param string $page
- */
-function idea_url_forwarder($page) {
-	global $CONFIG;
-
-	if (!isset($page[1])) {
-		$page[1] = 'items';
-	}
-
-	switch ($page[1]) {
-		case "read":
-			$url = "{$CONFIG->wwwroot}brainstorm/view/{$page[2]}/{$page[3]}";
-			break;
-		case "inbox":
-			$url = "{$CONFIG->wwwroot}brainstorm/inbox/{$page[0]}";
-			break;
-		case "friends":
-			$url = "{$CONFIG->wwwroot}brainstorm/friends/{$page[0]}";
-			break;
-		case "add":
-			$url = "{$CONFIG->wwwroot}brainstorm/add/{$page[0]}";
-			break;
-		case "items":
-			$url = "{$CONFIG->wwwroot}brainstorm/owner/{$page[0]}";
-			break;
-		case "bookmarklet":
-			$url = "{$CONFIG->wwwroot}brainstorm/bookmarklet/{$page[0]}";
-			break;
-	}
-
-	register_error(elgg_echo("changebrainstorm"));
-	forward($url);
-}
 
 /**
  * Populates the ->getUrl() method for idea objects
@@ -236,7 +196,7 @@ function brainstorm_owner_block_menu($hook, $type, $return, $params) {
 		$return[] = $item;
 	} else {
 		if ($params['entity']->brainstorm_enable != 'no') {
-			$url = "brainstorm/group/{$params['entity']->guid}/all";
+			$url = "brainstorm/group/{$params['entity']->guid}/top";
 			$item = new ElggMenuItem('brainstorm', elgg_echo('brainstorm:group'), $url);
 			$return[] = $item;
 		}
