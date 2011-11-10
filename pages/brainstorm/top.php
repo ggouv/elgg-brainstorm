@@ -4,12 +4,10 @@
  *
  * @package Brainstorm
  */
+$page_owner = elgg_get_page_owner_entity();
 
 elgg_push_breadcrumb($page_owner->name);
 
-elgg_register_title_button();
-
-$page_owner = elgg_get_page_owner_entity();
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');
 

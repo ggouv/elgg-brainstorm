@@ -32,12 +32,3 @@ echo elgg_view('input/text', array(
 	<span>140</span> <?php echo elgg_echo('brainstorm:charleft'); ?>
 </div>
 <div id="brainstorm-search-response"></div>
-
-
-<?php
-/*
-echo elgg_view('input/submit', array(
-	'value' => $text,
-	'id' => 'brainstorm-submit-button',
-));*/
-?>

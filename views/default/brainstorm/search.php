@@ -4,7 +4,7 @@
 require_once(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . "/engine/start.php");
 
 $keyword = get_input('keyword', 'false');
-	global $fb; $fb->info($keyword);	
+	
 if ( $keyword != 'false' ) {
 	$group = get_input('group', 'false');
 	
@@ -20,7 +20,7 @@ if ( $keyword != 'false' ) {
 			'pagination' => false,
 			'full_view' => false,
 			'view_toggle_type' => false,
-			'item_class' => 'elgg-item-idea',
+			'item_class' => 'elgg-item-idea'
 		);
 		
 		
@@ -34,20 +34,24 @@ if ( $keyword != 'false' ) {
 				$likes[] = "oe.title LIKE '%$key%' OR oe.description LIKE '%$key%'";
 			}
 		}
-		
-		$params['wheres'] = array('(' . implode(' OR ', $likes) . ')');
-		$params['joins'] = array("JOIN {$db_prefix}objects_entity oe ON e.guid = oe.guid");
-
-		$content = elgg_list_entities($params);
-
-		foreach ($keys as $key) {
-			$content = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $content);
+		if ( !empty($keys) ) {
+			$params['wheres'] = array('(' . implode(' OR ', $likes) . ')');
+			$params['joins'] = array("JOIN {$db_prefix}objects_entity oe ON e.guid = oe.guid");
+	
+			$content = elgg_list_entities($params);
+	
+			foreach ($keys as $key) {
+				$content = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $content);
+			}
 		}
-
+		
 		if ( $content ) {
-			echo $content;
+			echo '<span>' . elgg_echo('brainstorm:search:find') . '</span>' .
+				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group&title=$keyword'>" . elgg_echo('brainstorm:add') . '</a>'.
+				$content;
 		} else {
-			echo elgg_echo('brainstorm:search:none');
+			echo '<span>' . elgg_echo('brainstorm:search:none') . '</span>' .
+				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group&title=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
 		}
 	}
 }

@@ -14,6 +14,17 @@
 .brainstorm-highlight {
 	background-color: yellow;
 }
+#brainstorm-textarea.loading {
+	background: url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/ajax-loader.gif') no-repeat scroll 99% 6px transparent;
+}
+#brainstorm-search-response > span {
+	margin-right: 5px;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#brainstorm-search-response > .elgg-list {
+	margin-top: 10px;
+}
 
 /*
  * Object idea

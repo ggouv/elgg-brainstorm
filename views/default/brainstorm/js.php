@@ -4,9 +4,11 @@ elgg.provide('elgg.brainstorm');
 
 elgg.brainstorm.init = function() {
 
-	$("#brainstorm-textarea").live('keydown', function() {
+	$("#brainstorm-textarea").live('keydown', function(e) {
+		if ( $(this).val().length > 139 && e.keyCode != 8 ) return false;
 		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
 	}).live('keyup', function() {
+		if ( $(this).val().length > 139 && e.keyCode != 8 ) return false;
 		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
 		
 		var search_input = $(this).val();
@@ -18,7 +20,7 @@ elgg.brainstorm.init = function() {
 				url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
 				data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + search_input,
 				beforeSend:  function() {
-					$('input#faq_search_input').addClass('loading');
+					$('#brainstorm-textarea').addClass('loading');
 				},
 				success: function(response) {
 					$('.elgg-menu-filter-default, .brainstorm-list').hide();
@@ -27,8 +29,8 @@ elgg.brainstorm.init = function() {
 					} else {
 						search_container.html(response);
 					}
-					if ($('input#faq_search_input').hasClass("loading")) {
-						$("input#faq_search_input").removeClass("loading");
+					if ($('#brainstorm-textarea').hasClass("loading")) {
+						$('#brainstorm-textarea').removeClass("loading");
 					}
 				}
 			});
@@ -140,7 +142,6 @@ elgg.brainstorm.textCounter = function(textarea, status, limit) {
 
 	if (remaining_chars < 0) {
 		status.parent().css("color", "#D40D12");
-		return false;
 	} else {
 		status.parent().css("color", "");
 	}
