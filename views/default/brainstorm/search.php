@@ -40,6 +40,7 @@ if ( $keyword != 'false' ) {
 	
 			$content = elgg_list_entities($params);
 	
+			// hightlight result @todo search only on title and description, cause error when we search with «elgg»
 			foreach ($keys as $key) {
 				$content = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $content);
 			}

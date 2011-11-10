@@ -8,74 +8,71 @@ $english = array(
 	/**
 	 * Menu items and titles
 	 */
-	'brainstorm' => "Brainstorm",
-	'brainstorm:add' => "Add idea",
-	'brainstorm:edit' => "Edit idea",
-	'brainstorm:owner' => "%s's brainstorming",
-	'brainstorm:friends' => "Friends' ideas",
-	'brainstorm:everyone' => "All site ideas",
-	'brainstorm:this' => "Bookmark this page",
-	'bookmarks:this:group' => "Bookmark in %s",
-	'brainstorm:bookmarklet' => "Get bookmarklet",
-	'brainstorm:bookmarklet:group' => "Get group bookmarklet",
-	'brainstorm:inbox' => "Bookmarks inbox",
-	'brainstorm:morebookmarks' => "More bookmarks",
-	'brainstorm:more' => "More",
-	'brainstorm:with' => "Share with",
-	'brainstorm:new' => "A new idea",
-	'brainstorm:via' => "via bookmarks",
-	'brainstorm:address' => "Address of the resource to bookmark",
-	'brainstorm:none' => 'No idea',
-
-	'brainstorm:delete:confirm' => "Are you sure you want to delete this resource?",
-
-	'brainstorm:numbertodisplay' => 'Number of ideas to display',
-
-	'brainstorm:shared' => "Bookmarked",
-	'brainstorm:visit' => "Visit resource",
-	'brainstorm:recent' => "Recent ideas",
-
+	
+	'brainstorm:filter:top' => "Top",
+	'brainstorm:filter:hot' => "Hot",
+	'brainstorm:filter:new' => "New",
+	'brainstorm:filter:accepted' => "Accepted",
+	'brainstorm:filter:completed' => "Completed",
+	
+	'item:object:idea' => 'Idea',
 	'river:create:object:idea' => '%s submited idea %s',
 	'river:comment:object:idea' => '%s commented on a idea %s',
 	'brainstorm:river:annotate' => 'a comment on this idea',
 	'brainstorm:river:item' => 'an item',
-
-	'item:object:idea' => 'Idea',
-
+	
+	'brainstorm' => "Brainstorm",
+	'brainstorm:add' => "Add idea",
+	'brainstorm:edit' => "Edit idea",
+	'brainstorm:new' => "A new idea",
+	
+	'brainstorm:owner' => "%s's brainstorming",
+	'brainstorm:idea:edit' => "Edit this idea",
+	'brainstorm:idea:add' => "Add an idea",
+	
+	'brainstorm:enablebrainstorm' => "Enable brainstorm.",
 	'brainstorm:group' => 'Group brainstorming',
-	'brainstorm:enablebookmarks' => 'Enable group bookmarks',
-	'brainstorm:nogroup' => 'This group does not have any bookmarks yet',
-	'brainstorm:more' => 'More bookmarks',
-
-	'brainstorm:no_title' => 'No title',
-
+	
+	/**
+	 * Content
+	 */
+	'brainstorm:yourvotes' => "Your votes:",
+	'brainstorm:vote' => "Vote:",
+	
+	'brainstorm:none' => "No idea.",
+	'brainstorm:novoteleft' => "vote left.",
+	'brainstorm:onevoteleft' => "vote left.",
+	'brainstorm:votesleft' => "votes left.",
+	
+	'brainstorm:search' => "Search or submit an idea:",
+	'brainstorm:charleft' => "char left.",
+	'brainstorm:search:find' => "Ideas found. Vote or ",
+	'brainstorm:search:none' => "No idea found. Search again or ",
+	'brainstorm:add' => "submit a new idea",
+	 
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:description' => "Display your latest bookmarks.",
-
-	'brainstorm:bookmarklet:description' =>
-			"The bookmarks bookmarklet allows you to share any resource you find on the web with your friends, or just bookmark it for yourself. To use it, simply drag the following button to your browser's links bar:",
-
-	'brainstorm:bookmarklet:descriptionie' =>
-			"If you are using Internet Explorer, you will need to right click on the bookmarklet icon, select 'add to favorites', and then the Links bar.",
-
-	'brainstorm:bookmarklet:description:conclusion' =>
-			"You can then save any page you visit by clicking it at any time.",
+	'brainstorm:widget:title' => "Brainstorm.",
+	'brainstorm:widget:description' => "Display ratest ideas.",
+	'brainstorm:more' => "More ideas",
+	'brainstorm:numbertodisplay' => "Number of ideas to display:",
 
 	/**
 	 * Status messages
 	 */
-
-	'brainstorm:save:success' => "Your item was successfully bookmarked.",
-	'brainstorm:delete:success' => "Your bookmarked item was successfully deleted.",
+	'brainstorm:idea:rate:submitted' => "Idea successfully rated.",
+	'brainstorm:save:success' => "Your idea was successfully saved.",
+	'brainstorm:delete:success' => "Your idea was successfully deleted.",
 
 	/**
 	 * Error messages
 	 */
-
-	'brainstorm:save:failed' => "Your bookmark could not be saved. Make sure you've entered a title and address and then try again.",
-	'brainstorm:delete:failed' => "Your bookmark could not be deleted. Please try again.",
+	'brainstorm:idea:rate:error:ajax' => "Connexion error with server.",
+	'brainstorm:unknown_idea' => "Unknown idea.",
+	'brainstorm:idea:rate:error:value' => "Mistake on the value for rating this idea.",
+	'brainstorm:idea:rate:error' => "This idea could not be rated cause internal server problem.",
+	'brainstorm:idea:rate:error:underzero' => "Your votes left cannot premit to rate an idea.",
 );
 
 add_translation('en', $english);
