@@ -143,20 +143,6 @@ function brainstorm_page_handler($page) {
 				break;
 			}
 			
-	/*		include "$pages/owner.php";
-			break;	
-		
-
-
-		case "owner":
-			include "$pages/owner.php";
-			break;
-
-		case "friends":
-			include "$pages/friends.php";
-			break;
-*/
-			
 		default:
 			return false;
 	}
