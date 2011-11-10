@@ -102,8 +102,6 @@ function brainstorm_init() {
 function brainstorm_page_handler($page) {
 	elgg_load_library('brainstorm:utilities');
 
-	elgg_push_breadcrumb(elgg_echo('brainstorm'));
-
 	$pages = dirname(__FILE__) . '/pages/brainstorm';
 
 	switch ($page[0]) {
@@ -126,6 +124,8 @@ function brainstorm_page_handler($page) {
 			break;
 		
 		case 'group':
+			$page_owner = elgg_get_page_owner_entity();
+			elgg_push_breadcrumb($page_owner->name, 'brainstorm/group/' .$page_owner->name );
 			group_gatekeeper();
 			switch ($page[2]) {
 				default:

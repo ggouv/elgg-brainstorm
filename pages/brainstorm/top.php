@@ -6,7 +6,7 @@
  */
 $page_owner = elgg_get_page_owner_entity();
 
-elgg_push_breadcrumb($page_owner->name);
+elgg_push_breadcrumb(elgg_echo('brainstorm'));
 
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');
