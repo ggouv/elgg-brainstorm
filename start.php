@@ -102,10 +102,10 @@ function brainstorm_init() {
 function brainstorm_page_handler($page) {
 	elgg_load_library('brainstorm:utilities');
 
-	elgg_push_breadcrumb(elgg_echo('brainstorm'), 'brainstorm/all');
+	elgg_push_breadcrumb(elgg_echo('brainstorm'));
 
 	$pages = dirname(__FILE__) . '/pages/brainstorm';
-global $fb; $fb->info($page);
+
 	switch ($page[0]) {
 	
 		case "read":
