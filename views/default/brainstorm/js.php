@@ -4,6 +4,42 @@ elgg.provide('elgg.brainstorm');
 
 elgg.brainstorm.init = function() {
 
+	$("#brainstorm-textarea").live('keydown', function() {
+		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
+	}).live('keyup', function() {
+		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
+		
+		var search_input = $(this).val();
+		var search_container = $('#brainstorm-search-response');
+
+		if ( search_input.length > 3 ) {
+			$.ajax({
+				type: "GET",
+				url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
+				data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + search_input,
+				beforeSend:  function() {
+					$('input#faq_search_input').addClass('loading');
+				},
+				success: function(response) {
+					$('.elgg-menu-filter-default, .brainstorm-list').hide();
+					if ( search_container.is(':hidden') ) {
+						search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
+					} else {
+						search_container.html(response);
+					}
+					if ($('input#faq_search_input').hasClass("loading")) {
+						$("input#faq_search_input").removeClass("loading");
+					}
+				}
+			});
+		} else if ( $('.brainstorm-list').css('opacity') != '1' || $('.brainstorm-list').is(":hidden") ) {
+			search_container.hide().html('');
+			$('.elgg-menu-filter-default, .brainstorm-list').css('opacity', 0).fadeTo('slow', 1);
+		}
+		return false;		
+	});
+
+
 	$('.idea-rate-button').click(function() {
 		$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
 
@@ -88,6 +124,28 @@ elgg.brainstorm.init = function() {
 	
 };
 elgg.register_hook_handler('init', 'system', elgg.brainstorm.init);
+
+/**
+ * Update the number of characters left with every keystroke
+ *
+ * @param {Object}  textarea
+ * @param {Object}  status
+ * @param {integer} limit
+ * @return void
+ */
+elgg.brainstorm.textCounter = function(textarea, status, limit) {
+
+	var remaining_chars = limit - $(textarea).val().length;
+	status.html(remaining_chars);
+
+	if (remaining_chars < 0) {
+		status.parent().css("color", "#D40D12");
+		return false;
+	} else {
+		status.parent().css("color", "");
+	}
+}
+
 
 /**
  * Reposition the vote-popup

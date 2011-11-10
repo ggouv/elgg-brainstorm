@@ -17,11 +17,12 @@ $content = elgg_list_entities(array(
 	'type' => 'object',
 	'subtype' => 'idea',
 	'container_guid' => $page_owner->guid,
-	'limit' => 10,
-	'pagination' => true,
+	'limit' => 0,
+	'pagination' => false,
 	'order_by' => 'time_created ' . $order_by,
 	'full_view' => false,
 	'view_toggle_type' => false,
+	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));
 

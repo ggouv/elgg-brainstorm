@@ -20,10 +20,6 @@ if ($post) {
 }
 ?>
 
-<div id="brainstorm-characters-remaining">
-	<span>140</span> <?php echo elgg_echo('brainstorm:charleft'); ?>
-</div>
-
 <?php
 echo elgg_view('input/text', array(
 	'name' => 'body',
@@ -31,6 +27,12 @@ echo elgg_view('input/text', array(
 	'id' => 'brainstorm-textarea',
 ));
 ?>
+
+<div id="brainstorm-characters-remaining">
+	<span>140</span> <?php echo elgg_echo('brainstorm:charleft'); ?>
+</div>
+<div id="brainstorm-search-response"></div>
+
 
 <?php
 /*

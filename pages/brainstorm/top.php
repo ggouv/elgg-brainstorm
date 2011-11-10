@@ -23,6 +23,7 @@ $content = elgg_list_entities_from_annotation_calculation(array(
 	'order_by' => 'annotation_calculation ' . $order_by,
 	'full_view' => false,
 	'view_toggle_type' => false,
+	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));
 

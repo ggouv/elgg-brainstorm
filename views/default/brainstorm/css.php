@@ -1,16 +1,19 @@
 /*
  * Tab filter
  */
- .UpDownArrow {
- 	background: transparent url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/UpDownArrow.png');
+.UpDownArrow {
+	background: transparent url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/UpDownArrow.png');
 	float: right;
 	height: 8px;
 	margin: 6px 0 0 6px;
 	width: 12px;
- }
- .up {
- 	background-position: 0 -8px;
- }
+}
+.up {
+	background-position: 0 -8px;
+}
+.brainstorm-highlight {
+	background-color: yellow;
+}
 
 /*
  * Object idea

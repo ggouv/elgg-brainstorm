@@ -35,7 +35,7 @@ $filter = elgg_view('page/layouts/content/brainstorm_filter', $vars);
 // BRAINSTORMING
 if (elgg_is_logged_in()) {
 	$form_vars = array('class' => 'brainstorm-form');
-	$form = elgg_view_form('brainstorm/add', $form_vars);
+	$form = elgg_view_form('brainstorm/searchandsubmitidea', $form_vars);
 }
 
 // the all important content
