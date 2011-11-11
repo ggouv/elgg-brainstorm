@@ -142,6 +142,7 @@
 	font-size: 1.4em;
 	font-weight: bold;
 	margin: 0 -10px 10px;
+	padding-bottom:5px;
 }
 #votesLeft.zero {
 	background-color: #999;

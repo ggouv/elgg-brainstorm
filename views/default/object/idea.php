@@ -144,8 +144,12 @@ HTML;
 HTML;
 } else {
 	// brief view
-	$content = elgg_get_excerpt($idea->description, '300');
-	
+	if ( $full != 'searched') {
+		$content = elgg_get_excerpt($idea->description, '300');
+	} else {
+		$content = $idea->description;
+	}
+
 	echo <<<HTML
 <div class="idea-left-column mts mbs">$vote</div>
 <div class="idea-content mts">

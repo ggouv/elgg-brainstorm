@@ -38,12 +38,25 @@ if ( $keyword != 'false' ) {
 			$params['wheres'] = array('(' . implode(' OR ', $likes) . ')');
 			$params['joins'] = array("JOIN {$db_prefix}objects_entity oe ON e.guid = oe.guid");
 	
-			$content = elgg_list_entities($params);
-	
-			// hightlight result @todo search only on title and description, cause error when we search with «elgg»
-			foreach ($keys as $key) {
-				$content = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $content);
+			$ideas = elgg_get_entities($params);
+			
+			// hightlight result. Protected against searching «elgg» or «brainstorm» or anything else can be found on class with elgg_list_entities
+			foreach ( $ideas as $item => $idea ) {
+				$excerpt_description = elgg_get_excerpt($idea->description, '300');
+				foreach ($keys as $key) {
+					$idea->title = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $idea->title);
+					$excerpt_description = preg_replace("/($key)/i", "<span class='brainstorm-highlight'>$1</span>", $excerpt_description);
+				}
+				$idea->description = $excerpt_description;
 			}
+			
+			$content =  elgg_list_entities(array(
+				'items' => $ideas,
+				'full_view' => 'searched',
+				'item_class' => 'elgg-item-idea',
+				'pagination' => false,
+				'limit' => 0
+			));
 		}
 		
 		if ( $content ) {

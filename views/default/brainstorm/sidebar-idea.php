@@ -29,13 +29,11 @@ foreach( $ideas as $key => $idea) {
 	if ($sum == 0) unset($ideas[$key]);
 }
 
-global $fb; $fb->info($ideas);
-
 echo elgg_list_entities(array(
 	'items' => $ideas,
 	'full_view' => 'sidebar',
 	'item_class' => 'elgg-item-idea pts pbs',
 	'list_class' => 'sidebar-idea-list',
 	'pagination' => false,
-	'offset' => 10
+	'limit' => 0
 ));
