@@ -19,29 +19,7 @@ function brainstorm_init() {
 	$action_base = "$root/actions/brainstorm";
 	elgg_register_action('brainstorm/saveidea', "$action_base/saveidea.php");
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
-	elgg_register_action('brainstorm/deleteidea', "$action_base/deleteidea.php");
-	
-	elgg_register_action("brainstorm/addcomment", "$action_base/addcomment.php");
-	elgg_register_action("brainstorm/addidea", "$action_base/addquestion.php");
-	elgg_register_action("brainstorm/closequestion", "$action_base/closequestion.php");
-	elgg_register_action("brainstorm/deleteanswer", "$action_base/deleteanswer.php");
-	elgg_register_action("brainstorm/deletequestion", "$action_base/deletequestion.php");
-	elgg_register_action("brainstorm/editanswer", "$action_base/editanswer.php");
-	elgg_register_action("brainstorm/editquestion", "$action_base/editquestion.php");
-	elgg_register_action("brainstorm/openquestion", "$action_base/openquestion.php");
-	elgg_register_action("brainstorm/rateanswer", "$action_base/rateanswer.php");
-
-	elgg_register_action("brainstorm/add", "$action_base/addquestion.php");
-	elgg_register_action('brainstorm/save', "$action_base/save.php");
-	elgg_register_action('brainstorm/delete', "$action_base/delete.php");
-	elgg_register_action('brainstorm/share', "$action_base/share.php");
-
-	// menus
-	/*elgg_register_menu_item('site', array(
-		'name' => 'bookmarks',
-		'text' => elgg_echo('bookmarks'),
-		'href' => 'bookmarks/all'
-	));*/
+	elgg_register_action('brainstorm/delete', "$action_base/deleteidea.php");
 
 	elgg_register_plugin_hook_handler('register', 'menu:page', 'brainstorm_page_menu');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'brainstorm_owner_block_menu');
@@ -53,18 +31,6 @@ function brainstorm_init() {
 
 	elgg_register_widget_type('brainstorm', elgg_echo('brainstorm:widget:title'), elgg_echo('brainstorm:widget:description'));
 
-	/*if (elgg_is_logged_in()) {
-		$user_guid = elgg_get_logged_in_user_guid();
-		$address = urlencode(current_page_url());
-
-		elgg_register_menu_item('extras', array(
-			'name' => 'bookmark',
-			'text' => elgg_view_icon('push-pin-alt'),
-			'href' => "bookmarks/add/$user_guid?address=$address",
-			'title' => elgg_echo('bookmarks:this'),
-			'rel' => 'nofollow',
-		));
-	}*/
 	// Register granular notification for this type
 	register_notification_object('object', 'brainstorm', elgg_echo('brainstorm:new'));
 
@@ -84,18 +50,6 @@ function brainstorm_init() {
 
 /**
  * Dispatcher for brainstorm.
- *
- * URLs take the form of
- *  All ideas:        brainstorm/all
- *  User's ideas:     brainstorm/owner/<username>
- *  Friends' ideas:   brainstorm/friends/<username>
- *  View ideas:        brainstorm/view/<guid>/<title>
- *  New ideas:         brainstorm/add/<guid> (container: user, group, parent)
- *  Edit ideas:        brainstorm/edit/<guid>
- *  Group ideas:      brainstorm/group/<guid>/all
- *  Bookmarklet:          brainstorm/bookmarklet/<guid> (user)
- *
- * Title is ignored
  *
  * @param array $page
  */
@@ -125,7 +79,7 @@ function brainstorm_page_handler($page) {
 		
 		case 'group':
 			$page_owner = elgg_get_page_owner_entity();
-			elgg_push_breadcrumb($page_owner->name, 'brainstorm/group/' .$page_owner->name );
+			elgg_push_breadcrumb($page_owner->name, 'groups/profile/' . $page_owner->guid . '/' . $page_owner->name );
 			group_gatekeeper();
 			switch ($page[2]) {
 				default:
