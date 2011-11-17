@@ -103,10 +103,17 @@ $vote = "<div class='idea-points mbs'>$sum</div>" .
 		elgg_view_form('brainstorm/vote_popup') .
 	"</div>";
 
+$status = $idea->status;
+
 if ($full == 'full' && !elgg_in_context('gallery')) {
 	$header = elgg_view_title($idea->title);
 
 	$idea_info = elgg_view_image_block($owner_icon, $list_body);
+
+	if ( $status != 'open') {
+		$status_info = "<div class='idea-status-info'>" . $idea->status_info . '</div>';
+		$idea_status = "<div class='idea-status pam'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='tag mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>$status_info</div>";
+	}
 
 	echo <<<HTML
 <div id="elgg-object-{$idea->guid}">
@@ -115,17 +122,26 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 		$header
 		$idea_info
 		$description
+		$idea_status
 	</div>
 </div>
 HTML;
 
 } elseif ($full == 'sidebar') {
+	if ( $status != 'open') {
+		$idea_status = "<div class='tag mls $status'></div>";
+	}
+
 	echo <<<HTML
-<div class="mrs idea-value-$userVote">$userVote</div>
+<div class="mrs idea-value-$userVote">$userVote $idea_status</div>
 <h3>$title_link</h3>
 HTML;
 } elseif ($full == 'group_module') {
 	$content = elgg_get_excerpt($idea->description, '300');
+	
+	if ( $status != 'open') {
+		$idea_status = "<span class='tag mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+	}
 	
 	echo <<<HTML
 <div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
@@ -133,6 +149,7 @@ HTML;
 	<h3>$title_link</h3>
 	<div class="elgg-subtext">$subtitle</div>
 	<div class="elgg-content">$content</div>
+	$idea_status
 </div>
 HTML;
 } elseif (elgg_in_context('gallery')) {
@@ -150,10 +167,15 @@ HTML;
 		$content = $idea->description;
 	}
 
+	if ( $status != 'open') {
+		$idea_status = "<span class='tag mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+	}
+
+
 	echo <<<HTML
 <div class="idea-left-column mts mbs">$vote</div>
 <div class="idea-content mts">
-	<h3>$title_link</h3>
+	<h3>$title_link $idea_status</h3>
 	$content
 	$list_body
 </div>

@@ -11,10 +11,12 @@ elgg_push_breadcrumb(elgg_echo('brainstorm'));
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');
 
-$content = elgg_list_entities(array(
+$content = elgg_list_entities_from_metadata(array(
 	'type' => 'object',
 	'subtype' => 'idea',
 	'container_guid' => $page_owner->guid,
+	'metadata_names' => 'status',
+	'metadata_values' => array ('under review', 'planned', 'started'),
 	'limit' => 0,
 	'offset' => $offset,
 	'pagination' => false,
@@ -31,7 +33,7 @@ if (!$content) {
 
 $title = elgg_echo('brainstorm:owner', array($page_owner->name));
 
-$filter_context = 'new';
+$filter_context = 'accepted';
 
 $vars = array(
 	'filter_context' => $filter_context,

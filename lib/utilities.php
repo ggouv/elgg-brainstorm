@@ -38,6 +38,9 @@ function brainstorm_prepare_form_vars($idea = null) {
 			'annotation_names' => 'point',
 			'annotation_calculation' => 'sum'
 		));
+		
+		$values['status'] = $idea->status;
+		$values['status_info'] = $idea->status_info;
 	}
 
 	if (elgg_is_sticky_form('idea')) {

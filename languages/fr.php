@@ -40,6 +40,16 @@ $french = array(
 	'brainstorm:yourvotes' => "Vos votes :",
 	'brainstorm:vote' => "Vote :",
 	
+	'brainstorm:status' => "Satut :",
+	'brainstorm:state' => "État :",
+	'brainstorm:status_info' => "Information sur le statut :",
+	'brainstorm:open' => 'ouvert',
+	'brainstorm:under review' => "en cours d'évaluation",
+	'brainstorm:planned' => 'planifié',
+	'brainstorm:started' => 'commencé',
+	'brainstorm:completed' => 'complété',
+	'brainstorm:declined' => 'décliné',
+	
 	'brainstorm:none' => "Pas d'idée.",
 	'brainstorm:novoteleft' => "vote restant.",
 	'brainstorm:onevoteleft' => "vote restant.",

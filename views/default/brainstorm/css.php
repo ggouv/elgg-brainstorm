@@ -84,6 +84,31 @@
 .idea-value-3 {
 	background-color: #FF9900;
 }
+.idea-status {
+	background-color: #EEE;
+}
+.tag {
+	border-radius: 8px;
+	color: black;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 2px 6px;
+}
+.tag.planned {
+	background-color: #FFED00;
+}
+.tag.under {
+	background-color: #BBB;
+}
+.tag.started {
+	background-color: #89C23C;
+}
+.tag.completed {
+	background-color: #4690D6;
+}
+.tag.declined {
+	background-color: red;
+}
 
 /*
  * Object vote-popup
@@ -164,6 +189,15 @@
 }
 .sidebar-idea-list .elgg-item-idea > h3 {
 	padding-top: 2px;
+}
+.sidebar-idea-list .tag {
+	border-radius: 0;
+	float: left;
+	height: 4px;
+	margin: 0 0 0 -6px;
+	padding: 0;
+	position: absolute;
+	width: 20px;
 }
 /*
  * Add form saveidea

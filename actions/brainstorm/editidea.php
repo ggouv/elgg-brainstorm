@@ -14,6 +14,8 @@ $description = get_input('description');
 $access_id = get_input('access_id');
 $tags = get_input('tags');
 $rate = get_input('rate');
+$status = get_input('status');
+$status_info = get_input('status_info');
 $guid = get_input('guid');
 $container_guid = get_input('container_guid', elgg_get_page_owner_guid());
 $user_guid = elgg_get_logged_in_user_guid();
@@ -46,6 +48,7 @@ $idea->description = $description;
 $idea->access_id = $access_id;
 $idea->tags = $tagarray;
 $idea->status = $status;
+$idea->status_info = $status_info;
 
 $sum = elgg_get_annotations(array(
 	'guids' => $guid,

@@ -40,6 +40,16 @@ $english = array(
 	'brainstorm:yourvotes' => "Your votes:",
 	'brainstorm:vote' => "Vote:",
 	
+	'brainstorm:status' => "Satus:",
+	'brainstorm:state' => "State:",
+	'brainstorm:status_info' => "Information about status:",
+	'brainstorm:open' => 'open',
+	'brainstorm:under review' => 'under review',
+	'brainstorm:planned' => 'planned',
+	'brainstorm:started' => 'started',
+	'brainstorm:completed' => 'completed',
+	'brainstorm:declined' => 'declined',
+	
 	'brainstorm:none' => "No idea.",
 	'brainstorm:novoteleft' => "vote left.",
 	'brainstorm:onevoteleft' => "vote left.",

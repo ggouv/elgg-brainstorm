@@ -13,6 +13,8 @@ $desc = elgg_extract('description', $vars, '');
 $tags = elgg_extract('tags', $vars, '');
 $access_id = elgg_extract('access_id', $vars, ACCESS_DEFAULT);
 $rate = elgg_extract('rate', $vars, '0');
+$status = elgg_extract('status', $vars, 'open');
+$status_info = elgg_extract('status_info', $vars, '');
 $container_guid = elgg_extract('container_guid', $vars);
 $guid = elgg_extract('guid', $vars, null);
 $user = elgg_get_logged_in_user_guid();
@@ -66,12 +68,27 @@ if ($categories) {
 </div>
 
 <?php
-/*$container = elgg_get_page_owner_entity();
-	$user_guid = elgg_get_logged_in_user_guid();
-
-	if ( $container->getOwnerGUID() != $user_guid ) {
-		return $return;
-	}*/
+	$group = get_entity($container_guid);
+	if ( $group->getOwnerGUID() == $user ) {
+	$status_label = array(elgg_echo('brainstorm:open') => 'open',
+						elgg_echo('brainstorm:under review') => 'under review',
+						elgg_echo('brainstorm:planned') => 'planned',
+						elgg_echo('brainstorm:started') => 'started',
+						elgg_echo('brainstorm:completed') => 'completed',
+						elgg_echo('brainstorm:declined') => 'declined'
+						);
+	?>
+		<div>
+			<label><?php echo elgg_echo('brainstorm:status'); ?></label><br />
+			<?php echo elgg_view('input/radio', array('name' => 'status', 'value' => $status, 'options' => $status_label, 'class' => 'mbl mts', 'align' => 'horizontal')); ?>
+		</div>
+		
+		<div>
+			<label><?php echo elgg_echo('brainstorm:status_info'); ?></label>
+			<?php echo elgg_view('input/longtext', array('name' => 'status_info', 'value' => $status_info)); ?>
+		</div>
+	<?php
+	}
 ?>
 <div class="elgg-foot">
 	<?php
