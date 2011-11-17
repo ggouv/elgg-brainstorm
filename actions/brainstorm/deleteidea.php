@@ -11,7 +11,7 @@ $idea = get_entity($guid);
 if (elgg_instanceof($idea, 'object', 'idea') && $idea->canEdit()) {
 	$container = $idea->getContainerEntity();
 	if ($idea->delete()) {
-		system_message(elgg_echo("idea:delete:success"));
+		system_message(elgg_echo("brainstorm:idea:delete:success"));
 		if (elgg_instanceof($container, 'group')) {
 			forward("brainstorm/group/$container->guid/all");
 		} else {
@@ -20,5 +20,5 @@ if (elgg_instanceof($idea, 'object', 'idea') && $idea->canEdit()) {
 	}
 }
 
-register_error(elgg_echo("idea:delete:failed"));
+register_error(elgg_echo("brainstorm:idea:delete:failed"));
 forward(REFERER);

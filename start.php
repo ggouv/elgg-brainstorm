@@ -18,6 +18,7 @@ function brainstorm_init() {
 	// actions
 	$action_base = "$root/actions/brainstorm";
 	elgg_register_action('brainstorm/saveidea', "$action_base/saveidea.php");
+	elgg_register_action('brainstorm/editidea', "$action_base/editidea.php");
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
 	elgg_register_action('brainstorm/delete', "$action_base/deleteidea.php");
 
@@ -25,10 +26,12 @@ function brainstorm_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'brainstorm_owner_block_menu');
 
 	elgg_register_page_handler('brainstorm', 'brainstorm_page_handler');
-
+	
+	// Extend view
 	elgg_extend_view('css/elgg', 'brainstorm/css');
 	elgg_extend_view('js/elgg', 'brainstorm/js');
-
+	
+	// Register widget
 	elgg_register_widget_type('brainstorm', elgg_echo('brainstorm:widget:title'), elgg_echo('brainstorm:widget:description'));
 
 	// Register granular notification for this type
@@ -88,13 +91,18 @@ function brainstorm_page_handler($page) {
 				include "$pages/top.php";
 				break;
 				
+				case "hot":
+				include "$pages/hot.php";
+				break;
+				
 				case "new":
 				include "$pages/new.php";
 				break;
 				
-				case "hot":
-				include "$pages/hot.php";
+				case "accepted":
+				include "$pages/accepted.php";
 				break;
+				
 			}
 			
 		default:

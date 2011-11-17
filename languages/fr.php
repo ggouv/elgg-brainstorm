@@ -18,6 +18,7 @@ $french = array(
 	'item:object:idea' => 'Idée',
 	'river:create:object:idea' => "%s a soumis l'idée %s",
 	'river:comment:object:idea' => "%s a commenté l'idée %s",
+	'river:edit:object:idea' => "%s a édité l'idée %s",
 	'brainstorm:river:annotate' => "un commentaire sur l'idée",
 	'brainstorm:river:item' => 'un objet',
 	
@@ -62,8 +63,13 @@ $french = array(
 	 * Status messages
 	 */
 	'brainstorm:idea:rate:submitted' => "Votre vote a bien été pris en compte.",
-	'brainstorm:save:success' => "Votre idée a bien été enregistrée.",
-	'brainstorm:delete:success' => "Votre idée a bien été supprimée.",
+	'brainstorm:idea:save:success' => "Votre idée a bien été enregistrée.",
+	'brainstorm:idea:delete:success' => "Votre idée a bien été supprimée.",
+	'brainstorm:idea:delete:failed' => "Une erreur s'est produite lors de la suppression de l'idée.",
+
+	'brainstorm:idea:save:empty' => "Vous devez définir un titre et une description.",
+	'brainstorm:idea:save:failed' => "Une erreur s'est produite lors de la sauvegarde de l'idée.",
+	
 	/**
 	 * Error messages
 	 */

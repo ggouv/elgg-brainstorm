@@ -12,7 +12,8 @@
  * @return array
  */
 function brainstorm_prepare_form_vars($idea = null) {
-
+	$user = elgg_get_logged_in_user_guid();
+	
 	$values = array(
 		'title' => get_input('title', ''),
 		'address' => get_input('address', ''),
@@ -31,6 +32,12 @@ function brainstorm_prepare_form_vars($idea = null) {
 				$values[$field] = $idea->$field;
 			}
 		}
+		$values['rate'] = elgg_get_annotations(array(
+			'guids' => $idea->guid,
+			'annotation_owner_guids' => $user,
+			'annotation_names' => 'point',
+			'annotation_calculation' => 'sum'
+		));
 	}
 
 	if (elgg_is_sticky_form('idea')) {

@@ -18,6 +18,7 @@ $english = array(
 	'item:object:idea' => 'Idea',
 	'river:create:object:idea' => '%s submited idea %s',
 	'river:comment:object:idea' => '%s commented on a idea %s',
+	'river:edit:object:idea' => '%s edited idea %s',
 	'brainstorm:river:annotate' => 'a comment on this idea',
 	'brainstorm:river:item' => 'an item',
 	
@@ -62,8 +63,12 @@ $english = array(
 	 * Status messages
 	 */
 	'brainstorm:idea:rate:submitted' => "Idea successfully rated.",
-	'brainstorm:save:success' => "Your idea was successfully saved.",
-	'brainstorm:delete:success' => "Your idea was successfully deleted.",
+	'brainstorm:idea:save:success' => "Your idea was successfully saved.",
+	'brainstorm:idea:delete:success' => "Your idea was successfully deleted.",
+	'brainstorm:idea:delete:failed' => "An error occurred while deleting idea.",
+
+	'brainstorm:idea:save:empty' => "You need to set a title and description of the idea.",
+	'brainstorm:idea:save:failed' => "An error occurred while saving idea.",
 
 	/**
 	 * Error messages
