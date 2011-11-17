@@ -13,7 +13,7 @@ $french = array(
 	'brainstorm:filter:hot' => "Hot",
 	'brainstorm:filter:new' => "Nouvelles",
 	'brainstorm:filter:accepted' => "Acceptées",
-	'brainstorm:filter:completed' => "Completées",
+	'brainstorm:filter:completed' => "Complétées",
 	
 	'item:object:idea' => 'Idée',
 	'river:create:object:idea' => "%s a soumis l'idée %s",

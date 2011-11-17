@@ -14,7 +14,7 @@ $user_id = elgg_get_logged_in_user_guid();
 $fb->info($user_id, 'userID');
 $fb->info($page_owner->guid, '$page_owner->guid');
 
-$idea109 = get_entity('104');
+$idea109 = get_entity('100');
 //$idea109->status = 'started';
 //$annotation = new ElggObject($idea109->getGUID());
 //create_annotation($annotation->getGUID(),'status','open','string',$user_id,$annotation->getAccessID());
@@ -55,20 +55,44 @@ e.guid = n_table.entity_guid'
 [2] =>
 'JOIN elgg_metastrings msv on n_table.value_id = msv.id'
 )*/
+//elgg_delete_annotation_by_id('342');
 $options = array(
+	'type' => 'object',
+	'subtype' => 'idea',
+	'guids' => '112',
+	//'annotation_names' => array('point', 'close'),
+	'limit' => 0
+);
+$userVote = elgg_get_annotations($options);
+$fb->info($userVote, 'nrst1');
+foreach ($userVote as $annotation) {
+	//update_annotation($annotation->id, 'point',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+	$fb->info($annotation->id, 'nrst1bbb');
+}
+$userVote2 = elgg_get_annotations(array(
 	'type' => 'object',
 	'subtype' => 'idea',
 	'container_guid' => $page_owner->guid,
 	'annotation_owner_guids' => $user_id,
-	'annotation_names' => array('point', 'status'),
-	'annotation_values' => 'open',
-// 	'annotation_calculation' => 'sum',
-// 	'wheres' => array("(((Xmsn.string IN ('status')) AND ( BINARY Xmsv.string IN ('close')) AND ( (1 = 1) and n_table.enabled='yes')))"),
-// 	'joins' => array('JOIN elgg_metadata X_table on e.guid = X_table.entity_guid','JOIN elgg_metastrings Xmsn on X_table.name_id = Xmsn.id', 
-// 	'JOIN elgg_metastrings Xmsv on X_table.value_id = Xmsv.id')
+	'annotation_names' => array('point'),
+	'limit' => 0,
+//	'annotation_calculation' => 'sum'
+));
+foreach ( $userVote2 as $idea ) {
+	$sum[] = $idea->value;
+}
+//array_sum($userVote2[value])
+$fb->info(array_sum($sum), 'uiui');
+$fb->info($userVote2, 'nrst2');
+/*update_annotation('140', 'point',$userVote[0]->value,$userVote[0]->value_type, $userVote[0]->owner_guid,$userVote[0]->access_id);
+$options2 = array(
+	'type' => 'object',
+	'subtype' => 'idea',
+	'guids' => '100',
+	'annotation_names' => array('point', 'close')
 );
-$userVote = elgg_get_annotations($options);
-$fb->info($userVote);
+$userVote2 = elgg_get_annotations($options2);
+$fb->info($userVote2[0], 'nrst2');
 /*
 $userVote = elgg_get_annotations(array(
 	'type' => 'object',

@@ -7,7 +7,6 @@
 
 // once elgg_view stops throwing all sorts of junk into $vars, we can use extract()
 
-global $fb; $fb->info($vars);
 $title = elgg_extract('title', $vars, '');
 $desc = elgg_extract('description', $vars, '');
 $tags = elgg_extract('tags', $vars, '');
@@ -23,17 +22,14 @@ $userVote = elgg_get_annotations(array(
 	'container_guid' => $container_guid,
 	'annotation_names' => 'point',
 	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user
+	'annotation_owner_guids' => $user,
+	'limit' => 0
 ));
 $userVote = 10 - $userVote;
 $options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3');
 if ( $userVote == '2' && $rate == '0' || $userVote == '1' && $rate <= '1' || $userVote == '0' && $rate <= '2' ) $options = array('0' => '0', '1' => '1', '2' => '2');
 if ( $userVote == '1' && $rate == '0' || $userVote == '0' && $rate <= '1' ) $options = array('0' => '0', '1' => '1');
 if ( $userVote == '0' && $rate == '0' )  $options = array('0' => '0');
-if ( $userVote <= 0 ) forward(REFERER);
-
-
-
 
 ?>
 

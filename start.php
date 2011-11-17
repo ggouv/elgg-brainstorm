@@ -103,6 +103,10 @@ function brainstorm_page_handler($page) {
 				include "$pages/accepted.php";
 				break;
 				
+				case "completed":
+				include "$pages/completed.php";
+				break;
+				
 			}
 			
 		default:

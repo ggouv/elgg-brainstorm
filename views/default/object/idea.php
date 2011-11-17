@@ -72,23 +72,26 @@ $list_body = elgg_view('object/elements/summary', $params);
 
 $sum = elgg_get_annotations(array(
 	'guids' => $idea->guid,
-	'annotation_names' => 'point',
-	'annotation_calculation' => 'sum'
+	'annotation_names' => array('point', 'close'),
+	'annotation_calculation' => 'sum',
+	'limit' => 0
 ));
 if ( $sum == '' ) $sum = 0;
 
 $userVote = elgg_get_annotations(array(
 	'guids' => $idea->guid,
-	'annotation_names' => 'point',
+	'annotation_names' => array('point', 'close'),
 	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid
+	'annotation_owner_guids' => $user_guid,
+	'limit' => 0
 ));
 
 $userVoteLeft = elgg_get_annotations(array(
 	'container_guid' => $container->guid,
 	'annotation_names' => 'point',
 	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid
+	'annotation_owner_guids' => $user_guid,
+	'limit' => 0
 ));
 $userVoteLeft = 10 - $userVoteLeft;
 
@@ -102,6 +105,11 @@ $vote = "<div class='idea-points mbs'>$sum</div>" .
 		"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
 		elgg_view_form('brainstorm/vote_popup') .
 	"</div>";
+
+if ( $idea->status == 'completed' || $idea->status == 'declined' ) {
+	$vote = "<div class='idea-points mbs'>$sum</div>" .
+	"<a class='idea-rate-button idea-status'>$voteString</a>";
+}
 
 $status = $idea->status;
 
@@ -128,14 +136,12 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 HTML;
 
 } elseif ($full == 'sidebar') {
-	if ( $status != 'open') {
-		$idea_status = "<div class='tag mls $status'></div>";
-	}
 
 	echo <<<HTML
-<div class="mrs idea-value-$userVote">$userVote $idea_status</div>
+<div class="mrs idea-value-$userVote $status">$userVote</div>
 <h3>$title_link</h3>
 HTML;
+
 } elseif ($full == 'group_module') {
 	$content = elgg_get_excerpt($idea->description, '300');
 	

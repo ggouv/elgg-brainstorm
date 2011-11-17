@@ -36,7 +36,8 @@ function brainstorm_prepare_form_vars($idea = null) {
 			'guids' => $idea->guid,
 			'annotation_owner_guids' => $user,
 			'annotation_names' => 'point',
-			'annotation_calculation' => 'sum'
+			'annotation_calculation' => 'sum',
+			'limit' => 0
 		));
 		
 		$values['status'] = $idea->status;

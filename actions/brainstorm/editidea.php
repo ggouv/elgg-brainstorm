@@ -20,14 +20,6 @@ $guid = get_input('guid');
 $container_guid = get_input('container_guid', elgg_get_page_owner_guid());
 $user_guid = elgg_get_logged_in_user_guid();
 
-$userVote = elgg_get_annotations(array(
-	'container_guid' => $container_guid,
-	'annotation_names' => 'point',
-	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid
-));
-$userVote = 10 - $userVote;
-if ( $userVote <= 0 ) forward(REFERER);
 
 if (!$title || !$description ) {
 	register_error(elgg_echo('brainstorm:idea:save:empty'));
@@ -52,11 +44,30 @@ $idea->status_info = $status_info;
 
 $sum = elgg_get_annotations(array(
 	'guids' => $guid,
-	'annotation_names' => 'point',
+	'annotation_names' => array('point', 'close'),
 	'annotation_owner_guids' => $user_guid,
-	'annotation_calculation' => 'sum'
+	'annotation_calculation' => 'sum',
+	'limit' => 0
 ));
 $point = $rate-$sum;
+
+$annotations_idea = elgg_get_annotations(array(
+	'type' => 'object',
+	'subtype' => 'idea',
+	'guids' => $guid,
+	'annotation_names' => array('point', 'close'),
+	'limit' => 0
+));
+if ( $status == 'completed' || $status == 'declined' ) {
+	
+	foreach ($annotations_idea as $annotation) {
+		update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+	}
+} else {
+	foreach ($annotations_idea as $annotation) {
+		update_annotation($annotation->id, 'point',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+	}
+}
 
 if ($idea->save()) {
 

@@ -19,7 +19,8 @@ $userVote = elgg_get_annotations(array(
 	'container_guid' => $container_guid,
 	'annotation_names' => 'point',
 	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user
+	'annotation_owner_guids' => $user,
+	'limit' => 0
 ));
 $userVote = 10 - $userVote;
 $options = array('1' => '1', '2' => '2', '3' => '3');

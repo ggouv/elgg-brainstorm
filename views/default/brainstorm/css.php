@@ -190,14 +190,20 @@
 .sidebar-idea-list .elgg-item-idea > h3 {
 	padding-top: 2px;
 }
-.sidebar-idea-list .tag {
-	border-radius: 0;
-	float: left;
-	height: 4px;
-	margin: 0 0 0 -6px;
-	padding: 0;
-	position: absolute;
-	width: 20px;
+.sidebar-idea-list .elgg-item-idea > div.planned {
+	border-bottom: 4px solid #FFED00;
+}
+.sidebar-idea-list .elgg-item-idea > div.under {
+	border-bottom: 4px solid #BBB;
+}
+.sidebar-idea-list .elgg-item-idea > div.started {
+	border-bottom: 4px solid #89C23C;
+}
+.sidebar-idea-list .elgg-item-idea > div.completed {
+	border-bottom: 4px solid #4690D6;
+}
+.sidebar-idea-list .elgg-item-idea > div.declined {
+	border-bottom: 4px solid red;
 }
 /*
  * Add form saveidea
