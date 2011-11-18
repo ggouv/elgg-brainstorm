@@ -29,7 +29,7 @@ $body = elgg_view_layout('content', array(
 	'title' => $title,
 	'filter' => '',
 	'header' => '',
-	//'sidebar' => elgg_view('brainstorm/sidebar-idea')
+	'sidebar' => '<h3 class="mbm">' . elgg_echo('brainstorm:same_group') . '</h3>' . elgg_view('brainstorm/sidebar')
 ));
 
 echo elgg_view_page($title, $body);

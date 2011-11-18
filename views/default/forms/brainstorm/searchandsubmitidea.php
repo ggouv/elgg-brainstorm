@@ -1,26 +1,16 @@
 <?php
 /**
- * Brainstorm add form body
+ * Brainstorm search and add form
  *
- * @uses $vars['post']
  */
 
-$post = elgg_extract('post', $vars);
+echo elgg_view('input/hidden', array(
+	'name' => 'title',
+	'value' => '',
+));
 
-$text = elgg_echo('post');
-if ($post) {
-	$text = elgg_echo('brainstorm:search');
-}
+echo '<h3 class="mbs">' . elgg_echo('brainstorm:search') . '</h3>';
 
-if ($post) {
-	echo elgg_view('input/hidden', array(
-		'name' => 'parent_guid',
-		'value' => $post->guid,
-	));
-}
-?>
-
-<?php
 echo elgg_view('input/text', array(
 	'name' => 'body',
 	'class' => 'mbm',

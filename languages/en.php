@@ -33,6 +33,7 @@ $english = array(
 	
 	'brainstorm:enablebrainstorm' => "Enable brainstorm.",
 	'brainstorm:group' => 'Group brainstorming',
+	'brainstorm:same_group' => "In the same group:",
 	
 	/**
 	 * Content

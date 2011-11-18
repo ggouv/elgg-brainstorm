@@ -33,6 +33,7 @@ $french = array(
 	
 	'brainstorm:enablebrainstorm' => "Active le remue méninge.",
 	'brainstorm:group' => 'Remue-méninges du groupe',
+	'brainstorm:same_group' => "Dans le même groupe :",
 	
 	/**
 	 * Content

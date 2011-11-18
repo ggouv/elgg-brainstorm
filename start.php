@@ -47,7 +47,7 @@ function brainstorm_init() {
 	elgg_register_entity_type('object', 'idea');
 
 	// Groups
-	add_group_tool_option('brainstorm', elgg_echo('brainstorm:enablebrainstorm'), true);
+	add_group_tool_option('brainstorm', elgg_echo('brainstorm:enablebrainstorm'), false);
 	elgg_extend_view('groups/tool_latest', 'brainstorm/group_module');
 }
 

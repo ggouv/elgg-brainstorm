@@ -26,10 +26,10 @@ $userVote = elgg_get_annotations(array(
 	'limit' => 0
 ));
 $userVote = 10 - $userVote;
-$options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3');
-if ( $userVote == '2' && $rate == '0' || $userVote == '1' && $rate <= '1' || $userVote == '0' && $rate <= '2' ) $options = array('0' => '0', '1' => '1', '2' => '2');
-if ( $userVote == '1' && $rate == '0' || $userVote == '0' && $rate <= '1' ) $options = array('0' => '0', '1' => '1');
-if ( $userVote == '0' && $rate == '0' )  $options = array('0' => '0');
+$options = array(' 0' => '0', ' 1' => '1', ' 2' => '2', ' 3' => '3'); // space in keys force to be string
+if ( $userVote == '2' && $rate == '0' || $userVote == '1' && $rate <= '1' || $userVote == '0' && $rate <= '2' ) $options = array(' 0' => '0', ' 1' => '1', ' 2' => '2');
+if ( $userVote == '1' && $rate == '0' || $userVote == '0' && $rate <= '1' ) $options = array(' 0' => '0', ' 1' => '1');
+if ( $userVote == '0' && $rate == '0' )  $options = array(' 0' => '0');
 
 ?>
 
