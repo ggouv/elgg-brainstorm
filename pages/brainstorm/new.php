@@ -40,11 +40,6 @@ $vars = array(
 	'sidebar' => elgg_view('brainstorm/sidebar'),
 );
 
-// don't show filter if out of filter context
-if ($page_owner instanceof ElggGroup) {
-	//$vars['filter'] = false;
-}
-
 $body = elgg_view_layout('brainstorm', $vars);
 
 echo elgg_view_page($title, $body);
