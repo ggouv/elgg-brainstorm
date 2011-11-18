@@ -23,9 +23,9 @@ $userVote = elgg_get_annotations(array(
 	'limit' => 0
 ));
 $userVote = 10 - $userVote;
-$options = array('1' => '1', '2' => '2', '3' => '3');
-if ( $userVote == 2 ) $options = array('1' => '1', '2' => '2');
-if ( $userVote == 1 ) $options = array('1' => '1');
+$options = array(' 1' => '1', ' 2' => '2', ' 3' => '3'); // space in keys force to be string
+if ( $userVote == 2 ) $options = array(' 1' => '1', ' 2' => '2');
+if ( $userVote == 1 ) $options = array(' 1' => '1');
 if ( $userVote <= 0 ) forward(REFERER);
 
 ?>

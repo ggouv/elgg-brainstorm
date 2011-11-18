@@ -16,6 +16,7 @@ function brainstorm_prepare_form_vars($idea = null) {
 	
 	$values = array(
 		'title' => get_input('title', ''),
+		'search' => get_input('search', ''),
 		'address' => get_input('address', ''),
 		'description' => '',
 		'access_id' => ACCESS_DEFAULT,
@@ -25,6 +26,8 @@ function brainstorm_prepare_form_vars($idea = null) {
 		'guid' => null,
 		'entity' => $idea,
 	);
+
+	if (!$values['title']) $values['title'] = $values['search'];
 
 	if ($idea) {
 		foreach (array_keys($values) as $field) {

@@ -3,6 +3,8 @@
  * Add idea page
  *
  * @package Brainstorm
+ *
+ * input search come from search.php
  */
 
 $title = elgg_echo('brainstorm:idea:add');

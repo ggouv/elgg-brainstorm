@@ -61,11 +61,11 @@ if ( $keyword != 'false' ) {
 		
 		if ( $content ) {
 			echo '<span>' . elgg_echo('brainstorm:search:find') . '</span>' .
-				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group&title=$keyword'>" . elgg_echo('brainstorm:add') . '</a>'.
+				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>'.
 				$content;
 		} else {
 			echo '<span>' . elgg_echo('brainstorm:search:none') . '</span>' .
-				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group&title=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
+				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
 		}
 	}
 }

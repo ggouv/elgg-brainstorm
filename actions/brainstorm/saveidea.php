@@ -25,7 +25,7 @@ $userVote = elgg_get_annotations(array(
 	'annotation_owner_guids' => $user_guid
 ));
 $userVote = 10 - $userVote;
-if ( $userVote <= 0 ) forward(REFERER);
+if ( $userVote < 0 ) forward(REFERER);
 
 if (!$title || !$description ) {
 	register_error(elgg_echo('brainstorm:idea:save:empty'));
