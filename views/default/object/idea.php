@@ -99,16 +99,18 @@ $voteString = $userVote;
 if ( $userVote == '' || $userVote == '0' ) $voteString = $userVote = 'vote';
 if ( $userVoteLeft <= 0 && $userVote == 'vote' ) $userVote = '0';
 
-$vote = "<div class='idea-points mbs'>$sum</div>" .
-	"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$voteString</a>" .
-	"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
-		"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
-		elgg_view_form('brainstorm/vote_popup') .
-	"</div>";
-
-if ( $idea->status == 'completed' || $idea->status == 'declined' ) {
+if ( !$container->isMember($user) ) {
+	$vote = "<div class='idea-points mbs'>$sum</div>";
+} elseif ( $idea->status == 'completed' || $idea->status == 'declined' ) {
 	$vote = "<div class='idea-points mbs'>$sum</div>" .
 	"<a class='idea-rate-button idea-status'>$voteString</a>";
+} else {
+	$vote = "<div class='idea-points mbs'>$sum</div>" .
+		"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$voteString</a>" .
+		"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
+			"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
+			elgg_view_form('brainstorm/vote_popup') .
+		"</div>";
 }
 
 $status = $idea->status;
