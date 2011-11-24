@@ -108,6 +108,7 @@ function brainstorm_page_handler($page) {
 				break;
 				
 			}
+			break;
 			
 		default:
 			return false;
