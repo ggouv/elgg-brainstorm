@@ -151,6 +151,7 @@ function brainstorm_owner_block_menu($hook, $type, $return, $params) {
 		if ($params['entity']->brainstorm_enable != 'no') {
 			$url = "brainstorm/group/{$params['entity']->guid}/top";
 			$item = new ElggMenuItem('brainstorm', elgg_echo('brainstorm:group'), $url);
+			if (elgg_in_context('brainstorm')) $item->setSelected();
 			$return[] = $item;
 		}
 	}
