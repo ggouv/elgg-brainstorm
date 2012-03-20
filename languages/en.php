@@ -65,7 +65,7 @@ $english = array(
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:title' => "Brainstorm.",
+	'brainstorm:widget:title' => "Brainstorm",
 	'brainstorm:widget:description' => "Display ratest ideas.",
 	'brainstorm:more' => "More ideas",
 	'brainstorm:numbertodisplay' => "Number of ideas to display:",

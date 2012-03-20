@@ -131,7 +131,7 @@ $portugues_brasileiro = array(
 
 */
 
-'brainstorm:widget:title' => "Brainstorm.",
+'brainstorm:widget:title' => "Brainstorm",
 
 'brainstorm:widget:description' => "Exibir últimas idéias.",
 

@@ -65,7 +65,7 @@ $french = array(
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:title' => "Remue méninge.",
+	'brainstorm:widget:title' => "Remue méninge",
 	'brainstorm:widget:description' => "Afficher les idées les plus votées.",
 	'brainstorm:more' => "Plus d'idées",
 	'brainstorm:numbertodisplay' => "Nombre d'idées à afficher :",
