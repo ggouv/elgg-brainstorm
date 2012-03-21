@@ -34,6 +34,9 @@
 	width: 100%;
 	min-height: 80px;
 }
+.elgg-body > .elgg-item-idea {
+	float: none;
+}
 .idea-left-column {
 	float: left;
 	position: relative;

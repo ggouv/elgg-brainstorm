@@ -126,7 +126,7 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 	}
 
 	echo <<<HTML
-<div id="elgg-object-{$idea->guid}">
+<div id="elgg-object-{$idea->guid}" class="elgg-item-idea">
 	<div class="idea-left-column mts">$vote</div>
 	<div class="idea-content">
 		$header
