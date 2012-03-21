@@ -137,7 +137,9 @@ $portugues_brasileiro = array(
 
 'brainstorm:more' => "Mais idéias",
 
-'brainstorm:numbertodisplay' => "Número de idéias para exibir:",
+'brainstorm:numbertodisplay' => "Número de idéias para exibir",
+
+'brainstorm:typetodisplay' => "Exibir por",
 
  
 

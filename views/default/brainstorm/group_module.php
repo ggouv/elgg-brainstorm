@@ -14,16 +14,6 @@ if ($group->brainstorm_enable == "no") {
 elgg_push_context('widgets');
 elgg_pop_context();
 
-
-/*$options = array(
-	'type' => 'object',
-	'subtype' => 'idea',
-	'container_guid' => $group_guid,
-	'limit' => 6,
-	'full_view' => 'sidebar',
-	'pagination' => false,
-);
-$content = elgg_list_entities($options);*/
 $content = elgg_list_entities_from_annotation_calculation(array(
 	'type' => 'object',
 	'subtype' => 'idea',
@@ -37,14 +27,7 @@ $content = elgg_list_entities_from_annotation_calculation(array(
 	'limit' => 6,
 	'pagination' => false
 ));
-/*$content = elgg_list_entities(array(
-	'items' => $ideas,
-	'full_view' => 'sidebar',
-	'item_class' => 'elgg-item-idea pts pbs',
-	'list_class' => 'sidebar-idea-list',
-	'pagination' => false
-));
-*/
+
 if (!$content) {
 	$content = '<p>' . elgg_echo('brainstorm:none') . '</p>';
 }

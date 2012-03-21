@@ -5,17 +5,37 @@
  * @package brainstorm
  */
 
-$max = (int) $vars['entity']->num_display;
+$max = (int) $vars['entity']->max_display;
+$type = $vars['entity']->type_display;
 
-$options = array(
-	'type' => 'object',
-	'subtype' => 'idea',
-	'container_guid' => $vars['entity']->owner_guid,
-	'limit' => $max,
-	'full_view' => 'sidebar',
-	'pagination' => FALSE,
-);
-$content = elgg_list_entities($options);
+if ( $type == 'top' ) {
+	$content = elgg_list_entities_from_annotation_calculation(array(
+		'type' => 'object',
+		'subtype' => 'idea',
+		'owner_guid' => elgg_get_logged_in_user_guid(),
+		'annotation_names' => 'point',
+		'order_by' => 'annotation_calculation desc',
+		'view_toggle_type' => false,
+		'full_view' => 'sidebar',
+		'item_class' => 'elgg-item-idea pts pbs',
+		'list_class' => 'sidebar-idea-list',
+		'limit' => $max,
+		'pagination' => false
+	));
+} elseif ( $type == 'new' ) {
+	$content = elgg_list_entities(array(
+		'type' => 'object',
+		'subtype' => 'idea',
+		'owner_guid' => elgg_get_logged_in_user_guid(),
+		'limit' => $max,
+		'pagination' => false,
+		'order_by' => 'time_created desc',
+		'full_view' => 'sidebar',
+		'view_toggle_type' => false,
+		'list_class' => 'sidebar-idea-list',
+		'item_class' => 'elgg-item-idea pts pbs'
+	));
+}
 
 echo $content;
 

@@ -68,7 +68,8 @@ $english = array(
 	'brainstorm:widget:title' => "Brainstorm",
 	'brainstorm:widget:description' => "Display ratest ideas.",
 	'brainstorm:more' => "More ideas",
-	'brainstorm:numbertodisplay' => "Number of ideas to display:",
+	'brainstorm:numbertodisplay' => "Number of ideas to display",
+	'brainstorm:typetodisplay' => "Display by",
 
 	/**
 	 * Status messages
