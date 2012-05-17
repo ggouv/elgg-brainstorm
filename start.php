@@ -80,6 +80,18 @@ function brainstorm_page_handler($page) {
 			include "$pages/editidea.php";
 			break;
 		
+		case "all":
+			include "$pages/all.php";
+			break;
+
+		case "owner":
+			include "$pages/owner.php";
+			break;
+		
+		case "friends":
+			include "$pages/friends.php";
+			break;
+			
 		case 'group':
 			$page_owner = elgg_get_page_owner_entity();
 			elgg_push_breadcrumb($page_owner->name, 'groups/profile/' . $page_owner->guid . '/' . $page_owner->name );
