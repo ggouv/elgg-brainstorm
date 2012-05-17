@@ -15,7 +15,6 @@ if ( $type == 'top' ) {
 		'owner_guid' => elgg_get_logged_in_user_guid(),
 		'annotation_names' => 'point',
 		'order_by' => 'annotation_calculation desc',
-		'view_toggle_type' => false,
 		'full_view' => 'sidebar',
 		'item_class' => 'elgg-item-idea pts pbs',
 		'list_class' => 'sidebar-idea-list',
@@ -31,7 +30,6 @@ if ( $type == 'top' ) {
 		'pagination' => false,
 		'order_by' => 'time_created desc',
 		'full_view' => 'sidebar',
-		'view_toggle_type' => false,
 		'list_class' => 'sidebar-idea-list',
 		'item_class' => 'elgg-item-idea pts pbs'
 	));

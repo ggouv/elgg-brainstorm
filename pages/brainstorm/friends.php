@@ -23,7 +23,7 @@ $content = elgg_list_entities(array(
 	'owner_guids' => $friendguids,
 	'limit' => 10,
 	'pagination' => true,
-	'full_view' => 'group_module',
+	'full_view' => 'no_vote',
 	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));

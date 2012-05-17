@@ -17,7 +17,7 @@ $content = elgg_list_entities(array(
 	'owner_guid' => $page_owner->guid,
 	'limit' => 0,
 	'pagination' => false,
-	'full_view' => 'group_module',
+	'full_view' => 'no_vote',
 	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));

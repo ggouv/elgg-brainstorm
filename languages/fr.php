@@ -27,13 +27,16 @@ $french = array(
 	'brainstorm:edit' => "Éditer une ideé",
 	'brainstorm:new' => "Une nouvelle idée",
 	
-	'brainstorm:owner' => "Remue-méninges de %s",
+	'brainstorm:all' => "Toutes les idées",
+	'brainstorm:owner' => "Idées de %s",
+	'brainstorm:friends' => "Idées des contacts",
 	'brainstorm:idea:edit' => "Éditer cette ideé",
 	'brainstorm:idea:add' => "Ajouter cette idée",
 	
 	'brainstorm:enablebrainstorm' => "Active le remue méninge.",
 	'brainstorm:group' => 'Remue-méninges du groupe',
 	'brainstorm:same_group' => "Dans le même groupe :",
+	'brainstorm:view:all' => "Voir tout",
 	
 	/**
 	 * Content

@@ -12,7 +12,7 @@ $content = elgg_list_entities(array(
 	'subtype' => 'idea',
 	'limit' => 10,
 	'pagination' => true,
-	'full_view' => 'group_module',
+	'full_view' => 'no_vote',
 	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));

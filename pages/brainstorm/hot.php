@@ -22,7 +22,6 @@ $content = elgg_list_entities_from_annotation_calculation(array(
 	'order_by' => 'annotation_calculation ' . $order_by,
 	'annotation_created_time_lower' => $time,
 	'full_view' => false,
-	'view_toggle_type' => false,
 	'list_class' => 'brainstorm-list',
 	'item_class' => 'elgg-item-idea'
 ));
@@ -33,10 +32,8 @@ if (!$content) {
 
 $title = elgg_echo('brainstorm:owner', array($page_owner->name));
 
-$filter_context = 'hot';
-
 $vars = array(
-	'filter_context' => $filter_context,
+	'filter_context' => 'hot',
 	'content' => $content,
 	'title' => $title,
 	'sidebar' => elgg_view('brainstorm/sidebar'),

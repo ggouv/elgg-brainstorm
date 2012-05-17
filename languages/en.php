@@ -27,13 +27,16 @@ $english = array(
 	'brainstorm:edit' => "Edit idea",
 	'brainstorm:new' => "A new idea",
 	
-	'brainstorm:owner' => "%s's brainstorming",
+	'brainstorm:all' => "All ideas",
+	'brainstorm:owner' => "%s's ideas",
+	'brainstorm:friends' => "Friends ideas",
 	'brainstorm:idea:edit' => "Edit this idea",
 	'brainstorm:idea:add' => "Add an idea",
 	
 	'brainstorm:enablebrainstorm' => "Enable brainstorm.",
 	'brainstorm:group' => 'Group brainstorming',
 	'brainstorm:same_group' => "In the same group:",
+	'brainstorm:view:all' => "See all",
 	
 	/**
 	 * Content

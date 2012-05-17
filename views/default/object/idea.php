@@ -144,7 +144,7 @@ HTML;
 <h3>$title_link</h3>
 HTML;
 
-} elseif ($full == 'group_module') {
+} elseif ($full == 'no_vote') {
 	$content = elgg_get_excerpt($idea->description, '300');
 	
 	if ( $status != 'open') {

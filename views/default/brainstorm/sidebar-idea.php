@@ -12,7 +12,6 @@ $ideas = elgg_get_entities_from_annotations(array(
 	'container_guid' => $page_owner,
 	'annotation_names' => 'point',
 	'full_view' => 'sidebar',
-	'view_toggle_type' => false,
 	'item_class' => 'elgg-item-idea',
 	'list_class' => 'sidebar-idea-list',
 	'limit' => 0

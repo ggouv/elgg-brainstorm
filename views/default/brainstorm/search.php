@@ -19,7 +19,6 @@ if ( $keyword != 'false' ) {
 			'limit' => 0,
 			'pagination' => false,
 			'full_view' => false,
-			'view_toggle_type' => false,
 			'item_class' => 'elgg-item-idea'
 		);
 		

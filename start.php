@@ -22,7 +22,6 @@ function brainstorm_init() {
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
 	elgg_register_action('brainstorm/delete', "$action_base/deleteidea.php");
 
-	elgg_register_plugin_hook_handler('register', 'menu:page', 'brainstorm_page_menu');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'brainstorm_owner_block_menu');
 
 	elgg_register_page_handler('brainstorm', 'brainstorm_page_handler');
@@ -203,34 +202,4 @@ function brainstorm_notify_message($hook, $entity_type, $returnvalue, $params) {
 
 	}
 	return null;
-}
-
-/**
- * Add a page menu.
- *
- * @param string $hook
- * @param string $type
- * @param array  $return
- * @param array  $params
- */
-function brainstorm_page_menu($hook, $type, $return, $params) {
-	if (elgg_is_logged_in()) {
-
-		if (elgg_in_context('brainstorm')) {
-			$page_owner = elgg_get_page_owner_entity();
-			if (!$page_owner) {
-				$page_owner = elgg_get_logged_in_user_entity();
-			}
-			
-			if ($page_owner instanceof ElggGroup) {
-				$title = elgg_echo('brainstorm:bookmarklet:group');
-			} else {
-				$title = elgg_echo('brainstorm:bookmarklet');
-			}
-
-			//$return[] = new ElggMenuItem('brainstorm', $title, 'brainstorm/bookmarklet/' . $page_owner->getGUID());
-		}
-	}
-
-	return $return;
 }
