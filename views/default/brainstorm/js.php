@@ -45,15 +45,15 @@ elgg.brainstorm.init = function() {
 	$('.idea-rate-button').click(function() {
 		$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
 
-		ideaClass = $(this).attr('class');
-		points = ideaClass.substr(ideaClass.length - 1);
+		var ideaClass = $(this).attr('class');
+		var points = ideaClass.substr(ideaClass.length - 1);
 		if ( points == 'e' ) points = '0';	
-		popup = $('#vote-popup-' + $(this).parents('.elgg-item-idea').attr('id').split('-')[2] );
+		var popup = $('#vote-popup-' + $(this).parents('.elgg-item-idea').attr('id').split('-')[2] );
 		
 		popup.find('.elgg-button').removeClass('checked hidden');
 		popup.find('.elgg-button[value='+points+']').addClass('checked');
 		if ( points == '0' ) popup.find('.elgg-button:first').addClass('hidden');
-		UserVoteLeft = $('#votesLeft strong').html();
+		var UserVoteLeft = $('#votesLeft strong').html();
 		if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft == '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
 		if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft == '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
 		if ( UserVoteLeft == '0' && points == '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
@@ -66,15 +66,16 @@ elgg.brainstorm.init = function() {
 			return false;
 		else {
 			$.data(this, 'clicked', true);
-			thisVote = this;
-			value = $(this).val();
-			idea = $(this).parents('.brainstorm-vote-popup').attr('id').split('-')[2];
-			ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href');
-			ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
+			var thisVote = this;
+			var value = $(this).val();
+			var idea = $(this).parents('.brainstorm-vote-popup').attr('id').split('-')[2];
+			var ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href');
+			var ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
+			if ( ideaTitle == null ) ideaTitle = $('#elgg-object-' + idea + ' .idea-content h2').html();
 			
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
 			
-			dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid();
+			var dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid();
 			elgg.action('brainstorm/rateidea', {
 				data: dataString,
 				success: function(json) {
@@ -89,7 +90,7 @@ elgg.brainstorm.init = function() {
 						} else {
 							$('#elgg-object-' + idea + ' .idea-rate-button').html(value);
 							if ( !$('.sidebar-idea-list #elgg-object-' + idea).length ) {
-								liStart = '<li class="elgg-item elgg-item-idea" id="elgg-object-'+idea+'">';
+								var liStart = '<li class="elgg-item elgg-item-idea" id="elgg-object-'+idea+'">';
 								h3 = '<h3><a href="'+ideaURL+'">'+ideaTitle+'</a></h3>';
 								$('.sidebar-idea-list').prepend(liStart + '<div></div>' + h3 + '</li>');
 							}
@@ -104,13 +105,13 @@ elgg.brainstorm.init = function() {
 						
 						if ( json.output.userVoteLeft == '0' ) {
 							$('.idea-value-vote').removeClass('idea-value-vote').addClass('idea-value-0');
-							VoteString = "<strong>0</strong> " + elgg.echo('brainstorm:novoteleft');
+							var VoteString = "<strong>0</strong> " + elgg.echo('brainstorm:novoteleft');
 						} else if ( json.output.userVoteLeft == '1' ) {
 							$('.idea-value-0').removeClass('idea-value-0').addClass('idea-value-vote');
-							VoteString = "<strong>1</strong> " + elgg.echo('brainstorm:onevoteleft');
+							var VoteString = "<strong>1</strong> " + elgg.echo('brainstorm:onevoteleft');
 						} else {
 							$('.idea-value-0').removeClass('idea-value-0').addClass('idea-value-vote');
-							VoteString = "<strong>" + json.output.userVoteLeft + "</strong> " + elgg.echo('brainstorm:votesleft');
+							var VoteString = "<strong>" + json.output.userVoteLeft + "</strong> " + elgg.echo('brainstorm:votesleft');
 						}
 						$('#votesLeft').removeClass('zero').html(VoteString);
 						if ( json.output.userVoteLeft == '0' ) $('#votesLeft').addClass('zero');

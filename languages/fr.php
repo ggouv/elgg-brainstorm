@@ -13,7 +13,7 @@ $french = array(
 	'brainstorm:filter:hot' => "Hot",
 	'brainstorm:filter:new' => "Nouvelles",
 	'brainstorm:filter:accepted' => "Acceptées",
-	'brainstorm:filter:completed' => "Complétées",
+	'brainstorm:filter:completed' => "Terminées",
 	
 	'item:object:idea' => 'Idée',
 	'river:create:object:idea' => "%s a soumis l'idée %s",
@@ -51,7 +51,7 @@ $french = array(
 	'brainstorm:under review' => "en cours d'évaluation",
 	'brainstorm:planned' => 'planifié',
 	'brainstorm:started' => 'commencé',
-	'brainstorm:completed' => 'complété',
+	'brainstorm:completed' => 'terminé',
 	'brainstorm:declined' => 'décliné',
 	
 	'brainstorm:none' => "Pas d'idée.",
