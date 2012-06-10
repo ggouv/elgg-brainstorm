@@ -33,7 +33,7 @@ $french = array(
 	'brainstorm:idea:edit' => "Éditer cette ideé",
 	'brainstorm:idea:add' => "Ajouter cette idée",
 	
-	'brainstorm:enablebrainstorm' => "Active le remue méninge.",
+	'brainstorm:enablebrainstorm' => "Active le remue-méninges.",
 	'brainstorm:group' => 'Remue-méninges du groupe',
 	'brainstorm:same_group' => "Dans le même groupe :",
 	'brainstorm:view:all' => "Voir tout",
@@ -68,7 +68,7 @@ $french = array(
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:title' => "Remue méninge",
+	'brainstorm:widget:title' => "Remue-méninges",
 	'brainstorm:widget:description' => "Afficher les idées les plus votées.",
 	'brainstorm:more' => "Plus d'idées",
 	'brainstorm:numbertodisplay' => "Nombre d'idées à afficher ",
@@ -91,8 +91,8 @@ $french = array(
 	'brainstorm:idea:rate:error:ajax' => "Erreur de connexion avec le serveur.",
 	'brainstorm:unknown_idea' => "Idée inconnue.",
 	'brainstorm:idea:rate:error:value' => "Erreur sur la valeur du vote.",
-	'brainstorm:idea:rate:error' => "Votre n'a pu être pris en compte à cause d'une erreur avec le serveur.",
-	'brainstorm:idea:rate:error:underzero' => "Le nombre de votes restant ne vous permette pas de voter cette idée.",
+	'brainstorm:idea:rate:error' => "Votre vote n'a pas pu être pris en compte à cause d'une erreur sur le serveur.",
+	'brainstorm:idea:rate:error:underzero' => "Le nombre de votes restant ne vous permet pas de voter pour cette idée.",
 );
 
 add_translation('fr', $french);
