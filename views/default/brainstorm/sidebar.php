@@ -8,7 +8,8 @@ if ($page_owner->isMember($user)) {
 
 	echo elgg_view('brainstorm/sidebar-points');
 	
-	echo elgg_view('brainstorm/sidebar-idea');
+	$body = elgg_view('brainstorm/sidebar-idea');
+	echo elgg_view_module('aside', '', $body);
 	
 	echo elgg_view('page/elements/tagcloud_block', array(
 		'subtypes' => 'idea',

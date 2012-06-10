@@ -39,7 +39,7 @@ if ($guid == 0) {
 	$new = true;
 } else {
 	system_message(elgg_echo('brainstorm:idea:save:failed'));
-	forward(REFERRER);
+	forward(REFERER);
 }
 
 $tagarray = string_to_tag_array($tags);
@@ -72,5 +72,5 @@ if ($idea->save()) {
 	forward($idea->getURL());
 } else {
 	register_error(elgg_echo('brainstorm:idea:save:failed'));
-	forward($idea->getURL());
+	forward(REFERER);
 }
