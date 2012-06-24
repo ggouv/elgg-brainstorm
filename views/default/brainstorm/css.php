@@ -67,13 +67,19 @@
 	font-size: 14px;
 	font-weight: bold;
 	padding: 2px 0;
-    text-align: center;
-    background-color: #DEDEDE;
-    display: block;
+	text-align: center;
+	background-color: #DEDEDE;
+	display: block;
 }
 .idea-rate-button:hover {
 	background-color: #CCC;
 	text-decoration: none;
+}
+div.idea-rate-button {
+	cursor: default;
+}
+div.idea-rate-button:hover {
+	background-color: #EEE;
 }
 .idea-value-0 {
 	display: none;

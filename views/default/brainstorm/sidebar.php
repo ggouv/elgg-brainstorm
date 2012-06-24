@@ -3,8 +3,9 @@
  * Brainstorm group sidebar
  */
 $page_owner = elgg_get_page_owner_entity();
+$user = elgg_get_logged_in_user_guid();
 
-if ($page_owner->isMember($user)) {
+if ($page_owner->canWriteToContainer($user)) {
 
 	echo elgg_view('brainstorm/sidebar-points');
 	

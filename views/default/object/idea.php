@@ -99,11 +99,11 @@ $voteString = $userVote;
 if ( $userVote == '' || $userVote == '0' ) $voteString = $userVote = 'vote';
 if ( $userVoteLeft <= 0 && $userVote == 'vote' ) $userVote = '0';
 
-if ( !$container->isMember($user) ) {
+if ( !$container->canWriteToContainer($user) ) {
 	$vote = "<div class='idea-points mbs'>$sum</div>";
 } elseif ( $idea->status == 'completed' || $idea->status == 'declined' ) {
 	$vote = "<div class='idea-points mbs'>$sum</div>" .
-	"<a class='idea-rate-button idea-status'>$voteString</a>";
+	"<div class='idea-rate-button idea-status'>$voteString</div>";
 } else {
 	$vote = "<div class='idea-points mbs'>$sum</div>" .
 		"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$voteString</a>" .
