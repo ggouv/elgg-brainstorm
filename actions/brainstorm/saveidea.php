@@ -11,11 +11,11 @@ elgg_make_sticky_form('idea');
 
 $title = strip_tags(get_input('title'));
 $description = get_input('description');
-$access_id = get_input('access_id');
+$access_id = (int)get_input('access_id');
 $tags = get_input('tags');
-$rate = get_input('rate');
-$guid = get_input('guid');
-$container_guid = get_input('container_guid', elgg_get_page_owner_guid());
+$rate = (int)get_input('rate');
+$guid = (int)get_input('guid');
+$container_guid = (int)get_input('container_guid', elgg_get_page_owner_guid());
 $user_guid = elgg_get_logged_in_user_guid();
 
 $userVote = elgg_get_annotations(array(
