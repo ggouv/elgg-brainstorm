@@ -33,6 +33,8 @@ $french = array(
 	'brainstorm:idea:edit' => "Éditer cette ideé",
 	'brainstorm:idea:add' => "Ajouter cette idée",
 	
+	'brainstorm:group:settings:title' => "Paramètres du brainstorm du groupe %s",
+	'brainstorm:group_settings' => "Paramètres",
 	'brainstorm:enablebrainstorm' => "Active le remue-méninges.",
 	'brainstorm:group' => 'Remue-méninges du groupe',
 	'brainstorm:same_group' => "Dans le même groupe :",
@@ -64,7 +66,10 @@ $french = array(
 	'brainstorm:search:find' => "Votez pour ces idées ou ",
 	'brainstorm:search:none' => "Aucune idée trouvée. Cherchez autre chose ou ",
 	'brainstorm:add' => "soumettez une nouvelle idée",
-	 
+
+	'brainstorm:settings:points' => "Nombre de points",
+	'brainstorm:settings:question' => "Question",
+	
 	/**
 	 * Widget and bookmarklet
 	 */
@@ -84,6 +89,9 @@ $french = array(
 
 	'brainstorm:idea:save:empty' => "Vous devez définir un titre et une description.",
 	'brainstorm:idea:save:failed' => "Une erreur s'est produite lors de la sauvegarde de l'idée.",
+
+	'brainstorm:group:settings:failed' => "Le groupe n'est pas défini ou vous n'êtes pas autorisé à éditer ce groupe.",
+	'brainstorm:group:settings:save:success' => "Les paramètres ont été enregistrées.",
 	
 	/**
 	 * Error messages

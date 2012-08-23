@@ -21,6 +21,7 @@ function brainstorm_init() {
 	elgg_register_action('brainstorm/editidea', "$action_base/editidea.php");
 	elgg_register_action("brainstorm/rateidea", "$action_base/rateidea.php");
 	elgg_register_action('brainstorm/delete', "$action_base/deleteidea.php");
+	elgg_register_action('brainstorm/settings', "$action_base/settings.php");
 
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'brainstorm_owner_block_menu');
 
@@ -67,57 +68,57 @@ function brainstorm_page_handler($page) {
 			set_input('guid', $page[1]);
 			include "$pages/view.php";
 			break;
-
 		case "add":
 			gatekeeper();
 			include "$pages/saveidea.php";
 			break;
-		
 		case "edit":
 			gatekeeper();
 			set_input('guid', $page[1]);
 			include "$pages/editidea.php";
 			break;
-		
 		case "all":
 			include "$pages/all.php";
 			break;
-
 		case "owner":
 			include "$pages/owner.php";
 			break;
-		
 		case "friends":
 			include "$pages/friends.php";
 			break;
-			
 		case 'group':
 			$page_owner = elgg_get_page_owner_entity();
 			elgg_push_breadcrumb($page_owner->name, 'groups/profile/' . $page_owner->guid . '/' . $page_owner->name );
+			if ($page[2] != 'settings' && (elgg_get_logged_in_user_guid() == $page_owner->getOwnerGuid() || elgg_is_admin_logged_in())) {
+				elgg_register_menu_item('title', array(
+					'name' => 'settings',
+					'href' => "brainstorm/group/$page_owner->guid/settings",
+					'text' => elgg_echo('brainstorm:group_settings'),
+					'link_class' => 'elgg-button elgg-button-action',
+				));
+			}
 			group_gatekeeper();
 			switch ($page[2]) {
 				default:
 				case "all":
 				case "top":
-				include "$pages/top.php";
-				break;
-				
+					include "$pages/top.php";
+					break;
 				case "hot":
-				include "$pages/hot.php";
-				break;
-				
+					include "$pages/hot.php";
+					break;
 				case "new":
-				include "$pages/new.php";
-				break;
-				
+					include "$pages/new.php";
+					break;
 				case "accepted":
-				include "$pages/accepted.php";
-				break;
-				
+					include "$pages/accepted.php";
+					break;
 				case "completed":
-				include "$pages/completed.php";
-				break;
-				
+					include "$pages/completed.php";
+					break;
+				case "settings":
+					include "$pages/settings.php";
+					break;
 			}
 			break;
 			

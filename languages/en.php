@@ -33,6 +33,8 @@ $english = array(
 	'brainstorm:idea:edit' => "Edit this idea",
 	'brainstorm:idea:add' => "Add an idea",
 	
+	'brainstorm:group:settings:title' => "Settings of %s's brainstorm",
+	'brainstorm:group_settings' => "Settings",
 	'brainstorm:enablebrainstorm' => "Enable brainstorm.",
 	'brainstorm:group' => 'Group brainstorming',
 	'brainstorm:same_group' => "In the same group:",
@@ -64,6 +66,9 @@ $english = array(
 	'brainstorm:search:find' => "Ideas found. Vote or ",
 	'brainstorm:search:none' => "No idea found. Search again or ",
 	'brainstorm:add' => "submit a new idea",
+	
+	'brainstorm:settings:points' => "Number of points",
+	'brainstorm:settings:question' => "Question",
 	 
 	/**
 	 * Widget and bookmarklet
@@ -84,6 +89,9 @@ $english = array(
 
 	'brainstorm:idea:save:empty' => "You need to set a title and description of the idea.",
 	'brainstorm:idea:save:failed' => "An error occurred while saving idea.",
+	
+	'brainstorm:group:settings:failed' => "There is no group or you don't have acces to edit this group.",
+	'brainstorm:group:settings:save:success' => "Settings of brainstorm's group succesfully saved.",
 
 	/**
 	 * Error messages
