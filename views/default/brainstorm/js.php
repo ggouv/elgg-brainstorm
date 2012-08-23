@@ -3,44 +3,47 @@
 elgg.provide('elgg.brainstorm');
 
 elgg.brainstorm.init = function() {
-
-	$("#brainstorm-textarea").live('keydown', function(e) {
-		if ( $(this).val().length > 139 && e.keyCode != 8 ) return false;
+	var timeout;
+	
+	$("#brainstorm-textarea").keypress(function(e) {
+		if ( $(this).val().length > 140 && e.which != 8 || e.which == 13) return false;
 		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
-	}).live('keyup', function() {
-		if ( $(this).val().length > 139 && e.keyCode != 8 ) return false;
-		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
-		
 		var search_input = $(this).val();
 		var search_container = $('#brainstorm-search-response');
 
-		if ( search_input.length > 3 ) {
-			$.ajax({
-				type: "GET",
-				url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
-				data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + search_input,
-				beforeSend:  function() {
-					$('#brainstorm-textarea').addClass('loading');
-				},
-				success: function(response) {
-					$('.elgg-menu-filter-default, .brainstorm-list').hide();
-					if ( search_container.is(':hidden') ) {
-						search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
-					} else {
-						search_container.html(response);
+		if ( search_input.length > 3) {
+			if (timeout) {
+				clearTimeout(timeout);
+				timeout = null;
+			}
+			
+			timeout = setTimeout(function() {
+				$.ajax({
+					type: "GET",
+					url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
+					data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + $("#brainstorm-textarea").val(),
+					beforeSend:  function() {
+						$('#brainstorm-textarea').addClass('loading');
+					},
+					success: function(response) {
+						clearTimeout(timeout);
+						$('.elgg-menu-filter-default, .brainstorm-list').hide();
+						if ( search_container.is(':hidden') ) {
+							search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
+						} else {
+							search_container.html(response);
+						}
+						if ($('#brainstorm-textarea').hasClass("loading")) {
+							$('#brainstorm-textarea').removeClass("loading");
+						}
 					}
-					if ($('#brainstorm-textarea').hasClass("loading")) {
-						$('#brainstorm-textarea').removeClass("loading");
-					}
-				}
-			});
+				});
+			}, 500);
 		} else if ( $('.brainstorm-list').css('opacity') != '1' || $('.brainstorm-list').is(":hidden") ) {
 			search_container.hide().html('');
 			$('.elgg-menu-filter-default, .brainstorm-list').css('opacity', 0).fadeTo('slow', 1);
 		}
-		return false;		
 	});
-
 
 	$('.idea-rate-button').click(function() {
 		$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
@@ -159,7 +162,7 @@ elgg.ui.votePopup = function(hook, type, params, options) {
 		options.offset = '13 0';
 		return options;
 	}
-	return null;
+	return true;
 };
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.ui.votePopup);
 
