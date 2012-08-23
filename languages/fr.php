@@ -63,8 +63,13 @@ $french = array(
 	
 	'brainstorm:search' => "Cherchez ou soumettez une idée :",
 	'brainstorm:charleft' => "caractères restants.",
-	'brainstorm:search:find' => "Votez pour ces idées ou ",
-	'brainstorm:search:none' => "Aucune idée trouvée. Cherchez autre chose ou ",
+	
+	'brainstorm:search:result_vote_submit' => "Votez pour ces idées ou ",
+	'brainstorm:search:result_novote_submit' => "Idées trouvées. Changez vos votes ou ",
+	'brainstorm:search:result_novote_nosubmit' => "Des idées ont été trouvées mais vous n'avez plus de point. Changez vos votes si vous voulez soumettre une nouvelle idée.",
+	'brainstorm:search:noresult_nosubmit' => "Aucune idée trouvée, cherchez autre chose. Vous devez changer vos votes si vous voulez soumettre une nouvelle idée.",
+	'brainstorm:search:noresult_submit' => "Aucune idée trouvée. Cherchez autre chose ou ",
+
 	'brainstorm:add' => "soumettez une nouvelle idée",
 
 	'brainstorm:settings:points' => "Nombre de points",
@@ -92,6 +97,8 @@ $french = array(
 
 	'brainstorm:group:settings:failed' => "Le groupe n'est pas défini ou vous n'êtes pas autorisé à éditer ce groupe.",
 	'brainstorm:group:settings:save:success' => "Les paramètres ont été enregistrées.",
+	'brainstorm:settings:brainstorm_submit_idea_without_point' => "Soumettre une idée sans avoir de point",
+	'brainstorm:settings:brainstorm_submit_idea_without_point_string' => "Cochez si vous souhaitez que les membres du groupe puissent soumettre une idée sans avoir de point. Attention, cela offre la possibilité à un utilisateur de soumettre beaucoup d'idée sans gage de qualité.",
 	
 	/**
 	 * Error messages

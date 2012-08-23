@@ -63,12 +63,19 @@ $english = array(
 	
 	'brainstorm:search' => "Search or submit an idea:",
 	'brainstorm:charleft' => "char left.",
-	'brainstorm:search:find' => "Ideas found. Vote or ",
-	'brainstorm:search:none' => "No idea found. Search again or ",
+	
+	'brainstorm:search:result_vote_submit' => "Ideas found. Vote or ",
+	'brainstorm:search:result_novote_submit' => "Idea found. Change your votes or ",
+	'brainstorm:search:result_novote_nosubmit' => "Ideas found. No point left, change your votes if you want to submit a new idea.",
+	'brainstorm:search:noresult_nosubmit' => "No idea found, search again. You should change your votes if you want to submit a new idea.",
+	'brainstorm:search:noresult_submit' => "No idea found. Search again or ",
+
 	'brainstorm:add' => "submit a new idea",
 	
 	'brainstorm:settings:points' => "Number of points",
 	'brainstorm:settings:question' => "Question",
+	'brainstorm:settings:brainstorm_submit_idea_without_point' => "Submit idea without point",
+	'brainstorm:settings:brainstorm_submit_idea_without_point_string' => "Check if you want to offer possibility to group members to submit idea without point. Be carefull of flooding.",
 	 
 	/**
 	 * Widget and bookmarklet

@@ -4,24 +4,24 @@
 require_once(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . "/engine/start.php");
 
 $keyword = get_input('keyword', 'false');
-	
+$point = (int)get_input('point', 1);
+
 if ( $keyword != 'false' ) {
-	$group = get_input('group', 'false');
+	$group_guid = (int)get_input('group', 'false');
 	
-	if ( $group ) {
+	if ( $group_guid ) {
 
 		$db_prefix = elgg_get_config('dbprefix');
 	
 		$params = array(
 			'type' => 'object',
 			'subtype' => 'idea',
-			'container_guid' => $group,
+			'container_guid' => $group_guid,
 			'limit' => 0,
 			'pagination' => false,
 			'full_view' => false,
 			'item_class' => 'elgg-item-idea'
 		);
-		
 		
 		$likes = $keys = array();
 		$keyword = sanitise_string($keyword);
@@ -58,13 +58,22 @@ if ( $keyword != 'false' ) {
 			));
 		}
 		
-		if ( $content ) {
-			echo '<span>' . elgg_echo('brainstorm:search:find') . '</span>' .
-				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>'.
-				$content;
+		$group = get_entity($group_guid);
+		$subimt_w_point = $group->brainstorm_submit_idea_without_point;
+		$button = "<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group_guid/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
+		
+		if ($content) {
+			if ($point > 0) $html = '<span>' . elgg_echo('brainstorm:search:result_vote_submit') . '</span>' . $button;
+			if ($subimt_w_point == 'on' && $point <= 0) $html = '<span>' . elgg_echo('brainstorm:search:result_novote_submit') . '</span>' . $button;
+			if ($subimt_w_point == '0' && $point <= 0) $html = '<span>' . elgg_echo('brainstorm:search:result_novote_nosubmit') . '</span>';
+			$html .= $content;
 		} else {
-			echo '<span>' . elgg_echo('brainstorm:search:none') . '</span>' .
-				"<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
+			if ($subimt_w_point == '0' && $point <= 0) {
+				$html = '<span>' . elgg_echo('brainstorm:search:noresult_nosubmit') . '</span>';
+			} else {
+				$html = '<span>' . elgg_echo('brainstorm:search:noresult_submit') . '</span>' . $button;
+			}
 		}
+		echo $html;
 	}
 }

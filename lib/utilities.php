@@ -71,6 +71,7 @@ function brainstorm_group_settings_prepare_form_vars($group = null) {
 		'brainstorm_description' => get_input('brainstorm_description', ''),
 		'brainstorm_question' => get_input('brainstorm_question', elgg_echo('brainstorm:search')),
 		'brainstorm_points' => get_input('brainstorm_points', 10),
+		'brainstorm_submit_idea_without_point' => get_input('brainstorm_submit_idea_without_point', false),
 	);
 
 	if ($group) {
