@@ -100,7 +100,7 @@ $english = array(
 	'brainstorm:unknown_idea' => "Unknown idea.",
 	'brainstorm:idea:rate:error:value' => "Mistake on the value for rating this idea.",
 	'brainstorm:idea:rate:error' => "This idea could not be rated cause internal server problem.",
-	'brainstorm:idea:rate:error:underzero' => "Your votes left cannot premit to rate an idea.",
+	'brainstorm:idea:rate:error:underzero' => "Your votes left cannot permit to rate an idea.",
 );
 
 add_translation('en', $english);

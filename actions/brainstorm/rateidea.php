@@ -11,7 +11,7 @@ $idea_guid = (int)get_input('idea');
 $value = (int)get_input('value');
 
 $user_guid = elgg_get_logged_in_user_guid();
-$page_owner = get_input('page_owner');
+$page_owner = (int)get_input('page_owner', elgg_get_page_owner_guid());
 
 $sum = elgg_get_annotations(array(
 	'guids' => $idea_guid,
@@ -28,29 +28,27 @@ if ( $point == 0 || $value < 0 || $value > 3 ) {
 	$error = true;
 } else {
 	
-	$annotation = new ElggObject($idea_guid);
-
-	if ( create_annotation($annotation->getGUID(),'point',$point,'integer',$user_guid,$annotation->getAccessID()) ) {
-		system_message(elgg_echo('brainstorm:idea:rate:submitted'));
+	$userVote = elgg_get_annotations(array(
+		'container_guid' => $page_owner,
+		'annotation_names' => 'point',
+		'annotation_calculation' => 'sum',
+		'annotation_owner_guids' => $user_guid,
+		'limit' => 0
+	));
+	$userVoteLeft = 10 - $userVote - $point;
+	
+	if ( $userVoteLeft < 0 ) {
+		register_error(elgg_echo('brainstorm:idea:rate:error:underzero'));
+		$error = true;
 	} else {
-		register_error(elgg_echo('brainstorm:idea:rate:error'));
+		$annotation = new ElggObject($idea_guid);
+	
+		if ( create_annotation($annotation->getGUID(),'point',$point,'integer',$user_guid,$annotation->getAccessID()) ) {
+			system_message(elgg_echo('brainstorm:idea:rate:submitted'));
+		} else {
+			register_error(elgg_echo('brainstorm:idea:rate:error'));
+		}
 	}
-		
-}
-
-$userVote = elgg_get_annotations(array(
-	'container_guid' => $page_owner,
-	'annotation_names' => 'point',
-	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid,
-	'limit' => 0
-));
-$userVote = 10 - $userVote;
-
-if ( $userVote < 0 ) {
-	elgg_delete_annotation_by_id($annotation->getGUID());
-	register_error(elgg_echo('brainstorm:idea:rate:error:underzero'));
-	$error = true;
 }
 
 $sum = elgg_get_annotations(array(
@@ -60,4 +58,4 @@ $sum = elgg_get_annotations(array(
 	'limit' => 0
 ));
 
-echo json_encode(array('sum' => $sum, 'userVoteLeft' => $userVote, 'errorRate' => $error));
+echo json_encode(array('sum' => $sum, 'userVoteLeft' => $userVoteLeft, 'errorRate' => $error));

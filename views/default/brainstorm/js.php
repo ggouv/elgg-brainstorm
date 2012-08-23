@@ -23,7 +23,7 @@ elgg.brainstorm.init = function() {
 					url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
 					data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + $("#brainstorm-textarea").val(),
 					beforeSend:  function() {
-						$('#brainstorm-textarea').addClass('loading');
+						$('#brainstorm-characters-remaining').addClass('loading');
 					},
 					success: function(response) {
 						clearTimeout(timeout);
@@ -33,9 +33,7 @@ elgg.brainstorm.init = function() {
 						} else {
 							search_container.html(response);
 						}
-						if ($('#brainstorm-textarea').hasClass("loading")) {
-							$('#brainstorm-textarea').removeClass("loading");
-						}
+						$('#brainstorm-characters-remaining').removeClass("loading");
 					}
 				});
 			}, 500);
@@ -56,10 +54,10 @@ elgg.brainstorm.init = function() {
 		popup.find('.elgg-button').removeClass('checked hidden');
 		popup.find('.elgg-button[value='+points+']').addClass('checked');
 		if ( points == '0' ) popup.find('.elgg-button:first').addClass('hidden');
-		var UserVoteLeft = $('#votesLeft strong').html();
-		if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft == '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
-		if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft == '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
-		if ( UserVoteLeft == '0' && points == '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
+		var UserVoteLeft = $('#votesLeft strong').text();
+		if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft <= '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
+		if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft <= '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
+		if ( UserVoteLeft == '0' && points <= '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
 
 		$('.idea-rate-button').not(this).removeClass('elgg-state-active');
 	});
@@ -76,6 +74,7 @@ elgg.brainstorm.init = function() {
 			var ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
 			if ( ideaTitle == null ) ideaTitle = $('#elgg-object-' + idea + ' .idea-content h2').html();
 			
+			var old_points = $('#elgg-object-' + idea + ' .idea-points').text();
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
 			
 			var dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid();
@@ -118,6 +117,8 @@ elgg.brainstorm.init = function() {
 						}
 						$('#votesLeft').removeClass('zero').html(VoteString);
 						if ( json.output.userVoteLeft == '0' ) $('#votesLeft').addClass('zero');
+					} else {
+						$('#elgg-object-' + idea + ' .idea-points').html(old_points);
 					}
 					
 					$.data(thisVote, 'clicked', false);

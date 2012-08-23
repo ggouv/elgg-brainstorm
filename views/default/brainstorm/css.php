@@ -14,8 +14,9 @@
 .brainstorm-highlight {
 	background-color: yellow;
 }
-#brainstorm-textarea.loading {
-	background: url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/ajax-loader.gif') no-repeat scroll 99% 6px transparent;
+#brainstorm-characters-remaining.loading {
+	background: url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/ajax-loader.gif') no-repeat scroll 0 6px transparent;
+	padding-left: 20px;
 }
 #brainstorm-search-response > span {
 	margin-right: 5px;
