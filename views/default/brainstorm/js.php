@@ -11,31 +11,36 @@ elgg.brainstorm.init = function() {
 		var search_input = $(this).val();
 		var search_container = $('#brainstorm-search-response');
 
-		if ( search_input.length > 3) {
+		if (search_input.length > 3) {
 			if (timeout) {
 				clearTimeout(timeout);
 				timeout = null;
 			}
 			
 			timeout = setTimeout(function() {
-				$.ajax({
-					type: "GET",
-					url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
-					data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + $("#brainstorm-textarea").val(),
-					beforeSend:  function() {
-						$('#brainstorm-characters-remaining').addClass('loading');
-					},
-					success: function(response) {
-						clearTimeout(timeout);
-						$('.elgg-menu-filter-default, .brainstorm-list').hide();
-						if ( search_container.is(':hidden') ) {
-							search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
-						} else {
-							search_container.html(response);
+				search_input = $("#brainstorm-textarea").val();
+				if (search_input.length > 3) { // @todo check why need to do it again ?
+					$.ajax({
+						type: "GET",
+						url: elgg.config.wwwroot + 'mod/elgg-brainstorm/views/default/brainstorm/search.php',
+						data: 'group=' + elgg.get_page_owner_guid() + '&keyword=' + $("#brainstorm-textarea").val() + '&point=' + $('#votesLeft strong').text(),
+						beforeSend:  function() {
+							$('#brainstorm-characters-remaining').addClass('loading');
+						},
+						success: function(response) {
+							clearTimeout(timeout);
+							$('.elgg-menu-filter-default, .brainstorm-list').hide();
+							if ( search_container.is(':hidden') ) {
+								search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
+							} else {
+								search_container.html(response);
+							}
+							$('#brainstorm-characters-remaining').removeClass("loading");
+							rateButton();
+							$('body').click('click', function() {$('.brainstorm-vote-popup').fadeOut();});
 						}
-						$('#brainstorm-characters-remaining').removeClass("loading");
-					}
-				});
+					});
+				}
 			}, 500);
 		} else if ( $('.brainstorm-list').css('opacity') != '1' || $('.brainstorm-list').is(":hidden") ) {
 			search_container.hide().html('');
@@ -43,26 +48,29 @@ elgg.brainstorm.init = function() {
 		}
 	});
 
-	$('.idea-rate-button').click(function() {
-		$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
-
-		var ideaClass = $(this).attr('class');
-		var points = ideaClass.substr(ideaClass.length - 1);
-		if ( points == 'e' ) points = '0';	
-		var popup = $('#vote-popup-' + $(this).parents('.elgg-item-idea').attr('id').split('-')[2] );
-		
-		popup.find('.elgg-button').removeClass('checked hidden');
-		popup.find('.elgg-button[value='+points+']').addClass('checked');
-		if ( points == '0' ) popup.find('.elgg-button:first').addClass('hidden');
-		var UserVoteLeft = $('#votesLeft strong').text();
-		if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft <= '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
-		if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft <= '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
-		if ( UserVoteLeft == '0' && points <= '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
-
-		$('.idea-rate-button').not(this).removeClass('elgg-state-active');
-	});
+	var rateButton = function() {
+		$('.idea-rate-button').click(function() {
+			$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
 	
-	$('.elgg-form-brainstorm-vote-popup .elgg-button').click(function() {
+			var ideaClass = $(this).attr('class');
+			var points = ideaClass.substr(ideaClass.length - 1);
+			if ( points == 'e' ) points = '0';	
+			var popup = $('#vote-popup-' + $(this).parents('.elgg-item-idea').attr('id').split('-')[2] );
+			
+			popup.find('.elgg-button').removeClass('checked hidden');
+			popup.find('.elgg-button[value='+points+']').addClass('checked');
+			if ( points == '0' ) popup.find('.elgg-button:first').addClass('hidden');
+			var UserVoteLeft = $('#votesLeft strong').text();
+			if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft <= '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
+			if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft <= '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
+			if ( UserVoteLeft == '0' && points <= '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
+	
+			$('.idea-rate-button').not(this).removeClass('elgg-state-active');
+		});
+	}
+	rateButton();
+	
+	$('.elgg-form-brainstorm-vote-popup .elgg-button').live('click', function() {
 		if ($.data(this, 'clicked') || $(this).hasClass('checked')) // Prevent double-click
 			return false;
 		else {
@@ -123,7 +131,10 @@ elgg.brainstorm.init = function() {
 					
 					$.data(thisVote, 'clicked', false);
 				},
-				error: function(){ elgg.system_message(elgg.echo('brainstorm:idea:rate:error:ajax')); }
+				error: function(){
+					elgg.system_message(elgg.echo('brainstorm:idea:rate:error:ajax'));
+					$('#elgg-object-' + idea + ' .idea-points').html(old_points);
+				}
 			});
 		}
 		
