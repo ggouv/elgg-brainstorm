@@ -69,7 +69,8 @@ $french = array(
 	'brainstorm:search:result_novote_nosubmit' => "Des idées ont été trouvées mais vous n'avez plus de point. Changez vos votes si vous voulez soumettre une nouvelle idée.",
 	'brainstorm:search:noresult_nosubmit' => "Aucune idée trouvée, cherchez autre chose. Vous devez changer vos votes si vous voulez soumettre une nouvelle idée.",
 	'brainstorm:search:noresult_submit' => "Aucune idée trouvée. Cherchez autre chose ou ",
-
+	'brainstorm:search:skip_words' => "une,sans,avec,des,dans,pour,car,que,qui,mais,est,donc,elle,elles,nous,vous,ils,son,ses,ici,oui,non,toi,ton", // write words you want to skip separate by coma. Automaticaly skip word less than 3 chars, don't write them.
+	
 	'brainstorm:add' => "soumettez une nouvelle idée",
 
 	'brainstorm:settings:points' => "Nombre de points",

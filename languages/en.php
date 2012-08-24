@@ -69,6 +69,7 @@ $english = array(
 	'brainstorm:search:result_novote_nosubmit' => "Ideas found. No point left, change your votes if you want to submit a new idea.",
 	'brainstorm:search:noresult_nosubmit' => "No idea found, search again. You should change your votes if you want to submit a new idea.",
 	'brainstorm:search:noresult_submit' => "No idea found. Search again or ",
+	'brainstorm:search:skip_words' => "the,and,for,are,but,not,you,all,any,can,her,was,one,our,out,day,get,has,him,his,how,man,new,now,old,see,two,way,who,boy,did,its,let,put,say,she,too,use,dad,mom", // write words you want to skip separate by coma. Automaticaly skip word less than 3 chars, don't write them.
 
 	'brainstorm:add' => "submit a new idea",
 	

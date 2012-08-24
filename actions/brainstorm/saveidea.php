@@ -24,7 +24,7 @@ if (!$container_guid) {
 
 $container = get_entity($container_guid);
 
-if (!$container || !is_group_member($container_guid, $user_guid)) {
+if (!$container || !can_write_to_container($user_guid, $container_guid)) {
 	register_error(elgg_echo('brainstorm:idea:save:nogroup'));
 	forward(REFERER);
 }
@@ -85,17 +85,22 @@ if ($idea->save()) {
 
 	system_message(elgg_echo('brainstorm:idea:save:success'));
 
-	//add to river and set annotation with minimum of 1 point only if new. If group submit without point is permit and user points left = 0, don't rate.
+	//add to river and set annotation with minimum of 1 and max 3 points only if new. If group submit without point is permit and user points left = 0, rate 0.
 	if ($new ) {
-		if ($container->brainstorm_submit_idea_without_point == 'on' && $userVote >= 0) {
+		if ($container->brainstorm_submit_idea_without_point == 'on' && $userVote <= 0) {
+			$rate = 0;
 		} else {
-			$annotation = new ElggObject($idea->getGUID());
-	
-			if ( create_annotation($annotation->getGUID(), 'point', 1, 'integer', $user_guid, $annotation->getAccessID()) ) {
-			} else {
-				register_error(elgg_echo('brainstorm:idea:rate:error'));
-			}
+			$rate = 1;
+			if ($userVote >= 2) $rate = 2;
+			if ($userVote >= 3) $rate = 3;
 		}
+		
+		$annotation = new ElggObject($idea->getGUID());
+		if ( create_annotation($annotation->getGUID(), 'point', $rate, 'integer', $user_guid, $annotation->getAccessID()) ) {
+		} else {
+			register_error(elgg_echo('brainstorm:idea:rate:error'));
+		}
+		
 		add_to_river('river/object/brainstorm/create','create', $user_guid, $idea->getGUID());
 	}
 

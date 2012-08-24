@@ -26,9 +26,10 @@ if ( $keyword != 'false' ) {
 		$likes = $keys = array();
 		$keyword = sanitise_string($keyword);
 		$keywords = explode(' ', $keyword);
+		$skip_words = explode(',', elgg_echo('brainstorm:search:skip_words'));
 		
 		foreach ($keywords as $key) {
-			if ( strlen($key) > 3 ) {
+			if ( strlen($key) > 2 && !in_array($key, $skip_words) ) {
 				$keys[] = $key;
 				$likes[] = "oe.title LIKE '%$key%' OR oe.description LIKE '%$key%'";
 			}
