@@ -1,10 +1,10 @@
 <?php
 /**
- *	ELGG-Brainstorm PLUGIN
+ *	Elgg-brainstorm plugin
  *	@package Brainstorm
  *	@author Emmanuel Salomon @ManUtopiK
- *	@license GNU General Public License (GPL) version 2
- *	@copyright 
+ *	@license Dual licensed under the MIT and GNU Affero General Public License, version 3 or late
+ *	@copyright (c) Emmanuel Salomon 2012
  *	@link http://
  **/
 
@@ -64,7 +64,6 @@ function brainstorm_page_handler($page) {
 	$pages = dirname(__FILE__) . '/pages/brainstorm';
 
 	switch ($page[0]) {
-	
 		case "read":
 		case "view":
 			set_input('guid', $page[1]);
