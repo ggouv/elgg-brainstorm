@@ -15,7 +15,7 @@ $french = array(
 	'brainstorm:filter:accepted' => "Acceptées",
 	'brainstorm:filter:completed' => "Terminées",
 	
-	'item:object:idea' => 'Idée',
+	'item:object:idea' => 'Idées',
 	'river:create:object:idea' => "%s a soumis l'idée %s",
 	'river:comment:object:idea' => "%s a commenté l'idée %s",
 	'river:edit:object:idea' => "%s a édité l'idée %s",
@@ -35,7 +35,7 @@ $french = array(
 	
 	'brainstorm:group:settings:title' => "Paramètres du brainstorm du groupe %s",
 	'brainstorm:group_settings' => "Paramètres",
-	'brainstorm:enablebrainstorm' => "Active le remue-méninges.",
+	'brainstorm:enablebrainstorm' => "Active le remue-méninges",
 	'brainstorm:group' => 'Remue-méninges du groupe',
 	'brainstorm:same_group' => "Dans le même groupe :",
 	'brainstorm:view:all' => "Voir tout",

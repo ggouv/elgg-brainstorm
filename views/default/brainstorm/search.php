@@ -60,7 +60,8 @@ if ( $keyword != 'false' ) {
 		}
 		
 		$group = get_entity($group_guid);
-		$subimt_w_point = $group->brainstorm_submit_idea_without_point;
+		if (!$subimt_w_point = $group->brainstorm_submit_idea_without_point) $subimt_w_point = '0';
+
 		$button = "<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/$group_guid/&search=$keyword'>" . elgg_echo('brainstorm:add') . '</a>';
 		
 		if ($content) {
