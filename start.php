@@ -59,6 +59,8 @@ function brainstorm_init() {
 function brainstorm_page_handler($page) {
 	elgg_load_library('brainstorm:utilities');
 
+	elgg_push_breadcrumb(elgg_echo('brainstorm'), 'brainstorm/all');
+
 	$pages = dirname(__FILE__) . '/pages/brainstorm';
 
 	switch ($page[0]) {
@@ -87,16 +89,6 @@ function brainstorm_page_handler($page) {
 			include "$pages/friends.php";
 			break;
 		case 'group':
-			$page_owner = elgg_get_page_owner_entity();
-			elgg_push_breadcrumb($page_owner->name, 'groups/profile/' . $page_owner->guid . '/' . $page_owner->name );
-			if ($page[2] != 'settings' && (elgg_get_logged_in_user_guid() == $page_owner->getOwnerGuid() || elgg_is_admin_logged_in())) {
-				elgg_register_menu_item('title', array(
-					'name' => 'settings',
-					'href' => "brainstorm/group/$page_owner->guid/settings",
-					'text' => elgg_echo('brainstorm:group_settings'),
-					'link_class' => 'elgg-button elgg-button-action',
-				));
-			}
 			group_gatekeeper();
 			switch ($page[2]) {
 				default:

@@ -6,7 +6,17 @@
  */
 $page_owner = elgg_get_page_owner_entity();
 
-elgg_push_breadcrumb(elgg_echo('brainstorm'));
+elgg_push_breadcrumb($page_owner->name);
+elgg_push_breadcrumb(elgg_echo('brainstorm:filter:top'));
+
+if ($page[2] != 'settings' && (elgg_get_logged_in_user_guid() == $page_owner->getOwnerGuid() || elgg_is_admin_logged_in())) {
+	elgg_register_menu_item('title', array(
+		'name' => 'settings',
+		'href' => "brainstorm/group/$page_owner->guid/settings",
+		'text' => elgg_echo('brainstorm:group_settings'),
+		'link_class' => 'elgg-button elgg-button-action',
+	));
+}
 
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');

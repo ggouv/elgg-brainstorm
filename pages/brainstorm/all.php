@@ -5,7 +5,7 @@
  * @package Brainstorm
  */
 
-elgg_push_breadcrumb(elgg_echo('brainstorm'));
+elgg_push_breadcrumb(elgg_echo('brainstorm:all'));
 
 $content = elgg_list_entities(array(
 	'type' => 'object',

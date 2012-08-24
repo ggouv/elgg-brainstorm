@@ -9,7 +9,7 @@ if (!$page_owner) {
 	forward('brainstorm/all');
 }
 
-elgg_push_breadcrumb(elgg_echo('brainstorm'));
+elgg_push_breadcrumb($page_owner->name);
 
 $content = elgg_list_entities(array(
 	'type' => 'object',

@@ -9,7 +9,8 @@ if (!$page_owner) {
 	forward('brainstorm/all');
 }
 
-elgg_push_breadcrumb(elgg_echo('brainstorm'));
+elgg_push_breadcrumb($page_owner->name, "brainstorm/owner/$page_owner->username");
+elgg_push_breadcrumb(elgg_echo('friends'));
 
 $friends = get_user_friends($page_owner->guid, "", 999999, 0);
 $friendguids = array();

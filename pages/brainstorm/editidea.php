@@ -13,12 +13,14 @@ if (!elgg_instanceof($idea, 'object', 'idea') || !$idea->canEdit()) {
 	forward(REFERRER);
 }
 
-$title = elgg_echo('brainstorm:idea:edit');
-elgg_push_breadcrumb($title);
+elgg_push_breadcrumb(elgg_echo('brainstorm:edit'));
+elgg_push_breadcrumb($idea->title, $idea->getURL());
 
 $vars = brainstorm_prepare_form_vars($idea);
 
 $content = elgg_view_form('brainstorm/editidea', array(), $vars);
+
+$title = elgg_echo('brainstorm:idea:edit');
 
 $body = elgg_view_layout('content', array(
 	'filter' => '',
