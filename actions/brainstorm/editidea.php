@@ -38,8 +38,8 @@ $idea->title = $title;
 $idea->description = $description;
 $idea->access_id = $access_id;
 $idea->tags = $tagarray;
-$idea->status = $status;
-$idea->status_info = $status_info;
+if ($status) $idea->status = $status;
+if ($status_info) $idea->status_info = $status_info;
 
 if ($idea->save()) {
 	
@@ -51,13 +51,15 @@ if ($idea->save()) {
 		'limit' => 0
 	));
 
-	if ( $status == 'completed' || $status == 'declined' ) {
-		foreach ($annotations_idea as $annotation) {
-			update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
-		}
-	} else {
-		foreach ($annotations_idea as $annotation) {
-			update_annotation($annotation->id, 'point',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+	if ($status) {
+		if ( $status == 'completed' || $status == 'declined' ) {
+			foreach ($annotations_idea as $annotation) {
+				update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+			}
+		} else {
+			foreach ($annotations_idea as $annotation) {
+				update_annotation($annotation->id, 'point',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+			}
 		}
 	}
 

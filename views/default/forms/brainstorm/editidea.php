@@ -15,14 +15,13 @@ $status = elgg_extract('status', $vars, 'open');
 $status_info = elgg_extract('status_info', $vars, '');
 $container_guid = elgg_extract('container_guid', $vars);
 $guid = elgg_extract('guid', $vars, null);
-$user = elgg_get_logged_in_user_guid();
 ?>
 
 <div>
 	<label><?php echo elgg_echo('title'); ?></label><br />
 	<?php
 	if (elgg_is_admin_logged_in()) {
-		echo $title;//elgg_view('input/text', array('name' => 'title', 'value' => $title)); 
+		echo $title;
 	} else {
 		echo $title;
 	}
@@ -34,7 +33,7 @@ $user = elgg_get_logged_in_user_guid();
 </div>
 <?php
 	$group = get_entity($container_guid);
-	if ( $group->getOwnerGUID() == $user ) {
+	if ($group->canEdit()) {
 	$status_label = array(elgg_echo('brainstorm:open') => 'open',
 						elgg_echo('brainstorm:under review') => 'under review',
 						elgg_echo('brainstorm:planned') => 'planned',

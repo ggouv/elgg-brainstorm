@@ -24,7 +24,7 @@ if (!$container_guid) {
 
 $container = get_entity($container_guid);
 
-if (!$container || !can_write_to_container($user_guid, $container_guid)) {
+if (!$container || !$container->canWritetoContainer()) {
 	register_error(elgg_echo('brainstorm:idea:save:nogroup'));
 	forward(REFERER);
 }
