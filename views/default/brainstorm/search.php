@@ -78,7 +78,11 @@ if ( $keyword != 'false' ) {
 			}
 			echo $html;
 		} else {
-			echo $content;
+			if ($content) {
+				echo $content;
+			} else {
+				echo '<span>' . elgg_echo('brainstorm:search:noresult_nogroupmember') . '</span>';
+			}
 		}
 	}
 }

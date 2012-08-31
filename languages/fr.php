@@ -65,6 +65,7 @@ $french = array(
 	'brainstorm:search' => "Cherchez ou soumettez une idée :",
 	'brainstorm:charleft' => "caractères restants.",
 	
+	'brainstorm:search:noresult_nogroupmember' => "Aucune idée trouvée, cherchez autre chose.",
 	'brainstorm:search:result_vote_submit' => "Votez pour ces idées ou ",
 	'brainstorm:search:result_novote_submit' => "Idées trouvées. Changez vos votes ou ",
 	'brainstorm:search:result_novote_nosubmit' => "Des idées ont été trouvées mais vous n'avez plus de point. Changez vos votes si vous voulez soumettre une nouvelle idée.",

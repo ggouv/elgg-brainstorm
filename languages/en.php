@@ -66,6 +66,7 @@ $english = array(
 	'brainstorm:search' => "Search or submit an idea:",
 	'brainstorm:charleft' => "char left.",
 	
+	'brainstorm:search:noresult_nogroupmember' => "No idea found, search again.",
 	'brainstorm:search:result_vote_submit' => "Ideas found. Vote or ",
 	'brainstorm:search:result_novote_submit' => "Idea found. Change your votes or ",
 	'brainstorm:search:result_novote_nosubmit' => "Ideas found. No point left, change your votes if you want to submit a new idea.",
