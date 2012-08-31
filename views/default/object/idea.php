@@ -116,24 +116,22 @@ if ( !$container->canWriteToContainer($user) ) {
 $status = $idea->status;
 
 if ($full == 'full' && !elgg_in_context('gallery')) {
-	$header = elgg_view_title($idea->title);
 
-	$idea_info = elgg_view_image_block($owner_icon, $list_body);
+	$idea_info = elgg_view_image_block($owner_icon, $list_body, array('class' => 'mbs'));
 
 	if ( $status != 'open') {
-		$status_info = "<div class='idea-status-info'>" . $idea->status_info . '</div>';
+		$status_info = "<div class='mts'>" . $idea->status_info . '</div>';
 		$idea_status = "<div class='idea-status pam'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='tag mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>$status_info</div>";
 	}
 
 	echo <<<HTML
 <div id="elgg-object-{$idea->guid}" class="elgg-item-idea">
-	<div class="idea-left-column mts">$vote</div>
+	<div class="idea-left-column">$vote</div>
 	<div class="idea-content">
-		$header
 		$idea_info
 		$description
-		$idea_status
 	</div>
+	$idea_status
 </div>
 HTML;
 

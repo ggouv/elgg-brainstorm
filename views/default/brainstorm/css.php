@@ -45,14 +45,17 @@
 .idea-content {
 	margin-left: 60px;
 }
+.idea-content .elgg-image-block {
+	float: left;
+}
 .idea-points {
-	font-size: 1.6em;
+	font-size: 2em;
 	font-weight: bold;
 	text-align: center;
 	border: 1px solid #DEDEDE;
 	border-radius: 5px;
 	width: 50px;
-	padding: 10px 0;
+	padding: 12px 0;
 }
 .idea-points .elgg-ajax-loader {
 	background-size: 24px 24px;
