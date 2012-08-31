@@ -38,6 +38,7 @@ $english = array(
 	'brainstorm:group_settings' => "Settings",
 	'brainstorm:enablebrainstorm' => "Enable brainstorm",
 	'brainstorm:group' => 'Group brainstorm',
+	'brainstorm:group:idea' => 'Group ideas',
 	'brainstorm:same_group' => "In the same group:",
 	'brainstorm:view:all' => "See all",
 	

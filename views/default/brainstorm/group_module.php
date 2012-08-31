@@ -42,7 +42,7 @@ $new_link = elgg_view('output/url', array(
 ));
 
 echo elgg_view('groups/profile/module', array(
-	'title' => elgg_echo('brainstorm:group'),
+	'title' => elgg_echo('brainstorm:group:idea'),
 	'content' => $content,
 	'all_link' => $all_link,
 	'add_link' => $new_link,
