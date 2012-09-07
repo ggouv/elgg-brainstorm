@@ -174,7 +174,7 @@ elgg.ui.votePopup = function(hook, type, params, options) {
 		options.offset = '13 0';
 		return options;
 	}
-	return true;
+	return options;
 };
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.ui.votePopup);
 

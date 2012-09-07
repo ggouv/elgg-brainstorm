@@ -24,7 +24,7 @@ if (!$group_guid || !$user_guid ) {
 
 $group = get_entity($group_guid);
 
-if ($group->canEdit()) {
+if (!$group->canEdit()) {
 	register_error(elgg_echo('brainstorm:group:settings:failed'));
 	forward(REFERER);
 }

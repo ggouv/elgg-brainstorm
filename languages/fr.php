@@ -33,7 +33,7 @@ $french = array(
 	'brainstorm:idea:edit' => "Éditer cette ideé",
 	'brainstorm:idea:add' => "Ajouter cette idée",
 	
-	'brainstorm:group:settings:title' => "Paramètres du brainstorm du groupe %s",
+	'brainstorm:group:settings:title' => "Options du remue-méninges du groupe %s",
 	'brainstorm:group_settings' => "Options du remue-méninges",
 	'brainstorm:enablebrainstorm' => "Active le remue-méninges",
 	'brainstorm:group' => 'Remue-méninges du groupe',

@@ -62,7 +62,7 @@ if ( $keyword != 'false' ) {
 		if ($group->canWritetoContainer()) {
 			if (!$subimt_w_point = $group->brainstorm_submit_idea_without_point) $subimt_w_point = '0';
 			$html_keyword = htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8');
-			$button = "<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/{$group_guid}/&search={$html_keyword}'>" . elgg_echo('brainstorm:add') . '</a>';
+			$button = "<a class='elgg-button elgg-button-action' href='" . elgg_get_site_url() . "brainstorm/add/{$group_guid}/?search={$html_keyword}'>" . elgg_echo('brainstorm:add') . '</a>';
 			
 			if ($content) {
 				if ($point > 0) $html = '<span>' . elgg_echo('brainstorm:search:result_vote_submit') . '</span>' . $button;
