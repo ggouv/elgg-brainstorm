@@ -63,7 +63,7 @@ if ($idea->save()) {
 		}
 	}
 
-	add_to_river('river/object/brainstorm/edit','edit', $user_guid, $idea->getGUID());
+	add_to_river('river/object/brainstorm/update','update', $user_guid, $idea->getGUID());
 	
 	system_message(elgg_echo('brainstorm:idea:save:success'));
 

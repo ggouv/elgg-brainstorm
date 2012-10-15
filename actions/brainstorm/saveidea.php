@@ -37,23 +37,27 @@ $userVote = elgg_get_annotations(array(
 	'annotation_owner_guids' => $user_guid
 ));
 $userVote = 10 - $userVote;
-if ( $container->brainstorm_submit_idea_without_point == '0' && $userVote < 0 ) {
-	register_error(elgg_echo('brainstorm:idea:save:failed'));
-	forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
-}
 
-// check if user idea more than 10. Cannot submit if group submit without point is not permit
-$user_ideas_count = elgg_get_entities(array(
-	'type' => 'object',
-	'subtype' => 'idea',
-	'owner_guid' => $page_owner->guid,
-	'container_guid' => $container_guid,
-	'limit' => 0,
-	'count' => true
-));
-if ( $container->brainstorm_submit_idea_without_point == '0' && $user_ideas_count >= 10 ) {
-	register_error(elgg_echo('brainstorm:idea:save:failed'));
-	forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
+if ($container->brainstorm_submit_idea_without_point == '0') {
+	if ($userVote < 0 ) {
+		register_error(elgg_echo('brainstorm:idea:save:failed'));
+		forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
+	}
+
+	// check if user idea more than 10. Cannot submit if group submit without point is not permit
+	$user_ideas_count = elgg_get_entities_from_annotations(array(
+		'type' => 'object',
+		'subtype' => 'idea',
+		'owner_guid' => $page_owner->guid,
+		'container_guid' => $container_guid,
+		'annotation_names' => 'point',
+		'limit' => 0,
+		'count' => true
+	));
+	if ($user_ideas_count >= 10) {
+		register_error(elgg_echo('brainstorm:idea:save:too_much_ideas'));
+		forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
+	}
 }
 
 if (!$title || !$description ) {
