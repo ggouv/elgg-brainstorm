@@ -75,12 +75,12 @@ elgg.brainstorm.init = function() {
 			return false;
 		else {
 			$.data(this, 'clicked', true);
-			var thisVote = this;
-			var value = $(this).val();
-			var idea = $(this).parents('.brainstorm-vote-popup').attr('id').split('-')[2];
-			var ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href');
-			var ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
-			if ( ideaTitle == null ) ideaTitle = $('#elgg-object-' + idea + ' .idea-content h2').html();
+			var thisVote = this,
+				value = $(this).val(),
+				idea = $(this).parents('.brainstorm-vote-popup').attr('id').split('-')[2],
+				ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href'),
+				ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
+			if ( ideaTitle == null ) ideaTitle = $('.elgg-body h2').html();
 			
 			var old_points = $('#elgg-object-' + idea + ' .idea-points').text();
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
