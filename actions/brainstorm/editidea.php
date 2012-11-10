@@ -32,12 +32,12 @@ if (!$title || !$description ) {
 	forward(REFERER);
 }
 
-$tagarray = string_to_tag_array($tags);
+if ($status && $idea->status != $status) $status_change = true;
 
 $idea->title = $title;
 $idea->description = $description;
 $idea->access_id = $access_id;
-$idea->tags = $tagarray;
+$idea->tags = string_to_tag_array($tags);
 if ($status) $idea->status = $status;
 if ($status_info) $idea->status_info = $status_info;
 
@@ -51,7 +51,7 @@ if ($idea->save()) {
 		'limit' => 0
 	));
 
-	if ($status) {
+	if ($status_change) {
 		if ( $status == 'completed' || $status == 'declined' ) {
 			foreach ($annotations_idea as $annotation) {
 				update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
@@ -61,9 +61,10 @@ if ($idea->save()) {
 				update_annotation($annotation->id, 'point',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
 			}
 		}
+		add_to_river('river/object/brainstorm/' . $status, 'update', $user_guid, $idea->getGUID());
+	} else {
+		add_to_river('river/object/brainstorm/update', 'update', $user_guid, $idea->getGUID());
 	}
-
-	add_to_river('river/object/brainstorm/update','update', $user_guid, $idea->getGUID());
 	
 	system_message(elgg_echo('brainstorm:idea:save:success'));
 

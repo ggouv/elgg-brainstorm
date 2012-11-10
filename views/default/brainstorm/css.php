@@ -44,6 +44,12 @@
 }
 .idea-content {
 	margin-left: 60px;
+	position: relative;
+}
+.idea-content .elgg-menu-entity {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 .idea-content .elgg-image-block {
 	float: left;
@@ -100,26 +106,34 @@ div.idea-rate-button:hover {
 .idea-status {
 	background-color: #EEE;
 }
-.tag {
+.status {
 	border-radius: 8px;
 	color: black;
 	font-size: 11px;
 	font-weight: normal;
-	padding: 2px 6px;
+	padding: 1px 8px;
 }
-.tag.planned {
+.elgg-river-message .status {
+	border-radius: 5px;
+	font-size: 9px;
+	padding: 0 5px 1px;
+}
+.status.open {
+	border: 1px solid #DDD;
+}
+.status.planned {
 	background-color: #FFED00;
 }
-.tag.under {
+.status.under_review {
 	background-color: #BBB;
 }
-.tag.started {
+.status.started {
 	background-color: #89C23C;
 }
-.tag.completed {
+.status.completed {
 	background-color: #4690D6;
 }
-.tag.declined {
+.status.declined {
 	background-color: red;
 }
 
@@ -206,7 +220,7 @@ div.idea-rate-button:hover {
 .sidebar-idea-list .elgg-item-idea > div.planned {
 	border-bottom: 4px solid #FFED00;
 }
-.sidebar-idea-list .elgg-item-idea > div.under {
+.sidebar-idea-list .elgg-item-idea > div.under_review {
 	border-bottom: 4px solid #BBB;
 }
 .sidebar-idea-list .elgg-item-idea > div.started {

@@ -18,9 +18,8 @@ $french = array(
 	'item:object:idea' => 'Idées',
 	'river:create:object:idea' => "%s a soumis l'idée %s",
 	'river:comment:object:idea' => "%s a commenté l'idée %s",
-	'river:edit:object:idea' => "%s a édité l'idée %s",
-	'brainstorm:river:annotate' => "un commentaire sur l'idée",
-	'brainstorm:river:item' => 'un objet',
+	'river:update:object:idea' => "%s a modifié l'idée %s",
+	
 	
 	'brainstorm' => "Remue-méninges",
 	'brainstorm:add' => "Ajouter une idée",
@@ -51,7 +50,7 @@ $french = array(
 	'brainstorm:state' => "État :",
 	'brainstorm:status_info' => "Information sur le statut :",
 	'brainstorm:open' => 'ouvert',
-	'brainstorm:under review' => "en cours d'évaluation",
+	'brainstorm:under_review' => "en cours d'évaluation",
 	'brainstorm:planned' => 'planifié',
 	'brainstorm:started' => 'commencé',
 	'brainstorm:completed' => 'terminé',

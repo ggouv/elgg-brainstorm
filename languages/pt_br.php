@@ -37,11 +37,7 @@ $portugues_brasileiro = array(
 
 'river:comment:object:idea' => '%s comentou em uma idéia %s',
 
-'river:edit:object:idea' => '%s editou uma idéia %s',
-
-'brainstorm:river:annotate' => 'comentou nesta idéia',
-
-'brainstorm:river:item' => 'um ítem',
+'river:update:object:idea' => '%s editou uma idéia %s',
 
  
 
@@ -91,7 +87,7 @@ $portugues_brasileiro = array(
 
 'brainstorm:open' => 'Aberta',
 
-'brainstorm:under review' => 'Sob revisão',
+'brainstorm:under_review' => 'Sob revisão',
 
 'brainstorm:planned' => 'planejada',
 

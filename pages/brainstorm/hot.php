@@ -21,7 +21,7 @@ if ($page_owner->canEdit() || elgg_is_admin_logged_in()) {
 $offset = (int)get_input('offset', 0);
 $order_by = get_input('order', 'desc');
 
-$time = time()- (7 * 24 * 60 * 60);
+$time = time()- (14 * 24 * 60 * 60);
 $content = elgg_list_entities_from_annotation_calculation(array(
 	'type' => 'object',
 	'subtype' => 'idea',

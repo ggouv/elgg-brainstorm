@@ -35,7 +35,7 @@ $guid = elgg_extract('guid', $vars, null);
 	$group = get_entity($container_guid);
 	if ($group->canEdit()) {
 	$status_label = array(elgg_echo('brainstorm:open') => 'open',
-						elgg_echo('brainstorm:under review') => 'under review',
+						elgg_echo('brainstorm:under_review') => 'under_review',
 						elgg_echo('brainstorm:planned') => 'planned',
 						elgg_echo('brainstorm:started') => 'started',
 						elgg_echo('brainstorm:completed') => 'completed',

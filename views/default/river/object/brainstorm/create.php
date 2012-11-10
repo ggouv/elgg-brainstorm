@@ -6,7 +6,7 @@
  */
 
 $object = $vars['item']->getObjectEntity();
-$excerpt = elgg_get_excerpt($object->description, '100');
+$excerpt = elgg_get_excerpt($object->description, '140');
 
 echo elgg_view('river/item', array(
 	'item' => $vars['item'],
