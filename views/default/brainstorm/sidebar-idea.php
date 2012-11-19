@@ -17,25 +17,27 @@ $ideas = elgg_get_entities_from_annotations(array(
 	'limit' => 0
 ));
 
-foreach( $ideas as $key => $idea) {
-	$sum = elgg_get_annotations(array(
-		'guids' => $idea->guid,
-		'annotation_names' => 'point',
-		'annotation_calculation' => 'sum',
-		'annotation_owner_guids' => $user,
-		'limit' => 0
-	));
-	if ($sum == 0) unset($ideas[$key]);
-}
+if ($ideas) {
+	foreach( $ideas as $key => $idea) {
+		$sum = elgg_get_annotations(array(
+			'guids' => $idea->guid,
+			'annotation_names' => 'point',
+			'annotation_calculation' => 'sum',
+			'annotation_owner_guids' => $user,
+			'limit' => 0
+		));
+		if ($sum == 0) unset($ideas[$key]);
+	}
 
-$echo = elgg_list_entities(array(
-	'items' => $ideas,
-	'full_view' => 'sidebar',
-	'item_class' => 'elgg-item-idea pts pbs',
-	'list_class' => 'sidebar-idea-list',
-	'pagination' => false,
-	'limit' => 0
-));
+	$echo = elgg_list_entities(array(
+		'items' => $ideas,
+		'full_view' => 'sidebar',
+		'item_class' => 'elgg-item-idea pts pbs',
+		'list_class' => 'sidebar-idea-list',
+		'pagination' => false,
+		'limit' => 10
+	));
+}
 
 if ($echo) {
 	echo $echo;

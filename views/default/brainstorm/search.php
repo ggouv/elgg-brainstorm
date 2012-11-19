@@ -49,13 +49,15 @@ if ( $keyword != 'false' ) {
 				$idea->description = $excerpt_description;
 			}
 			
-			$content =  elgg_list_entities(array(
-				'items' => $ideas,
-				'full_view' => 'searched',
-				'item_class' => 'elgg-item-idea',
-				'pagination' => false,
-				'limit' => 0
-			));
+			if ($ideas) {
+				$content =  elgg_list_entities(array(
+					'items' => $ideas,
+					'full_view' => 'searched',
+					'item_class' => 'elgg-item-idea',
+					'pagination' => false,
+					'limit' => 0
+				));
+			}
 		}
 		
 		$group = get_entity($group_guid);
