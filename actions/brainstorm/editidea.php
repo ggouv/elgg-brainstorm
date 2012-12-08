@@ -22,7 +22,7 @@ $description = get_input('description');
 $access_id = get_input('access_id');
 $tags = get_input('tags');
 $status = get_input('status');
-$status_info = get_input('status_info');
+$status_info = get_input('status_info', '');
 
 $container_guid = get_input('container_guid', elgg_get_page_owner_guid());
 $user_guid = elgg_get_logged_in_user_guid();
@@ -39,7 +39,7 @@ $idea->description = $description;
 $idea->access_id = $access_id;
 $idea->tags = string_to_tag_array($tags);
 if ($status) $idea->status = $status;
-if ($status_info) $idea->status_info = $status_info;
+$idea->status_info = $status_info;
 
 if ($idea->save()) {
 	

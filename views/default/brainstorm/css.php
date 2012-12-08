@@ -105,6 +105,7 @@ div.idea-rate-button:hover {
 }
 .idea-status {
 	background-color: #EEE;
+	clear: both;
 }
 .status {
 	border-radius: 8px;
