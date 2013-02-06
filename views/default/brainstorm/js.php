@@ -85,32 +85,39 @@ elgg.brainstorm.init = function() {
 			var old_points = $('#elgg-object-' + idea + ' .idea-points').text();
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
 			
-			var dataString = $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid();
 			elgg.action('brainstorm/rateidea', {
-				data: dataString,
+				data: $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid(),
 				success: function(json) {
 					$('.brainstorm-vote-popup').fadeOut();
 					
-					if ( !json.output.errorRate ) {			
+					if ( !json.output.errorRate ) {
+						var ideaRateButton = $('#elgg-object-' + idea + ' .idea-rate-button'),
+							sidebarIdea = $('.sidebar-idea-list #elgg-object-' + idea);
+						
 						$('#elgg-object-' + idea + ' .idea-points').html(json.output.sum);
 						
 						if ( value == '0' ) {
-							$('#elgg-object-' + idea + ' .idea-rate-button').html('vote');
-							$('.sidebar-idea-list #elgg-object-' + idea).fadeOut().remove()
+							ideaRateButton.html('vote');
+							sidebarIdea.fadeOut().remove()
 						} else {
-							$('#elgg-object-' + idea + ' .idea-rate-button').html(value);
-							if ( !$('.sidebar-idea-list #elgg-object-' + idea).length ) {
-								var liStart = '<li class="elgg-item elgg-item-idea" id="elgg-object-'+idea+'">';
-								h3 = '<h3><a href="'+ideaURL+'">'+ideaTitle+'</a></h3>';
-								$('.sidebar-idea-list').prepend(liStart + '<div></div>' + h3 + '</li>');
+							ideaRateButton.html(value);
+							if ( !sidebarIdea.length ) {
+								$('.sidebar-idea-list').prepend(
+									$('<li>', {id: 'elgg-object-'+idea, 'class': 'elgg-item elgg-item-idea'}).append(
+										$('<div>', {'class': 'mrs idea-value-'+value}).html(value),
+										$('<h3>').append($('<a>', {href: ideaURL}).html(ideaTitle))
+									)
+								);
+							} else {
+								sidebarIdea.children('div').html(value)
+									.attr('class', function(){return $(this)[0].className.replace(/idea-value-.* \b/g, 'idea-value-'+value+' ')});
 							}
-							$('.sidebar-idea-list #elgg-object-' + idea + ' > div').html(value).removeClass().addClass('mrs idea-value-'+value);							
 						}
 						
 						if ( !json.output.userVoteLeft == '0' && value == '0' ) {
-							$('#elgg-object-' + idea + ' .idea-rate-button').removeClass().addClass('idea-rate-button idea-value-vote');
+							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-vote');
 						} else {
-							$('#elgg-object-' + idea + ' .idea-rate-button').removeClass().addClass('idea-rate-button idea-value-'+value);
+							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-'+value);
 						}
 						
 						if ( json.output.userVoteLeft == '0' ) {
