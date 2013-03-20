@@ -234,13 +234,11 @@ div.idea-rate-button:hover {
 	border-bottom: 4px solid red;
 }
 /*
- * Add form saveidea
+ * Add form editidea
  */
- 
-.elgg-form-brainstorm-saveidea .elgg-horizontal {
-	display: block;
-}
-.elgg-form-brainstorm-saveidea .elgg-horizontal li {
-	display: inline;
-	padding-right: 10px;
+
+.elgg-form-brainstorm-editidea .elgg-horizontal li {
+	display: inline-block;
+	margin-right: 5px;
+	padding: 3px 10px;
 }

@@ -44,9 +44,16 @@ $guid = elgg_extract('guid', $vars, null);
 	?>
 		<div>
 			<label><?php echo elgg_echo('brainstorm:status'); ?></label><br />
-			<?php echo elgg_view('input/radio', array('name' => 'status', 'value' => $status, 'options' => $status_label, 'class' => 'mbl mts', 'align' => 'horizontal')); ?>
+			<?php echo elgg_view('input/radio', array(
+					'name' => 'status',
+					'value' => $status,
+					'options' => $status_label,
+					'class' => 'mbl mts',
+					'item_class' => 'status',
+					'align' => 'horizontal'
+				)); ?>
 		</div>
-		
+
 		<div>
 			<label><?php echo elgg_echo('brainstorm:status_info'); ?></label>
 			<?php echo elgg_view('input/longtext', array('name' => 'status_info', 'value' => $status_info)); ?>
@@ -70,14 +77,14 @@ if ($categories) {
 </div>
 <div class="elgg-foot">
 	<?php
-	
+
 	echo elgg_view('input/hidden', array('name' => 'container_guid', 'value' => $container_guid));
-	
+
 	if ($guid) {
 		echo elgg_view('input/hidden', array('name' => 'guid', 'value' => $guid));
 	}
-	
+
 	echo elgg_view('input/submit', array('value' => elgg_echo("save")));
-	
+
 	?>
 </div>
