@@ -56,12 +56,13 @@ if ($idea->save()) {
 		if ( $status == 'completed' || $status == 'declined' ) {
 			foreach ($annotations_idea as $annotation) {
 				update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+				$user_who_voted[] = $annotation->getOwnerEntity()->getGUID();
 			}
 
 			// send mail
 			$container = $idea->getContainerEntity();
 			notify_user(
-					$annotation->getOwnerEntity()->getGUID(),
+					array_unique($user_who_voted),
 					$idea->getOwnerEntity()->getGUID(),
 					elgg_echo('brainstorm:notify:subject', array(elgg_echo('brainstorm:'.$status))),
 					elgg_echo('brainstorm:notify:body', array(
