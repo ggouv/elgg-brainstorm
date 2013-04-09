@@ -55,6 +55,7 @@ if ($idea->save()) {
 		if ( $status == 'completed' || $status == 'declined' ) {
 			foreach ($annotations_idea as $annotation) {
 				update_annotation($annotation->id, 'close',$annotation->value,$annotation->value_type, $annotation->owner_guid,$annotation->access_id);
+				notify_user($annotation->getOwnerEntity()->getGUID(), $idea->getOwnerEntity()->getGUID(), elgg_echo('Brainstorm '. $status.' for ').$idea->title, elgg_echo('the idea in which you bet points has been '.$status), array('method' => "email"));
 			}
 		} else {
 			foreach ($annotations_idea as $annotation) {
