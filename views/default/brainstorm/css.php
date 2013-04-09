@@ -12,7 +12,7 @@
 	background-position: 0 -8px;
 }
 .brainstorm-highlight {
-	background-color: yellow;
+	background: yellow;
 }
 #brainstorm-characters-remaining.loading {
 	background: url('<?php echo elgg_get_site_url(); ?>/mod/elgg-brainstorm/graphics/ajax-loader.gif') no-repeat scroll 0 6px transparent;
@@ -31,8 +31,6 @@
  * Object idea
  */
 .elgg-item-idea {
-	float: left;
-	width: 100%;
 	min-height: 80px;
 }
 .elgg-body > .elgg-item-idea {
@@ -78,33 +76,33 @@
 	font-weight: bold;
 	padding: 2px 0;
 	text-align: center;
-	background-color: #DEDEDE;
+	background: #DEDEDE;
 	display: block;
 }
 .idea-rate-button:hover {
-	background-color: #CCC;
+	background: #CCC;
 	text-decoration: none;
 }
 div.idea-rate-button {
 	cursor: default;
 }
 div.idea-rate-button:hover {
-	background-color: #EEE;
+	background: #EEE;
 }
 .idea-value-0 {
 	display: none;
 }
 .idea-value-1 {
-	background-color: #FFC773;
+	background: #FFC773;
 }
 .idea-value-2 {
-	background-color: #FFB240;
+	background: #FFB240;
 }
 .idea-value-3 {
-	background-color: #FF9900;
+	background: #FF9900;
 }
 .idea-status {
-	background-color: #EEE;
+	background: #EEE;
 	clear: both;
 }
 .status {
@@ -121,21 +119,22 @@ div.idea-rate-button:hover {
 }
 .status.open {
 	border: 1px solid #DDD;
+	background: white;
 }
 .status.planned {
-	background-color: #FFED00;
+	background: #FFED00;
 }
 .status.under_review {
-	background-color: #BBB;
+	background: #BBB;
 }
 .status.started {
-	background-color: #89C23C;
+	background: #89C23C;
 }
 .status.completed {
-	background-color: #4690D6;
+	background: #4690D6;
 }
 .status.declined {
-	background-color: red;
+	background: red;
 }
 
 /*
@@ -153,7 +152,7 @@ div.idea-rate-button:hover {
 	height: 0;
 	position: absolute;
 	width: 0;
-    top: 6px;
+	top: 6px;
 }
 .brainstorm-vote-popup .blanc {
 	border-color: transparent white;
@@ -176,11 +175,11 @@ div.idea-rate-button:hover {
 	box-shadow: none;
 }
 .brainstorm-vote-popup .elgg-button:hover {
-	background-color: #4690D6;
+	background: #4690D6;
 	border-color: #4690D6;
 }
 .brainstorm-vote-popup .elgg-button.checked {
-	background-color: #0054A7;
+	background: #0054A7;
 	border-color: #0054A7;
 	color: white;
 	cursor: default;
@@ -190,7 +189,7 @@ div.idea-rate-button:hover {
  * Sidebar
  */
 #votesLeft {
-	background-color: #FF9900;
+	background: #FF9900;
 	color: white;
 	font-size: 1.4em;
 	font-weight: bold;
@@ -198,7 +197,7 @@ div.idea-rate-button:hover {
 	padding-bottom:5px;
 }
 #votesLeft.zero {
-	background-color: #999;
+	background: #999;
 }
 #votesLeft strong {
 	font-size: 2em;
@@ -233,12 +232,22 @@ div.idea-rate-button:hover {
 .sidebar-idea-list .elgg-item-idea > div.declined {
 	border-bottom: 4px solid red;
 }
+
 /*
  * Add form editidea
  */
-
 .elgg-form-brainstorm-editidea .elgg-horizontal li {
 	display: inline-block;
 	margin-right: 5px;
 	padding: 3px 10px;
+}
+
+/*
+ * Group Module
+ */
+.module-idea-list > li {
+	min-height: 48px;
+}
+.module-idea-list .idea-points {
+	padding: 8px 0px 9px;
 }

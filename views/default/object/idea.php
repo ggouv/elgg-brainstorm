@@ -25,7 +25,7 @@ $params = array(
 	'href' => $idea->getURL(),
 );
 $title_link = elgg_view('output/url', $params);
-	
+
 $owner_link = elgg_view('output/url', array(
 	'href' => "brainstorm/owner/$owner->username",
 	'text' => $owner->name,
@@ -119,7 +119,7 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 
 	$idea_info = elgg_view_image_block($owner_icon, $list_body, array('class' => 'mbs'));
 
-	if ($idea->status_info) {
+	if ($idea->status_info || $status == 'completed' || $status == 'declined') {
 		$status_info = "<div class='mts'>" . elgg_view('output/longtext', array('value' => $idea->status_info)) . '</div>';
 		$idea_status = "<div class='idea-status pam mtl'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>$status_info</div>";
 	}
@@ -143,12 +143,12 @@ HTML;
 HTML;
 
 } elseif ($full == 'no_vote') {
-	$content = elgg_get_excerpt($idea->description, '300');
-	
+	$content = elgg_get_excerpt($idea->description);
+
 	if ( $status != 'open') {
 		$idea_status = "<span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
 	}
-	
+
 	echo <<<HTML
 <div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
 <div class="idea-content mts">
@@ -156,6 +156,21 @@ HTML;
 	<div class="elgg-subtext">$subtitle</div>
 	<div class="elgg-content">$content</div>
 	$idea_status
+</div>
+HTML;
+} elseif ($full == 'module') {
+	$content = elgg_get_excerpt($idea->description);
+
+	if ( $status != 'open') {
+		$idea_status = "<span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+	}
+
+	echo <<<HTML
+<div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
+<div class="idea-content mts">
+	<h3>$title_link $idea_status</h3>
+	<div class="elgg-subtext">$subtitle</div>
+	<div class="elgg-content">$content</div>
 </div>
 HTML;
 } elseif (elgg_in_context('gallery')) {
@@ -168,7 +183,7 @@ HTML;
 } else {
 	// brief view
 	if ( $full != 'searched') {
-		$content = elgg_get_excerpt($idea->description, '300');
+		$content = elgg_get_excerpt($idea->description);
 	} else {
 		$content = $idea->description;
 	}
