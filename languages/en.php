@@ -8,30 +8,30 @@ $english = array(
 	/**
 	 * Menu items and titles
 	 */
-	
+
 	'brainstorm:filter:top' => "Top",
 	'brainstorm:filter:hot' => "Hot",
 	'brainstorm:filter:new' => "New",
 	'brainstorm:filter:accepted' => "Accepted",
 	'brainstorm:filter:completed' => "Completed",
-	
+
 	'item:object:idea' => 'Idea',
 	'river:create:object:idea' => '%s submited idea %s',
 	'river:comment:object:idea' => '%s commented on a idea %s',
 	'river:update:object:idea' => '%s modified idea %s',
-	
+
 	'brainstorm' => "Brainstorm",
 	'brainstorm:add' => "Add idea",
 	'brainstorm:edit' => "Edit idea",
 	'brainstorm:new' => "A new idea",
 	'brainstorm:settings' => "Settings",
-	
+
 	'brainstorm:all' => "All ideas",
 	'brainstorm:owner' => "%s's ideas",
 	'brainstorm:friends' => "Friends ideas",
 	'brainstorm:idea:edit' => "Edit this idea",
 	'brainstorm:idea:add' => "Add an idea",
-	
+
 	'brainstorm:group:settings:title' => "Settings of %s's brainstorm",
 	'brainstorm:group_settings' => "Settings",
 	'brainstorm:enablebrainstorm' => "Enable brainstorm",
@@ -39,13 +39,13 @@ $english = array(
 	'brainstorm:group:idea' => 'Group ideas',
 	'brainstorm:same_group' => "In the same group:",
 	'brainstorm:view:all' => "See all",
-	
+
 	/**
 	 * Content
 	 */
 	'brainstorm:yourvotes' => "Your votes:",
 	'brainstorm:vote' => "Vote:",
-	
+
 	'brainstorm:status' => "Satus:",
 	'brainstorm:state' => "State:",
 	'brainstorm:status_info' => "Information about status:",
@@ -55,15 +55,15 @@ $english = array(
 	'brainstorm:started' => 'started',
 	'brainstorm:completed' => 'completed',
 	'brainstorm:declined' => 'declined',
-	
+
 	'brainstorm:none' => "No idea.",
 	'brainstorm:novoteleft' => "vote left.",
 	'brainstorm:onevoteleft' => "vote left.",
 	'brainstorm:votesleft' => "votes left.",
-	
+
 	'brainstorm:search' => "Search or submit an idea:",
 	'brainstorm:charleft' => "char left.",
-	
+
 	'brainstorm:search:noresult_nogroupmember' => "No idea found, search again.",
 	'brainstorm:search:result_vote_submit' => "Ideas found. Vote or ",
 	'brainstorm:search:result_novote_submit' => "Idea found. Change your votes or ",
@@ -73,12 +73,12 @@ $english = array(
 	'brainstorm:search:skip_words' => "the,and,for,are,but,not,you,all,any,can,her,was,one,our,out,day,get,has,him,his,how,man,new,now,old,see,two,way,who,boy,did,its,let,put,say,she,too,use,dad,mom", // write words you want to skip separate by coma. Automaticaly skip word less than 3 chars, don't write them.
 
 	'brainstorm:add' => "submit a new idea",
-	
+
 	'brainstorm:settings:points' => "Number of points",
 	'brainstorm:settings:question' => "Question",
 	'brainstorm:settings:brainstorm_submit_idea_without_point' => "Submit idea without point",
 	'brainstorm:settings:brainstorm_submit_idea_without_point_string' => "Check if you want to offer possibility to group members to submit idea without point. Be carefull of flooding.",
-	 
+
 	/**
 	 * Widget and bookmarklet
 	 */
@@ -98,7 +98,7 @@ $english = array(
 
 	'brainstorm:idea:save:empty' => "You need to set a title and description of the idea.",
 	'brainstorm:idea:save:failed' => "An error occurred while saving idea.",
-	
+
 	'brainstorm:group:settings:failed' => "There is no group or you don't have acces to edit this group.",
 	'brainstorm:group:settings:save:success' => "Settings of brainstorm's group succesfully saved.",
 
@@ -110,6 +110,12 @@ $english = array(
 	'brainstorm:idea:rate:error:value' => "Mistake on the value for rating this idea.",
 	'brainstorm:idea:rate:error' => "This idea could not be rated cause internal server problem.",
 	'brainstorm:idea:rate:error:underzero' => "Your votes left cannot permit to rate an idea.",
+
+	/*
+	 * Notify messages
+	 */
+	'brainstorm:notify:subject' => "An idea in which you bet points has been %s.",
+	'brainstorm:notify:body' => "The idea <a href=\"%s\">%s</a> is %s.<br><br>You take back your point which you bet in this idea.<br><br><a href=\"%s\">Go to the brainstorm of the group %s</a>",
 );
 
 add_translation('en', $english);
