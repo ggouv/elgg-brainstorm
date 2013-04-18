@@ -4,7 +4,7 @@ elgg.provide('elgg.brainstorm');
 
 elgg.brainstorm.init = function() {
 	var timeout;
-	
+
 	$("#brainstorm-textarea").keypress(function(e) {
 		if ( $(this).val().length > 140 && e.which != 8 || e.which == 13) return false;
 		elgg.brainstorm.textCounter(this, $("#brainstorm-characters-remaining span"), 140);
@@ -16,7 +16,7 @@ elgg.brainstorm.init = function() {
 				clearTimeout(timeout);
 				timeout = null;
 			}
-			
+
 			timeout = setTimeout(function() {
 				search_input = $("#brainstorm-textarea").val();
 				if (search_input.length > 3) { // @todo check why need to do it again ?
@@ -29,7 +29,7 @@ elgg.brainstorm.init = function() {
 						},
 						success: function(response) {
 							clearTimeout(timeout);
-							$('.elgg-menu-filter-default, .brainstorm-list').hide();
+							$('.elgg-page .elgg-menu-filter-default, .brainstorm-list').hide();
 							if ( search_container.is(':hidden') ) {
 								search_container.css('opacity', 0).html(response).fadeTo('slow', 1);
 							} else {
@@ -44,19 +44,19 @@ elgg.brainstorm.init = function() {
 			}, 500);
 		} else if ( $('.brainstorm-list').css('opacity') != '1' || $('.brainstorm-list').is(":hidden") ) {
 			search_container.hide().html('');
-			$('.elgg-menu-filter-default, .brainstorm-list').css('opacity', 0).fadeTo('slow', 1);
+			$('.elgg-page .elgg-menu-filter-default, .brainstorm-list').css('opacity', 0).fadeTo('slow', 1);
 		}
 	});
 
 	var rateButton = function() {
 		$('.idea-rate-button').click(function() {
 			$('.brainstorm-vote-popup').fadeOut(); // hide all other popup
-	
+
 			var ideaClass = $(this).attr('class');
 			var points = ideaClass.substr(ideaClass.length - 1);
-			if ( points == 'e' ) points = '0';	
+			if ( points == 'e' ) points = '0';
 			var popup = $('#vote-popup-' + $(this).parents('.elgg-item-idea').attr('id').split('-')[2] );
-			
+
 			popup.find('.elgg-button').removeClass('checked hidden');
 			popup.find('.elgg-button[value='+points+']').addClass('checked');
 			if ( points == '0' ) popup.find('.elgg-button:first').addClass('hidden');
@@ -64,12 +64,12 @@ elgg.brainstorm.init = function() {
 			if ( UserVoteLeft == '2' && points == '0' || UserVoteLeft == '1' && points <= '1' || UserVoteLeft <= '0' && points <= '2' ) popup.find('.elgg-button:last').addClass('hidden');
 			if ( UserVoteLeft == '1' && points == '0' || UserVoteLeft <= '0' && points <= '1' ) popup.find('.elgg-button[value=2]').addClass('hidden');
 			if ( UserVoteLeft == '0' && points <= '0' ) popup.find('.elgg-button[value=1]').addClass('hidden');
-	
+
 			$('.idea-rate-button').not(this).removeClass('elgg-state-active');
 		});
 	}
 	rateButton();
-	
+
 	$('.elgg-form-brainstorm-vote-popup .elgg-button').live('click', function() {
 		if ($.data(this, 'clicked') || $(this).hasClass('checked')) // Prevent double-click
 			return false;
@@ -81,21 +81,21 @@ elgg.brainstorm.init = function() {
 				ideaURL = $('#elgg-object-' + idea + ' .idea-content h3 a').attr('href'),
 				ideaTitle = $('#elgg-object-' + idea + ' .idea-content h3 a').html();
 			if ( ideaTitle == null ) ideaTitle = $('.elgg-body h2').html();
-			
+
 			var old_points = $('#elgg-object-' + idea + ' .idea-points').text();
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
-			
+
 			elgg.action('brainstorm/rateidea', {
 				data: $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid(),
 				success: function(json) {
 					$('.brainstorm-vote-popup').fadeOut();
-					
+
 					if ( !json.output.errorRate ) {
 						var ideaRateButton = $('#elgg-object-' + idea + ' .idea-rate-button'),
 							sidebarIdea = $('.sidebar-idea-list #elgg-object-' + idea);
-						
+
 						$('#elgg-object-' + idea + ' .idea-points').html(json.output.sum);
-						
+
 						if ( value == '0' ) {
 							ideaRateButton.html('vote');
 							sidebarIdea.fadeOut().remove()
@@ -113,13 +113,13 @@ elgg.brainstorm.init = function() {
 									.attr('class', function(){return $(this)[0].className.replace(/idea-value-.* \b/g, 'idea-value-'+value+' ')});
 							}
 						}
-						
+
 						if ( !json.output.userVoteLeft == '0' && value == '0' ) {
 							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-vote');
 						} else {
 							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-'+value);
 						}
-						
+
 						if ( json.output.userVoteLeft == '0' ) {
 							$('.idea-value-vote').removeClass('idea-value-vote').addClass('idea-value-0');
 							var VoteString = "<strong>0</strong> " + elgg.echo('brainstorm:novoteleft');
@@ -135,7 +135,7 @@ elgg.brainstorm.init = function() {
 					} else {
 						$('#elgg-object-' + idea + ' .idea-points').html(old_points);
 					}
-					
+
 					$.data(thisVote, 'clicked', false);
 				},
 				error: function(){
@@ -144,9 +144,9 @@ elgg.brainstorm.init = function() {
 				}
 			});
 		}
-		
+
 	});
-	
+
 };
 elgg.register_hook_handler('init', 'system', elgg.brainstorm.init);
 
