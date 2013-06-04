@@ -55,6 +55,8 @@ $english = array(
 	'brainstorm:started' => 'started',
 	'brainstorm:completed' => 'completed',
 	'brainstorm:declined' => 'declined',
+	'brainstorm:minorchange' => "Minor change. Notification will be not notified, instead of you change status.",
+
 
 	'brainstorm:none' => "No idea.",
 	'brainstorm:novoteleft' => "vote left.",

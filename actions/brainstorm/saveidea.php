@@ -11,7 +11,6 @@ elgg_make_sticky_form('idea');
 
 $title = strip_tags(get_input('title'));
 $description = get_input('description');
-$access_id = (int)get_input('access_id');
 $tags = get_input('tags');
 $guid = (int)get_input('guid');
 $container_guid = (int)get_input('container_guid', elgg_get_page_owner_guid());
@@ -79,7 +78,7 @@ $tagarray = string_to_tag_array($tags);
 
 $idea->title = $title;
 $idea->description = $description;
-$idea->access_id = $access_id;
+$idea->access_id = ACCESS_PUBLIC;
 $idea->tags = $tagarray;
 $idea->status = 'open';
 

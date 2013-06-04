@@ -46,7 +46,7 @@ $french = array(
 	'brainstorm:yourvotes' => "Vos votes :",
 	'brainstorm:vote' => "Vote :",
 
-	'brainstorm:status' => "Satut :",
+	'brainstorm:status' => "Statut :",
 	'brainstorm:state' => "État :",
 	'brainstorm:status_info' => "Information sur le statut :",
 	'brainstorm:open' => 'ouvert',
@@ -55,6 +55,8 @@ $french = array(
 	'brainstorm:started' => 'commencé',
 	'brainstorm:completed' => 'terminé',
 	'brainstorm:declined' => 'décliné',
+	'brainstorm:minorchange' => "Changement mineur. Votre modification ne sera pas notifiée dans votre flux et celui du groupe, sauf si vous avez changé le statut de l'idée.",
+
 
 	'brainstorm:none' => "Pas d'idée.",
 	'brainstorm:novoteleft' => "vote restant.",

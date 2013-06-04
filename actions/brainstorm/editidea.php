@@ -19,7 +19,6 @@ if (is_null( $guid = get_input('guid') )) {
 $title = strip_tags(get_input('title'));
 if (!$title) $title = $idea->title;
 $description = get_input('description');
-$access_id = get_input('access_id');
 $tags = get_input('tags');
 $status = get_input('status');
 $status_info = get_input('status_info', '');
@@ -35,7 +34,7 @@ if ($status && $idea->status != $status) $status_change = true;
 
 $idea->title = $title;
 $idea->description = $description;
-$idea->access_id = $access_id;
+$idea->access_id = ACCESS_PUBLIC;
 $idea->tags = string_to_tag_array($tags);
 if ($status) $idea->status = $status;
 $idea->status_info = $status_info;
@@ -82,7 +81,9 @@ if ($idea->save()) {
 		}
 		add_to_river('river/object/brainstorm/' . $status, 'update', $user_guid, $idea->getGUID());
 	} else {
-		add_to_river('river/object/brainstorm/update', 'update', $user_guid, $idea->getGUID());
+		if (!get_input('minorchange', false)) {
+			add_to_river('river/object/brainstorm/update', 'update', $user_guid, $idea->getGUID());
+		}
 	}
 
 	system_message(elgg_echo('brainstorm:idea:save:success'));
