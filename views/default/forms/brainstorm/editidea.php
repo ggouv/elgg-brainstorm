@@ -66,19 +66,18 @@ $guid = elgg_extract('guid', $vars, null);
 	<?php echo elgg_view('input/tags', array('name' => 'tags', 'value' => $tags)); ?>
 </div>
 <?php
-echo elgg_view("input/checkbox", array(
-	'name' => 'minorchange'
-));
-echo elgg_echo('brainstorm:minorchange');
-echo '</div>';
+	$categories = elgg_view('input/categories', $vars);
+	if ($categories) {
+		echo $categories;
+	}
 
-$categories = elgg_view('input/categories', $vars);
-if ($categories) {
-	echo $categories;
-}
+	echo elgg_view("input/checkbox", array(
+		'name' => 'minorchange'
+	));
+	echo elgg_echo('brainstorm:minorchange');
 ?>
 
-<div class="elgg-foot">
+<div class="elgg-foot mtl">
 	<?php
 
 	echo elgg_view('input/hidden', array('name' => 'container_guid', 'value' => $container_guid));
