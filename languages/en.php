@@ -82,11 +82,13 @@ $english = array(
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:title' => "Brainstorm",
+	'brainstorm:widget:title' => "Ideas",
 	'brainstorm:widget:description' => "Display ratest ideas.",
 	'brainstorm:more' => "More ideas",
 	'brainstorm:numbertodisplay' => "Number of ideas to display",
 	'brainstorm:typetodisplay' => "Display by",
+	'brainstorm:widget:points_left:title' => "Votes left",
+	'brainstorm:widget:points_left:description' => "Display votes left in each brainstorm of yours groups.",
 
 	/**
 	 * Status messages
