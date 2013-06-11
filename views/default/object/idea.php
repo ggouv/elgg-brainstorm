@@ -7,6 +7,7 @@
 
 $full = elgg_extract('full_view', $vars, FALSE);
 $idea = elgg_extract('entity', $vars, FALSE);
+$show_group = elgg_extract('show_group', $vars, FALSE);
 
 if (!$idea) {
 	return;
@@ -35,6 +36,17 @@ $author_text = elgg_echo('byline', array($owner_link));
 $tags = elgg_view('output/tags', array('tags' => $idea->tags));
 $date = elgg_view_friendly_time($idea->time_created);
 
+if ($show_group && elgg_instanceof($container, 'group')) {
+	$group_link = elgg_view('output/url', array(
+		'href' => $container->getURL(),
+		'text' => $container->name,
+		'is_trusted' => true,
+	));
+	$group_text = elgg_echo('groups:ingroup') . ' ' . $group_link;
+} else {
+	$group_text = '';
+}
+
 $comments_count = $idea->countComments();
 //only display if there are commments
 if ($comments_count != 0) {
@@ -54,7 +66,7 @@ $metadata = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
-$subtitle = "$author_text $date $categories $comments_link";
+$subtitle = "$author_text $group_text $date $categories $comments_link";
 
 // do not show the metadata and controls in widget view
 if (elgg_in_context('widgets')) {
