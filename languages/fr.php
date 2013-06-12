@@ -82,11 +82,13 @@ $french = array(
 	/**
 	 * Widget and bookmarklet
 	 */
-	'brainstorm:widget:title' => "Remue-méninges",
+	'brainstorm:widget:title' => "Idées",
 	'brainstorm:widget:description' => "Afficher les idées les plus votées.",
 	'brainstorm:more' => "Plus d'idées",
 	'brainstorm:numbertodisplay' => "Nombre d'idées à afficher ",
 	'brainstorm:typetodisplay' => "Afficher par ",
+	'brainstorm:widget:points_left:title' => "Votes restants",
+	'brainstorm:widget:points_left:description' => "Affiche vos votes restants dans les remue-méninges des groupes dont vous êtes membre.",
 
 	/**
 	 * Status messages

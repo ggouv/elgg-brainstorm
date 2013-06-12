@@ -251,3 +251,15 @@ div.idea-rate-button:hover {
 .module-idea-list .idea-points {
 	padding: 8px 0px 9px;
 }
+
+/*
+ * Widgets
+ */
+.elgg-widget-content .points {
+	font-weight: bold;
+	color: #FF9900;
+	font-size: 1.1em;
+}
+.elgg-widget-content .points.zero {
+	color: #999;
+}

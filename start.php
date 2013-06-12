@@ -31,8 +31,18 @@ function brainstorm_init() {
 	elgg_extend_view('css/elgg', 'brainstorm/css');
 	elgg_extend_view('js/elgg', 'brainstorm/js');
 	
-	// Register widget
-	elgg_register_widget_type('brainstorm', elgg_echo('brainstorm:widget:title'), elgg_echo('brainstorm:widget:description'));
+	// Register widgets
+	elgg_register_widget_type(
+			'brainstorm',
+			elgg_echo('brainstorm:widget:title'),
+			elgg_echo('brainstorm:widget:description')
+	);
+	elgg_register_widget_type(
+			'points_left',
+			elgg_echo('brainstorm:widget:points_left:title'),
+			elgg_echo('brainstorm:widget:points_left:description'),
+			'dashboard'
+	);
 
 	// Register granular notification for this type
 	register_notification_object('object', 'brainstorm', elgg_echo('brainstorm:new'));
