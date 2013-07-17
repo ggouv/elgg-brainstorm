@@ -21,11 +21,11 @@ $categories = elgg_view('output/categories', $vars);
 
 $description = elgg_view('output/longtext', array('value' => $idea->description, 'class' => 'pbl'));
 
-$params = array(
+$title_link = elgg_view('output/url', array(
 	'text' => $idea->title,
 	'href' => $idea->getURL(),
-);
-$title_link = elgg_view('output/url', $params);
+	'class' => 'mrs'
+));
 
 $owner_link = elgg_view('output/url', array(
 	'href' => "brainstorm/owner/$owner->username",
@@ -158,7 +158,7 @@ HTML;
 	$content = elgg_get_excerpt($idea->description);
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
 	}
 
 	echo <<<HTML
@@ -174,7 +174,7 @@ HTML;
 	$content = elgg_get_excerpt($idea->description);
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
 	}
 
 	echo <<<HTML
@@ -201,7 +201,7 @@ HTML;
 	}
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
 	}
 
 

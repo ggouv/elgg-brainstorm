@@ -111,6 +111,7 @@ div.idea-rate-button:hover {
 	font-size: 11px;
 	font-weight: normal;
 	padding: 1px 8px;
+	white-space: nowrap;
 }
 .elgg-river-message .status {
 	border-radius: 5px;
