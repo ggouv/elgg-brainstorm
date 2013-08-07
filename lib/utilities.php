@@ -62,6 +62,9 @@ function brainstorm_group_settings_prepare_form_vars($group = null) {
 		'brainstorm_question' => get_input('brainstorm_question', elgg_echo('brainstorm:search')),
 		'brainstorm_points' => get_input('brainstorm_points', 10),
 		'brainstorm_submit_idea_without_point' => get_input('brainstorm_submit_idea_without_point', false),
+		'brainstorm_status' => get_input('brainstorm_status', false),
+		'brainstorm_separate_accepted_tabs' => get_input('brainstorm_separate_accepted_tabs', false),
+		'brainstorm_separate_finished_tabs' => get_input('brainstorm_separate_finished_tabs', false)
 	);
 
 	if ($group) {

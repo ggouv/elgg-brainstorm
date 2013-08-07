@@ -32,9 +32,11 @@ $group_link = elgg_view('output/url', array(
 ));
 $group_string = elgg_echo('river:ingroup', array($group_link));
 
-$excerpt = "<span class='status open'>" . elgg_echo("brainstorm:open") . '</span>&nbsp;';
-$excerpt .= strip_tags(elgg_get_excerpt($object->status_info, 100));
+$status_array = unserialize($container->brainstorm_status);
+$status_string = $status_array['open'] ? $status_array['open'] : elgg_echo('brainstorm:open');
 
+$excerpt = "<span class=\"status open\">$status_string</span>&nbsp;";
+$excerpt .= strip_tags(elgg_get_excerpt($object->status_info, 140));
 
 $vars['item']->summary = elgg_echo('river:update:object:idea', array($subject_link, $object_link, $group_string)) . ' ' . $group_string;
 $vars['item']->message = $excerpt;

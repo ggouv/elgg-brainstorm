@@ -26,11 +26,11 @@ function brainstorm_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'brainstorm_owner_block_menu');
 
 	elgg_register_page_handler('brainstorm', 'brainstorm_page_handler');
-	
+
 	// Extend view
 	elgg_extend_view('css/elgg', 'brainstorm/css');
 	elgg_extend_view('js/elgg', 'brainstorm/js');
-	
+
 	// Register widgets
 	elgg_register_widget_type(
 			'brainstorm',
@@ -100,7 +100,6 @@ function brainstorm_page_handler($page) {
 		case 'group':
 			group_gatekeeper();
 			switch ($page[2]) {
-				default:
 				case "all":
 				case "top":
 					include "$pages/top.php";
@@ -114,17 +113,36 @@ function brainstorm_page_handler($page) {
 				case "accepted":
 					include "$pages/accepted.php";
 					break;
-				case "completed":
-					include "$pages/completed.php";
+				case "finished":
+					include "$pages/finished.php";
+					break;
+				case "under_review":
+					include "$pages/under_review.php";
+					break;
+				case "planned":
+					include "$pages/planned.php";
+					break;
+				case "started":
+					include "$pages/started.php";
 					break;
 				case "settings":
 					include "$pages/settings.php";
 					break;
+				case "completed":
+					include "$pages/completed.php";
+					break;
+				case "declined":
+					include "$pages/declined.php";
+					break;
+				default:
+					forward(elgg_get_site_url() . 'brainstorm/group/' . $page[1] . '/top');
+					break;
 			}
 			break;
-			
+
 		default:
 			return false;
+			break;
 	}
 
 	elgg_pop_context();
@@ -149,7 +167,7 @@ function idea_url($entity) {
 
 /**
  * Add a menu item to an ownerblock
- * 
+ *
  * @param string $hook
  * @param string $type
  * @param array  $return
@@ -187,7 +205,7 @@ function brainstorm_notify_message($hook, $entity_type, $returnvalue, $params) {
 	if (($entity instanceof ElggEntity) && ($entity->getSubtype() == 'idea')) {
 		$descr = $entity->description;
 		$title = $entity->title;
-		
+
 		$url = elgg_get_site_url() . "view/" . $entity->guid;
 		if ($method == 'sms') {
 			$owner = $entity->getOwnerEntity();

@@ -126,6 +126,8 @@ if ( !$container->canWriteToContainer($user) ) {
 }
 
 $status = $idea->status;
+$status_array = unserialize($container->brainstorm_status);
+$status_string = $status_array[$status] ? $status_array[$status] : elgg_echo('brainstorm:'.$status);
 
 if ($full == 'full' && !elgg_in_context('gallery')) {
 
@@ -133,7 +135,7 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 
 	if ($idea->status_info || $status == 'completed' || $status == 'declined') {
 		$status_info = "<div class='mts'>" . elgg_view('output/longtext', array('value' => $idea->status_info)) . '</div>';
-		$idea_status = "<div class='idea-status pam mtl'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='status mls $status'>" . elgg_echo('brainstorm:'.$status) . "</span>$status_info</div>";
+		$idea_status = "<div class='idea-status pam mtl'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='status mls $status'>" . $status_string . "</span>$status_info</div>";
 	}
 
 	echo <<<HTML
@@ -148,9 +150,12 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 HTML;
 
 } elseif ($full == 'sidebar') {
-
+	if ($status != 'open') {
+		$tooltip = 'tooltip e';
+		$tooltip_title = $status_string;
+	}
 	echo <<<HTML
-<div class="mrs idea-value-$userVote $status">$userVote</div>
+<div class="mrs $tooltip e idea-value-$userVote $status" title="$tooltip_title">$userVote</div>
 <h3>$title_link</h3>
 HTML;
 
@@ -158,7 +163,7 @@ HTML;
 	$content = elgg_get_excerpt($idea->description);
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . $status_string . "</span>";
 	}
 
 	echo <<<HTML
@@ -174,7 +179,7 @@ HTML;
 	$content = elgg_get_excerpt($idea->description);
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . $status_string . "</span>";
 	}
 
 	echo <<<HTML
@@ -201,7 +206,7 @@ HTML;
 	}
 
 	if ( $status != 'open') {
-		$idea_status = "<span class='status $status'>" . elgg_echo('brainstorm:'.$status) . "</span>";
+		$idea_status = "<span class='status $status'>" . $status_string . "</span>";
 	}
 
 

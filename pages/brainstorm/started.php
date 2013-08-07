@@ -7,7 +7,7 @@
 $page_owner = elgg_get_page_owner_entity();
 
 $status_array = unserialize($page_owner->brainstorm_status);
-$status_string = $status_array['completed'] ? $status_array['completed'] : elgg_echo('brainstorm:completed');
+$status_string = $status_array['started'] ? $status_array['started'] : elgg_echo('brainstorm:started');
 $status_string = ucfirst($status_string);
 
 elgg_push_breadcrumb($page_owner->name);
@@ -30,7 +30,7 @@ $content = elgg_list_entities_from_metadata(array(
 	'subtype' => 'idea',
 	'container_guid' => $page_owner->guid,
 	'metadata_names' => 'status',
-	'metadata_values' => 'completed',
+	'metadata_values' => 'started',
 	'limit' => 0,
 	'offset' => $offset,
 	'pagination' => false,
@@ -47,7 +47,7 @@ if (!$content) {
 $title = elgg_echo('brainstorm:owner', array($page_owner->name));
 
 $vars = array(
-	'filter_context' => 'completed',
+	'filter_context' => 'started',
 	'content' => $content,
 	'title' => $title,
 	'sidebar' => elgg_view('brainstorm/sidebar'),

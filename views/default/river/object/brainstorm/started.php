@@ -30,8 +30,11 @@ $group_link = elgg_view('output/url', array(
 ));
 $group_string = elgg_echo('river:ingroup', array($group_link));
 
-$excerpt = "<span class='status started'>" . elgg_echo("brainstorm:started") . '</span>&nbsp;';
-$excerpt .= strip_tags(elgg_get_excerpt($object->status_info, 100));
+$status_array = unserialize($container->brainstorm_status);
+$status_string = $status_array['started'] ? $status_array['started'] : elgg_echo('brainstorm:started');
+
+$excerpt = "<span class=\"status started\">$status_string</span>&nbsp;";
+$excerpt .= strip_tags(elgg_get_excerpt($object->status_info, 140));
 
 echo elgg_view('river/item', array(
 	'item' => $vars['item'],

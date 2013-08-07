@@ -107,7 +107,7 @@ div.idea-rate-button:hover {
 }
 .status {
 	border-radius: 8px;
-	color: black;
+	color: #333;
 	font-size: 11px;
 	font-weight: normal;
 	padding: 1px 8px;
@@ -116,7 +116,7 @@ div.idea-rate-button:hover {
 .elgg-river-message .status {
 	border-radius: 5px;
 	font-size: 9px;
-	padding: 0 5px 1px;
+	padding: 1px 5px 1px;
 }
 .status.open {
 	border: 1px solid #DDD;
@@ -129,13 +129,17 @@ div.idea-rate-button:hover {
 	background: #BBB;
 }
 .status.started {
-	background: #89C23C;
-}
-.status.completed {
 	background: #4690D6;
 }
+.status.completed {
+	background: #89C23C;
+}
 .status.declined {
-	background: red;
+	background: #F33;
+}
+.elgg-menu-filter > li > a.status {
+	border-radius: 3px 3px 0 0;
+	color: #333;
 }
 
 /*
@@ -195,13 +199,13 @@ div.idea-rate-button:hover {
 	font-size: 1.4em;
 	font-weight: bold;
 	margin: 0 -10px 10px;
-	padding-bottom:5px;
+	padding-bottom: 7px;
 }
 #votesLeft.zero {
 	background: #999;
 }
 #votesLeft strong {
-	font-size: 2em;
+	font-size: 3em;
 }
 .sidebar-idea-list {
 	margin-top: 10px;
@@ -231,7 +235,7 @@ div.idea-rate-button:hover {
 	border-bottom: 4px solid #4690D6;
 }
 .sidebar-idea-list .elgg-item-idea > div.declined {
-	border-bottom: 4px solid red;
+	border-bottom: 4px solid #F33;
 }
 
 /*

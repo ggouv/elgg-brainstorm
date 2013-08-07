@@ -24,6 +24,6 @@ if ( $userVote <= '0' ) {
 if ( $userVote == '1' ) $VoteString = "<strong>1</strong> " . elgg_echo('brainstorm:onevoteleft');
 if ( $userVote >> '1' ) $VoteString = "<strong>$userVote</strong> " . elgg_echo('brainstorm:votesleft');
 
-echo "<div id='votesLeft' class='pam $zero'>" . $VoteString . "</div>";
+echo "<div id='votesLeft' class='ptl plm $zero'>" . $VoteString . "</div>";
 
 if ( $userVote != '10' ) echo elgg_echo('brainstorm:yourvotes');
