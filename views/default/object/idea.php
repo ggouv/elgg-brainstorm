@@ -133,7 +133,7 @@ if ($full == 'full' && !elgg_in_context('gallery')) {
 
 	$idea_info = elgg_view_image_block($owner_icon, $list_body, array('class' => 'mbs'));
 
-	if ($idea->status_info || $status == 'completed' || $status == 'declined') {
+	if ( $status != 'open') {
 		$status_info = "<div class='mts'>" . elgg_view('output/longtext', array('value' => $idea->status_info)) . '</div>';
 		$idea_status = "<div class='idea-status pam mtl'><strong>" . elgg_echo('brainstorm:state') . "</strong><span class='status mls $status'>" . $status_string . "</span>$status_info</div>";
 	}
