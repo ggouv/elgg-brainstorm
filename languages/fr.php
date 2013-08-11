@@ -20,7 +20,6 @@ $french = array(
 	'river:comment:object:idea' => "%s a commenté l'idée %s",
 	'river:update:object:idea' => "%s a modifié l'idée %s",
 
-
 	'brainstorm' => "Remue-méninges",
 	'brainstorm:add' => "Ajouter une idée",
 	'brainstorm:edit' => "Éditer une ideé",
@@ -59,7 +58,7 @@ $french = array(
 
 	'brainstorm:settings:status' => "Changer l'intitulé des statuts",
 	'brainstorm:settings:status:accepted' => "Avec ces statuts, les points sont dépensés.",
-	'brainstorm:settings:status:finshed' => "Avec ces statuts, les points sont rendus.",
+	'brainstorm:settings:status:finished' => "Avec ces statuts, les points sont rendus.",
 
 	'brainstorm:none' => "Pas d'idée.",
 	'brainstorm:novoteleft' => "vote restant.",
@@ -109,6 +108,7 @@ $french = array(
 	'brainstorm:settings:brainstorm_submit_idea_without_point' => "Soumettre une idée sans avoir de point",
 	'brainstorm:settings:brainstorm_submit_idea_without_point_string' => "Cochez si vous souhaitez que les membres du groupe puissent soumettre une idée sans avoir de point. Attention, cela offre la possibilité aux utilisateurs de soumettre beaucoup d'idée sans gage de qualité.",
 	'brainstorm:settings:separate_tabs' => "Séparer les onglets",
+	'brainstorm:settings:separate_tabs:info' => "Laisser vide un champ permet de ne pas utiliser et afficher un status.",
 	'brainstorm:settings:brainstorm_separate_accepted_tabs' => "Afficher les onglets des status \"En cours d'évaluation\", \"Planifiée\" et \"Commencée\" au lieu de les regrouper dans l'onglet \"Acceptées\".",
 	'brainstorm:settings:brainstorm_separate_finished_tabs' => "Afficher les onglets des status \"Terminée\" et \"Déclinée\" au lieu de les regrouper dans l'onglet \"Terminées\".",
 

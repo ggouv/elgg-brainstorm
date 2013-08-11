@@ -46,6 +46,7 @@ $group_guid = elgg_get_page_owner_guid();
 
 <div>
 	<label><?php echo elgg_echo('brainstorm:settings:status'); ?></label><br/>
+	<?php echo elgg_echo('brainstorm:settings:separate_tabs:info'); ?>
 	<table class="mtm">
 	<?php
 		$status_label = array('open' => elgg_echo('brainstorm:open'),
@@ -58,10 +59,10 @@ $group_guid = elgg_get_page_owner_guid();
 		foreach ($status_label as $key => $value) {
 			if ($key == 'completed') echo '<tr><td colspan="3"><div style="border: 1px solid #CCC;margin: 3px 0;"></div></td></tr>';
 			echo '<tr><td><div class="mrs status ' . $key . '" style="margin-top: 7px;">' . $value . '</div></td><td>';
-			if ($brainstorm_status[$key]) $value = $brainstorm_status[$key];
+			if (isset($brainstorm_status[$key])) $value = $brainstorm_status[$key];
 			echo elgg_view('input/text', array('name' => 'brainstorm_status['.$key.']', 'value' => $value));
 			if ($key == 'open') echo '<td rowspan="4" style="vertical-align: middle;" class="pam">' . elgg_echo('brainstorm:settings:status:accepted') . '</td></tr>';
-			if ($key == 'completed') echo '<td rowspan="2" style="vertical-align: middle;" class="pam">' . elgg_echo('brainstorm:settings:status:completed') . '</td></tr>';
+			if ($key == 'completed') echo '<td rowspan="2" style="vertical-align: middle;" class="pam">' . elgg_echo('brainstorm:settings:status:finished') . '</td></tr>';
 			echo '</tr>';
 		}
 	?>

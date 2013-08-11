@@ -35,6 +35,7 @@ if ( $order_by == 'asc' ) {
 
 if (elgg_is_logged_in() && $context) {
 
+	$status_array = unserialize($page_owner->brainstorm_status);
 	$prepare_tabs = array('top', 'hot', 'new');
 
 	if ($brainstorm_separate_accepted_tabs == 'on') {
@@ -55,19 +56,23 @@ if (elgg_is_logged_in() && $context) {
 			$text = elgg_echo('brainstorm:filter:'.$name) . $icon[$name];
 			$class = '';
 		} else {
-			$status_array = unserialize($page_owner->brainstorm_status);
-			$status_string = $status_array[$name] ? $status_array[$name] : elgg_echo('brainstorm:'.$name);
+			$status_string = isset($status_array[$name]) ? $status_array[$name] : elgg_echo('brainstorm:'.$name);
+			if (empty($status_string)) $is_empty = true;
 			$text = ucfirst($status_string) . $icon[$name];
 			$class = 'status ' . $name;
 		}
-		$tabs[$name] = array(
-			'text' => $text,
-			'href' => (isset($vars[$name.'_link'])) ? $vars[$name.'_link'] : "$context/group/{$page_owner->getGUID()}/$name{$order_text[$name]}",
-			'selected' => ($filter_context == $name),
-			'class' => $class,
-			'priority' => $i,
-		);
-		$i = $i+100;
+
+		if (!$is_empty) {
+			$tabs[$name] = array(
+				'text' => $text,
+				'href' => (isset($vars[$name.'_link'])) ? $vars[$name.'_link'] : "$context/group/{$page_owner->getGUID()}/$name{$order_text[$name]}",
+				'selected' => ($filter_context == $name),
+				'class' => $class,
+				'priority' => $i,
+			);
+			$i = $i+100;
+		}
+		$is_empty = false;
 	}
 
 	foreach ($tabs as $name => $tab) {

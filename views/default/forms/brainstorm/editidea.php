@@ -36,8 +36,15 @@ $guid = elgg_extract('guid', $vars, null);
 	if ($group->canEdit()) {
 		$status_params = unserialize($group->brainstorm_status);
 		foreach (array('open', 'under_review', 'planned', 'started', 'completed', 'declined') as $key) {
-			$value = $status_params[$key] ? $status_params[$key] : elgg_echo('brainstorm:'.$key);
-			$status_label[$value] = $key;
+			if (isset($status_params[$key])) {
+				if (!empty($status_params[$key])) {
+					$value = $status_params[$key] ? $status_params[$key] : elgg_echo('brainstorm:'.$key);
+					$status_label[$value] = $key;
+				}
+			} else {
+				$value = elgg_echo('brainstorm:'.$key);
+				$status_label[$value] = $key;
+			}
 		}
 	?>
 		<div>
