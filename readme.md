@@ -18,9 +18,12 @@ When user submit idea, live search makes sure that members find similar feedback
 - Live search on idea and highlight result.
 - Submit idea get title from the search form.
 - Top, hot list idea order by ascendent or descendant.
-- Group owner can set status of idea to under review, planed, started, accepted and declined
-- Group settings to custom description and question of the brainstorm
 - All ajaxified votes
+- Group owner can :
+  - set status of idea to under review, planed, started, accepted and declined by default or choose label of this status
+  - choose to merge tabs of idea's status in brainstorm view
+  - choose if a member can submit idea without point
+  - set the description and question of the brainstorm
 
 ## Next step
 
@@ -29,7 +32,11 @@ When user submit idea, live search makes sure that members find similar feedback
 - Categories ideas for each group
 - Show idea stats with highcharts.js
 - Connect with a task manager ?
-- Set a ticket system like http://uservoice.com/helpdesk ???
+- Set a ticket system like [http://uservoice.com/helpdesk](http://uservoice.com/helpdesk) ???
+
+## Compatibility
+
+River items are avaible in json : works fine with [https://github.com/ggouv/elgg-deck_river](https://github.com/ggouv/elgg-deck_river)
 
 ## Licence
 
