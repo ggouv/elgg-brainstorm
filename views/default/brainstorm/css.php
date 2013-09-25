@@ -264,7 +264,8 @@ div.idea-rate-button:hover {
 .elgg-widget-content .points {
 	font-weight: bold;
 	color: #FF9900;
-	font-size: 1.1em;
+	font-size: 2.4em;
+	line-height: 100%;
 }
 .elgg-widget-content .points.zero {
 	color: #999;

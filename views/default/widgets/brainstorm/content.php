@@ -8,16 +8,16 @@
 $max = (int) $vars['entity']->max_display;
 $type = $vars['entity']->type_display;
 
+$user = get_entity($vars['entity']->owner_guid);
+
 if ( $type == 'top' ) {
 	$content = elgg_list_entities_from_annotation_calculation(array(
 		'type' => 'object',
 		'subtype' => 'idea',
-		'owner_guid' => elgg_get_logged_in_user_guid(),
+		'owner_guid' => $user->getGUID(),
 		'annotation_names' => 'point',
 		'order_by' => 'annotation_calculation desc',
-		'full_view' => 'sidebar',
-		'item_class' => 'elgg-item-idea pts pbs',
-		'list_class' => 'sidebar-idea-list',
+		'full_view' => 'no_vote',
 		'limit' => $max,
 		'pagination' => false
 	));
@@ -25,20 +25,18 @@ if ( $type == 'top' ) {
 	$content = elgg_list_entities(array(
 		'type' => 'object',
 		'subtype' => 'idea',
-		'owner_guid' => elgg_get_logged_in_user_guid(),
+		'owner_guid' => $user->getGUID(),
 		'limit' => $max,
 		'pagination' => false,
 		'order_by' => 'time_created desc',
-		'full_view' => 'sidebar',
-		'list_class' => 'sidebar-idea-list',
-		'item_class' => 'elgg-item-idea pts pbs'
+		'full_view' => 'no_vote'
 	));
 }
 
 echo $content;
 
 if ($content) {
-	$url = "brainstorm/owner/" . elgg_get_page_owner_entity()->username;
+	$url = "brainstorm/owner/" . $user->username;
 	$more_link = elgg_view('output/url', array(
 		'href' => $url,
 		'text' => elgg_echo('brainstorm:more'),
