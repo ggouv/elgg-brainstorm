@@ -229,14 +229,15 @@ div.idea-rate-button:hover {
 	border-bottom: 4px solid #BBB;
 }
 .sidebar-idea-list .elgg-item-idea > div.started {
-	border-bottom: 4px solid #89C23C;
+	border-bottom: 4px solid #4690D6;
 }
 .sidebar-idea-list .elgg-item-idea > div.completed {
-	border-bottom: 4px solid #4690D6;
+	border-bottom: 4px solid #89C23C;
 }
 .sidebar-idea-list .elgg-item-idea > div.declined {
 	border-bottom: 4px solid #F33;
 }
+
 
 /*
  * Add form editidea

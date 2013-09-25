@@ -30,7 +30,7 @@ if (!$container || !$container->canWritetoContainer()) {
 }
 
 // check if user vote left under zero
-$userPointsLeft = brainstorm_user_points_left($container_guid)
+$userPointsLeft = brainstorm_user_points_left($container_guid);
 
 if ($container->brainstorm_submit_idea_without_point == '0') {
 	if ($userPointsLeft < 0 ) {
