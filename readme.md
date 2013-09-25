@@ -4,7 +4,7 @@ This plugin offer ability to feedback/brainstorm members of groups. I am inspire
 
 ## Rules
 Members can easily submit and discuss ideas, and vote from 1 to 3 about them.  
-Each member start with 10 points. When it reach zero, he cannot vote. This system prevents fraud and vocal minorities.
+Each member start with 10 points (by default, group admin can change this value). When it reach zero, he cannot vote. This system prevents fraud and vocal minorities.
 
 Members get back points when an idea is accepted (or declined) by group owner.  
 This make sure people focus on the ideas they care most about.

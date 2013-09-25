@@ -76,7 +76,7 @@ $english = array(
 
 	'brainstorm:add' => "submit a new idea",
 
-	'brainstorm:settings:points' => "Number of points",
+	'brainstorm:settings:brainstorm_nbr_points' => "Number of points of vote",
 	'brainstorm:settings:question' => "Question",
 	'brainstorm:settings:brainstorm_submit_idea_without_point' => "Submit idea without point",
 	'brainstorm:settings:brainstorm_submit_idea_without_point_string' => "Check if you want to offer possibility to group members to submit idea without point. Be carefull of flooding.",

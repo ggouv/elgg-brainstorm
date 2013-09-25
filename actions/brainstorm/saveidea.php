@@ -7,6 +7,7 @@
 
 gatekeeper();
 
+elgg_load_library('brainstorm:utilities');
 elgg_make_sticky_form('idea');
 
 $title = strip_tags(get_input('title'));
@@ -29,31 +30,25 @@ if (!$container || !$container->canWritetoContainer()) {
 }
 
 // check if user vote left under zero
-$userVote = elgg_get_annotations(array(
-	'container_guid' => $container_guid,
-	'annotation_names' => 'point',
-	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid
-));
-$userVote = 10 - $userVote;
+$userPointsLeft = brainstorm_user_points_left($container_guid)
 
 if ($container->brainstorm_submit_idea_without_point == '0') {
-	if ($userVote < 0 ) {
+	if ($userPointsLeft < 0 ) {
 		register_error(elgg_echo('brainstorm:idea:save:failed'));
 		forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
 	}
 
-	// check if user idea more than 10. Cannot submit if group submit without point is not permit
+	// check if user has rate more than brainstorm_nbr_points. Cannot submit if group submit without point is not permit
 	$user_ideas_count = elgg_get_entities_from_annotations(array(
 		'type' => 'object',
 		'subtype' => 'idea',
-		'owner_guid' => $page_owner->guid,
+		'owner_guid' => $user_guid,
 		'container_guid' => $container_guid,
 		'annotation_names' => 'point',
 		'limit' => 0,
 		'count' => true
 	));
-	if ($user_ideas_count >= 10) {
+	if ($user_ideas_count >= $container->brainstorm_nbr_points) {
 		register_error(elgg_echo('brainstorm:idea:save:too_much_ideas'));
 		forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
 	}
@@ -89,21 +84,20 @@ if ($idea->save()) {
 	system_message(elgg_echo('brainstorm:idea:save:success'));
 
 	//add to river and set annotation with minimum of 1 and max 3 points only if new. If group submit without point is permit and user points left = 0, rate 0.
-	if ($new ) {
-		if ($container->brainstorm_submit_idea_without_point == 'on' && $userVote <= 0) {
+	if ($new) {
+		if ($container->brainstorm_submit_idea_without_point == 'on' && $userPointsLeft <= 0) {
 			$rate = 0;
 		} else {
 			$rate = 1;
-			if ($userVote >= 2) $rate = 2;
-			if ($userVote >= 3) $rate = 3;
+			if ($userPointsLeft >= 2) $rate = 2;
+			if ($userPointsLeft >= 3) $rate = 3;
 		}
-		
-		$annotation = new ElggObject($idea->getGUID());
-		if ( create_annotation($annotation->getGUID(), 'point', $rate, 'integer', $user_guid, $annotation->getAccessID()) ) {
+
+		if ( create_annotation($idea->getGUID(), 'point', $rate, 'integer', $user_guid, $idea->getAccessID()) ) {
 		} else {
 			register_error(elgg_echo('brainstorm:idea:rate:error'));
 		}
-		
+
 		add_to_river('river/object/brainstorm/create','create', $user_guid, $idea->getGUID());
 	}
 

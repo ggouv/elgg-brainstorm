@@ -13,6 +13,8 @@ if (!$idea) {
 	return;
 }
 
+elgg_load_library('brainstorm:utilities');
+
 $owner = $idea->getOwnerEntity();
 $owner_icon = elgg_view_entity_icon($owner, 'small');
 $container = $idea->getContainerEntity();
@@ -82,45 +84,28 @@ $params = array(
 $params = $params + $vars;
 $list_body = elgg_view('object/elements/summary', $params);
 
-$sum = elgg_get_annotations(array(
-	'guids' => $idea->guid,
-	'annotation_names' => array('point', 'close'),
-	'annotation_calculation' => 'sum',
-	'limit' => 0
-));
-if ( $sum == '' ) $sum = 0;
+$ideaPoints = brainstorm_idea_get_points($idea->getGUID());
 
-$userVote = elgg_get_annotations(array(
-	'guids' => $idea->guid,
-	'annotation_names' => array('point', 'close'),
-	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid,
-	'limit' => 0
-));
+if ( $ideaPoints['total'] == '' ) $ideaPoints['total'] = 0;
 
-$userVoteLeft = elgg_get_annotations(array(
-	'container_guid' => $container->guid,
-	'annotation_names' => 'point',
-	'annotation_calculation' => 'sum',
-	'annotation_owner_guids' => $user_guid,
-	'limit' => 0
-));
-$userVoteLeft = 10 - $userVoteLeft;
+$ideaPoints['userPoints'] = $ideaPoints['userPoints'];
 
-$voteString = $userVote;
-if ( $userVote == '' || $userVote == '0' ) $voteString = $userVote = 'vote';
-if ( $userVoteLeft <= 0 && $userVote == 'vote' ) $userVote = '0';
+$userPointsLeft = brainstorm_user_points_left($container->getGUID());
+
+$voteString = $ideaPoints['userPoints'];
+if ( $ideaPoints['userPoints'] == '' || $ideaPoints['userPoints'] == '0' ) $voteString = $ideaPoints['userPoints'] = 'vote';
+if ( $userPointsLeft <= 0 && $ideaPoints['userPoints'] == 'vote' ) $ideaPoints['userPoints'] = '0';
 
 if ( !$container->canWriteToContainer($user) ) {
-	$vote = "<div class='idea-points mbs'>$sum</div>";
+	$vote = "<div class='idea-points mbs'>{$ideaPoints['total']}</div>";
 } elseif ( $idea->status == 'completed' || $idea->status == 'declined' ) {
-	$vote = "<div class='idea-points mbs'>$sum</div>" .
+	$vote = "<div class='idea-points mbs'>{$ideaPoints['total']}</div>" .
 	"<div class='idea-rate-button idea-status'>$voteString</div>";
 } else {
-	$vote = "<div class='idea-points mbs'>$sum</div>" .
-		"<a class='idea-rate-button idea-value-$userVote' rel='popup' href='#vote-popup-{$idea->guid}'>$voteString</a>" .
-		"<div id='vote-popup-{$idea->guid}' class='elgg-module-popup brainstorm-vote-popup'>" .
-			"<div class='triangle gris'></div><div class='triangle blanc'></div>" .
+	$vote = "<div class='idea-points mbs'>{$ideaPoints['total']}</div>" .
+		"<a class=\"idea-rate-button idea-value-{$ideaPoints['userPoints']}\" rel=\"popup\" href=\"#vote-popup-{$idea->guid}\">$voteString</a>" .
+		"<div id=\"vote-popup-{$idea->guid}\" class=\"elgg-module-popup brainstorm-vote-popup\">" .
+			'<div class="triangle gris"></div><div class="triangle blanc"></div>' .
 			elgg_view_form('brainstorm/vote_popup') .
 		"</div>";
 }
@@ -155,7 +140,7 @@ HTML;
 		$tooltip_title = $status_string;
 	}
 	echo <<<HTML
-<div class="mrs $tooltip e idea-value-$userVote $status" title="$tooltip_title">$userVote</div>
+<div class="mrs $tooltip e idea-value-{$ideaPoints['userPoints']} $status" title="$tooltip_title">{$ideaPoints['userPoints']}</div>
 <h3>$title_link</h3>
 HTML;
 
@@ -167,7 +152,7 @@ HTML;
 	}
 
 	echo <<<HTML
-<div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
+<div class="idea-left-column mts mbs"><div class="idea-points mbs">{$ideaPoints['total']}</div></div>
 <div class="idea-content mts">
 	<h3>$title_link</h3>
 	<div class="elgg-subtext">$subtitle</div>
@@ -183,7 +168,7 @@ HTML;
 	}
 
 	echo <<<HTML
-<div class="idea-left-column mts mbs"><div class="idea-points mbs">$sum</div></div>
+<div class="idea-left-column mts mbs"><div class="idea-points mbs">{$ideaPoints['total']}</div></div>
 <div class="idea-content mts">
 	<h3>$title_link $idea_status</h3>
 	<div class="elgg-subtext">$subtitle</div>

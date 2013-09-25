@@ -8,22 +8,15 @@
 $max = (int) $vars['entity']->max_display;
 $type = $vars['entity']->type_display;
 
+elgg_load_library('brainstorm:utilities');
+
 $user_guid = elgg_get_logged_in_user_guid();
 
 $groups = get_users_membership($user_guid);
 
 $userVotes = array();
 foreach($groups as $group) {
-	$userVote = elgg_get_annotations(array(
-		'type' => 'object',
-		'subtype' => 'idea',
-		'container_guid' => $group->getGUID(),
-		'annotation_owner_guids' => $user_guid,
-		'annotation_names' => 'point',
-		'annotation_calculation' => 'sum',
-		'limit' => 0
-	));
-	$userVotes[] = 10 - $userVote;
+	$userVotes[] = brainstorm_user_points_left($group->getGUID(), $user_guid);
 }
 array_multisort($userVotes, SORT_DESC,
 			$groups);

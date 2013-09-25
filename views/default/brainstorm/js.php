@@ -86,7 +86,7 @@ elgg.brainstorm.init = function() {
 			$('#elgg-object-' + idea + ' .idea-points').html('<div class="elgg-ajax-loader"></div>');
 
 			elgg.action('brainstorm/rateidea', {
-				data: $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&page_owner=' + elgg.get_page_owner_guid(),
+				data: $(this).parents('form').serialize() + '&idea=' + idea + '&value=' + value + '&group_guid=' + elgg.get_page_owner_guid(),
 				success: function(json) {
 					$('.brainstorm-vote-popup').fadeOut();
 
@@ -114,24 +114,24 @@ elgg.brainstorm.init = function() {
 							}
 						}
 
-						if ( !json.output.userVoteLeft == '0' && value == '0' ) {
+						if ( !json.output.userPointsLeft == '0' && value == '0' ) {
 							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-vote');
 						} else {
 							ideaRateButton.removeClass().addClass('idea-rate-button idea-value-'+value);
 						}
 
-						if ( json.output.userVoteLeft == '0' ) {
+						if ( json.output.userPointsLeft == '0' ) {
 							$('.idea-value-vote').removeClass('idea-value-vote').addClass('idea-value-0');
 							var VoteString = "<strong>0</strong> " + elgg.echo('brainstorm:novoteleft');
-						} else if ( json.output.userVoteLeft == '1' ) {
+						} else if ( json.output.userPointsLeft == '1' ) {
 							$('.idea-value-0').removeClass('idea-value-0').addClass('idea-value-vote');
 							var VoteString = "<strong>1</strong> " + elgg.echo('brainstorm:onevoteleft');
 						} else {
 							$('.idea-value-0').removeClass('idea-value-0').addClass('idea-value-vote');
-							var VoteString = "<strong>" + json.output.userVoteLeft + "</strong> " + elgg.echo('brainstorm:votesleft');
+							var VoteString = "<strong>" + json.output.userPointsLeft + "</strong> " + elgg.echo('brainstorm:votesleft');
 						}
 						$('#votesLeft').removeClass('zero').html(VoteString);
-						if ( json.output.userVoteLeft == '0' ) $('#votesLeft').addClass('zero');
+						if ( json.output.userPointsLeft == '0' ) $('#votesLeft').addClass('zero');
 					} else {
 						$('#elgg-object-' + idea + ' .idea-points').html(old_points);
 					}

@@ -9,19 +9,14 @@
 
 $description = elgg_extract('brainstorm_description', $vars, '');
 $question = elgg_extract('brainstorm_question', $vars, elgg_echo('brainstorm:search'));
-$tags = elgg_extract('brainstorm_points', $vars, 10);
+$brainstorm_nbr_points = elgg_extract('brainstorm_nbr_points', $vars, 10);
 $brainstorm_submit_idea_without_point = elgg_extract('brainstorm_submit_idea_without_point', $vars, false);
 $brainstorm_status = unserialize(elgg_extract('brainstorm_status', $vars, false));
 $brainstorm_separate_accepted_tabs = elgg_extract('brainstorm_separate_accepted_tabs', $vars, false);
 $brainstorm_separate_finished_tabs = elgg_extract('brainstorm_separate_finished_tabs', $vars, false);
 
 $group_guid = elgg_get_page_owner_guid();
-/* @todo later :
-<div>
-	<label><?php echo elgg_echo('points'); ?></label>
-	<?php echo elgg_view('input/text', array('name' => 'brainstorm_points', 'value' => $question)); ?>
-</div>
-*/
+
 ?>
 
 <div>
@@ -32,6 +27,11 @@ $group_guid = elgg_get_page_owner_guid();
 <div>
 	<label><?php echo elgg_echo('brainstorm:settings:question'); ?></label>
 	<?php echo elgg_view('input/text', array('name' => 'brainstorm_question', 'value' => $question)); ?>
+</div>
+
+<div>
+	<label><?php echo elgg_echo('brainstorm:settings:brainstorm_nbr_points'); ?></label>
+	<?php echo elgg_view('input/text', array('name' => 'brainstorm_nbr_points', 'value' => $brainstorm_nbr_points)); ?>
 </div>
 
 <div>

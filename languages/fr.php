@@ -78,7 +78,7 @@ $french = array(
 
 	'brainstorm:add' => "soumettez une nouvelle idée",
 
-	'brainstorm:settings:points' => "Nombre de points",
+	'brainstorm:settings:brainstorm_nbr_points' => "Nombre de points de vote permis",
 	'brainstorm:settings:question' => "Question",
 
 	/**
