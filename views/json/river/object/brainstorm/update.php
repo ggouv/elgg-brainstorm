@@ -38,4 +38,4 @@ $excerpt = strip_tags(elgg_get_excerpt($object->status_info, 100));
 $vars['item']->summary = elgg_echo('river:update:object:idea', array($subject_link, $object_link, $group_string)) . ' ' . $group_string;
 $vars['item']->message = $excerpt;
 
-$jsonexport['activity'][] = $vars['item'];
+$jsonexport['results'][] = $vars['item'];
