@@ -29,7 +29,7 @@ foreach($groups as $key => $group) {
 	));
 	$group = elgg_view('page/components/image_block', array(
 		'image' => elgg_view_entity_icon($group, 'tiny'),
-		'body' => $group_body,
+		'body' => '<h3>' . $group_body . '</h3>',
 		'image_alt' => '<span class="' . $class . '">' . $userVotes[$key] . '</span>'
 	));
 	$content .= '<li class="elgg-item">' . $group . '</li>';

@@ -48,7 +48,8 @@ if ($container->brainstorm_submit_idea_without_point == '0') {
 		'limit' => 0,
 		'count' => true
 	));
-	if ($user_ideas_count >= $container->brainstorm_nbr_points) {
+	$nbr_points = $container->brainstorm_nbr_points ? $container->brainstorm_nbr_points : 10;
+	if ($user_ideas_count >= $nbr_points) {
 		register_error(elgg_echo('brainstorm:idea:save:too_much_ideas'));
 		forward(elgg_get_site_url() . "brainstorm/group/{$container_guid}/top");
 	}
@@ -73,7 +74,7 @@ $tagarray = string_to_tag_array($tags);
 
 $idea->title = $title;
 $idea->description = $description;
-$idea->access_id = ACCESS_PUBLIC;
+$idea->access_id = $container->group_acl;
 $idea->tags = $tagarray;
 $idea->status = 'open';
 
